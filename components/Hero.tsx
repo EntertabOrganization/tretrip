@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
@@ -17,17 +18,24 @@ export default function Hero() {
             >
                 <source src="/LandingVideo.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 video-overlay flex flex-col items-center justify-center text-center text-white px-4">
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 max-w-4xl tracking-tight leading-tight">
-                    {t("hero.title")} <br className="hidden md:block" />
-                    <span className="text-brand-primary">{t("hero.titleAccent")}</span>
+            <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
+                <Image
+                    src="/HeroPic.png"
+                    alt="Hero background texture"
+                    fill
+                    className="object-cover opacity-100 animate-zoom-out"
+                    priority
+                />
+            </div>
+            <div className="absolute inset-0 z-20 video-overlay flex flex-col items-center justify-center text-center text-white px-4">
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-10 max-w-5xl tracking-tight leading-[1.1] animate-zoom-in" style={{ animationDelay: '400ms' }}>
+                    {t("hero.title")} <br />
+                    {t("hero.titleAccent")}
                 </h1>
-                <p className="text-xl md:text-2xl mb-10 max-w-2xl font-light opacity-90 leading-relaxed">
-                    {t("hero.subtitle")}
-                </p>
                 <Link
-                    href="/contact"
-                    className="bg-brand-primary hover:bg-brand-primary/90 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all shadow-xl hover:scale-105 active:scale-95"
+                    href="#services"
+                    className="bg-brand-primary hover:bg-[#E1CA72] text-white hover:text-brand-primary px-12 py-5 rounded-[15px] text-xl font-bold transition-all shadow-2xl hover:scale-105 active:scale-95 animate-bounce-up"
+                    style={{ animationDelay: '700ms' }}
                 >
                     {t("hero.cta")}
                 </Link>
