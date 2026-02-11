@@ -19,7 +19,7 @@ export default function Header() {
                         <Link href="/" className="text-gray-700 hover:text-brand-accent font-medium transition-colors">Home</Link>
                         <Link href="/about" className="text-gray-700 hover:text-brand-accent font-medium transition-colors">About</Link>
                         <div className="group relative">
-                            <button className="text-gray-700 hover:text-brand-accent font-medium transition-colors outline-none">Services</button>
+                            <Link href="/services" className="text-gray-700 hover:text-brand-accent font-medium transition-colors">Services</Link>
                             <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                 <div className="py-1">
                                     <Link href="/services/travel" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Travel Tourism</Link>
