@@ -43,7 +43,7 @@ export default function Header() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-7">
+            <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-7">
                 <div className="flex justify-between items-center h-20">
                     <div className="flex-shrink-0 flex items-center">
                         <Link href="/" className="flex items-center">
@@ -58,18 +58,18 @@ export default function Header() {
                         </Link>
                     </div>
 
-                    <div className="hidden md:flex items-center space-x-10">
+                    <div className="hidden md:flex items-center space-x-12">
                         {/* Navigation Links */}
                         <nav className="flex items-center font-medium">
                             <ul className="flex space-x-6 lg:space-x-8 items-center">
                                 {navLinks.map((link) => (
-                                    <li key={link.label} className="relative group/main py-8">
+                                    <li key={link.label} className="relative group/main py-10">
                                         <Link
                                             href={link.href}
                                             className={`${pathname === link.href ? 'text-brand-primary' : 'text-brand-secondary'} hover:text-brand-primary transition-colors text-[18px] font-medium leading-none flex items-center gap-1 group`}
                                         >
                                             {link.label}
-                                            {link.hasChildren && <ChevronDown size={16} className="text-brand-primary/60 group-hover:text-brand-primary transition-transform group-hover:rotate-180" />}
+                                            {link.hasChildren && <ChevronDown size={18} className="text-brand-primary/60 group-hover:text-brand-primary transition-transform group-hover:rotate-180" />}
                                             <span className={`absolute bottom-6 left-0 h-0.5 bg-brand-primary transition-all duration-500 ${pathname === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                                         </Link>
 
@@ -120,7 +120,7 @@ export default function Header() {
                         </div>
                     </div>
 
-                    <div className="md:hidden flex items-center">
+                    <div className="md:hidden flex items-center ml-2">
                         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-brand-secondary">
                             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>

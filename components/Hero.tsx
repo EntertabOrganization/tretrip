@@ -8,13 +8,13 @@ export default function Hero() {
     const { t } = useLanguage();
 
     return (
-        <section className="relative h-screen w-full overflow-hidden">
+        <section className="relative h-[105vh] w-full overflow-hidden">
             <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="absolute top-0 left-0 w-full h-full object-cover"
+                className="absolute top-0 left-0 w-full h-full object-cover translate-y-10"
             >
                 <source src="/LandingVideo.mp4" type="video/mp4" />
             </video>
@@ -23,27 +23,25 @@ export default function Hero() {
                     src="/HeroPic.png"
                     alt="Hero background texture"
                     fill
-                    className="object-cover opacity-100 animate-zoom-out"
+                    className="object-cover opacity-100 animate-zoom-out translate-y-45 translate-x-[-30px]"
                     priority
                 />
             </div>
-            <div className="absolute inset-0 z-20 video-overlay flex flex-col items-center justify-center text-center text-white px-4">
-                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-10 max-w-5xl tracking-tight leading-[1.1] animate-zoom-in" style={{ animationDelay: '400ms' }}>
+            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white translate-y-[-80px]">
+                <h2
+                    className="mb-5 max-w-5xl text-[60px] font-bold capitalize leading-[1.3em] animate-zoom-in [font-family:'Poppins',Sans-serif] [text-shadow:0px_0px_10px_rgba(0,0,0,0.3)] [color:var(--e-global-color-blocksy_palette_8,#ffffff)]"
+                    style={{ animationDelay: '400ms' }}
+                >
                     {t("hero.title")} <br />
                     {t("hero.titleAccent")}
-                </h1>
+                </h2>
                 <Link
                     href="#services"
-                    className="bg-brand-primary hover:bg-[#E1CA72] text-white hover:text-brand-primary px-12 py-5 rounded-[15px] text-xl font-bold transition-all shadow-2xl hover:scale-105 active:scale-95 animate-bounce-up"
+                    className="bg-brand-primary hover:bg-[#E1CA72] text-white hover:text-brand-primary px-11 py-3 rounded-[5px] transition-all shadow-2xl hover:scale-105 active:scale-95 animate-bounce-up [font-family:'Poppins',Sans-serif] text-[14px] font-semibold uppercase leading-[1.5em]"
                     style={{ animationDelay: '700ms' }}
                 >
                     {t("hero.cta")}
                 </Link>
-            </div>
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-                <div className="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center p-2">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                </div>
             </div>
         </section>
     );
