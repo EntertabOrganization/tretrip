@@ -12,54 +12,100 @@ export default function Programs() {
         {
             title: t("programs.hajj.title"),
             description: t("programs.hajj.desc"),
-            image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=600",
+            image: "/programs/Hajj-and-Umrah.webp",
+            link: "/programs/hajj-umrah",
         },
         {
             title: t("programs.kingdom.title"),
             description: t("programs.kingdom.desc"),
-            image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=600",
+            image: "/programs/Explore-The-Kingdom.webp",
+            link: "/programs/kingdom",
         },
         {
             title: t("programs.usa.title"),
             description: t("programs.usa.desc"),
-            image: "https://images.unsplash.com/photo-1501594923665-c74831632df6?auto=format&fit=crop&q=80&w=600",
+            image: "/programs/Explore-The-USA.webp",
+            link: "/programs/usa",
         },
     ];
 
     return (
-        <section id="programs" className="py-24 bg-gray-900 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-                <h2 className="text-3xl md:text-5xl font-bold mb-4">{t("programs.title")}</h2>
-                <div className="w-24 h-1 bg-brand-primary mx-auto"></div>
-            </div>
+        <section
+            id="programs"
+            className="relative py-[50px] overflow-hidden"
+            style={{
+                background: "radial-gradient(at center center, #338FA6 0%, #074C5E 100%)",
+            }}
+        >
+            {/* Background overlay */}
+            <div
+                className="absolute inset-0 opacity-[0.74] pointer-events-none"
+                style={{
+                    backgroundImage: "url('/footer.webp')",
+                    backgroundPosition: "bottom center",
+                    backgroundSize: "cover",
+                    filter: "blur(2.1px)",
+                }}
+                aria-hidden="true"
+            />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="max-w-[90rem] mx-auto px-6 md:px-[50px] relative z-10">
+                {/* 4-column layout: text + 3 cards */}
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+                    {/* Text Column */}
+                    <div className={`flex flex-col justify-center ${dir === "rtl" ? "text-right" : "text-left"}`}>
+                        <span className="font-space text-[18px] font-medium uppercase text-white tracking-wide block mb-2">
+                            Our Programs
+                        </span>
+                        <h2 className="font-space text-[28px] md:text-[40px] font-bold text-white leading-[1.4em] mb-4">
+                            {t("programs.title").split(t("programs.title").split(" ").pop()!)[0]}
+                            <span className="relative inline-block">
+                                {t("programs.title").split(" ").pop()}
+                                <img
+                                    src="https://tretrip.com/wp-content/uploads/2025/08/GOLDAbout.svg"
+                                    alt=""
+                                    className="absolute -bottom-1 left-0 w-full"
+                                    aria-hidden="true"
+                                />
+                            </span>
+                        </h2>
+                        <p className="font-poppins text-white/90 leading-relaxed text-[16px]">
+                            {t("hero.subtitle") || "We tailor trips to your mood, relaxing, thrilling, or cultural. All logistics managed with care, so you only focus on the joy of travel."}
+                        </p>
+                    </div>
+
+                    {/* Program Cards */}
                     {programsData.map((program, idx) => (
-                        <div
+                        <Link
                             key={idx}
-                            className="group relative h-[450px] overflow-hidden rounded-2xl"
+                            href={program.link}
+                            className="group relative block overflow-hidden rounded-lg animate-slide-in-up"
+                            style={{ animationDelay: `${idx * 150}ms` }}
                         >
-                            <Image
-                                src={program.image}
-                                alt={program.title}
-                                fill
-                                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent flex flex-col justify-end p-8">
-                                <h3 className="text-2xl font-bold mb-3">{program.title}</h3>
-                                <p className="text-gray-300 mb-6 font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
-                                    {program.description}
-                                </p>
-                                <Link
-                                    href="#"
-                                    className="text-brand-primary font-semibold flex items-center hover:text-white transition-colors"
-                                >
-                                    <span>{t("programs.explore")}</span>
-                                    <MoveRight size={18} className={`ml-2 ${dir === 'rtl' ? 'rotate-180' : ''}`} />
-                                </Link>
+                            <div className="relative h-[400px] md:h-[468px] w-full">
+                                <Image
+                                    src={program.image}
+                                    alt={program.title}
+                                    fill
+                                    className="object-cover brightness-[0.70] group-hover:brightness-[0.46] transition-all duration-500"
+                                />
+                                {/* Overlay Content */}
+                                <div className={`absolute inset-0 flex flex-col justify-end p-6 md:p-8 ${dir === "rtl" ? "text-right" : "text-left"}`}>
+                                    <h3 className="text-white text-[20px] md:text-[24px] font-semibold [text-shadow:0px_0px_10px_rgba(0,0,0,0.48)] mb-2">
+                                        {program.title}
+                                    </h3>
+                                    <p className="text-white/90 text-[14px] mb-4 [text-shadow:0px_0px_10px_rgba(0,0,0,0.3)] leading-relaxed">
+                                        {program.description}
+                                    </p>
+                                    <div>
+                                        <span className="inline-flex items-center bg-white text-brand-primary text-[14px] font-bold uppercase px-5 py-2.5 rounded-[5px] group-hover:bg-brand-accent group-hover:text-brand-primary transition-colors duration-300">
+                                            {t("programs.explore")}
+                                            <MoveRight size={16} className={`${dir === "rtl" ? "mr-2 rotate-180" : "ml-2"}`} />
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

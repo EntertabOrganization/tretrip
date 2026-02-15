@@ -7,26 +7,59 @@ export default function CTA() {
     const { t } = useLanguage();
 
     return (
-        <section className="py-24 bg-brand-primary text-white">
-            <div className="max-w-4xl mx-auto px-4 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">{t("cta.title")}</h2>
-                <p className="text-xl mb-10 font-light opacity-90">
-                    {t("cta.subtitle")}
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Link
-                        href="/contact"
-                        className="bg-white text-brand-primary px-10 py-4 rounded-full text-lg font-semibold transition-all hover:bg-gray-50 inline-block shadow-xl"
-                    >
-                        {t("cta.contact")}
-                    </Link>
-                    <Link
-                        href="https://wa.me/12029046675"
-                        className="bg-brand-secondary text-white px-10 py-4 rounded-full text-lg font-semibold transition-all hover:bg-brand-secondary/90 flex items-center justify-center shadow-xl"
-                    >
-                        <span>{t("cta.whatsapp")}</span>
-                    </Link>
+        <section
+            className="relative py-[50px] min-h-[60vh] flex items-center justify-center overflow-hidden animate-slide-in-up"
+            style={{
+                background: "#338FA6",
+            }}
+        >
+            {/* Background overlay image */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    backgroundImage: "url('/footer.webp')",
+                    backgroundPosition: "bottom center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    opacity: 0.3,
+                }}
+                aria-hidden="true"
+            />
+
+            <div className="relative z-10 max-w-[90rem] mx-auto px-6 md:px-[50px] text-center">
+                {/* Label */}
+                <span className="font-space text-[18px] font-medium uppercase text-white tracking-wide block mb-2">
+                    Contact
+                </span>
+
+                {/* Heading */}
+                <h2 className="font-space text-[28px] md:text-[40px] font-bold text-white leading-[1.4em] mb-4">
+                    {t("cta.title").replace("Trip", "").trim()}{" "}
+                    <span className="relative inline-block">
+                        Trip
+                        <img
+                            src="https://tretrip.com/wp-content/uploads/2025/08/GoldLine.png"
+                            alt=""
+                            className="absolute -bottom-2 left-[-5%] w-[110%]"
+                            aria-hidden="true"
+                        />
+                    </span>
+                </h2>
+
+                {/* Description */}
+                <div className="max-w-[55%] mx-auto mb-10">
+                    <p className="font-poppins text-white/90 leading-relaxed">
+                        {t("cta.subtitle")}
+                    </p>
                 </div>
+
+                {/* CTA Button */}
+                <Link
+                    href="/contact"
+                    className="inline-block bg-white text-brand-primary font-semibold px-[50px] py-3 rounded-[5px] hover:bg-brand-accent hover:text-brand-primary transition-colors duration-300 text-[14px] uppercase mt-[40px]"
+                >
+                    {t("cta.contact")}
+                </Link>
             </div>
         </section>
     );

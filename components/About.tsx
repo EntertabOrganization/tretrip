@@ -1,56 +1,117 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { Sparkles, Users, Globe2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+
+function CounterNumber({ value, label }: { value: string; label: string }) {
+    return (
+        <div className="text-center">
+            <span className="font-poppins text-[36px] md:text-[55px] font-semibold text-brand-teal leading-[1.4em] block">
+                {value}
+            </span>
+            <span className="font-poppins text-[16px] md:text-[22px] font-medium text-brand-teal leading-[1.6em]">
+                {label}
+            </span>
+        </div>
+    );
+}
 
 export default function About() {
     const { t } = useLanguage();
 
+    const features = [
+        {
+            title: t("about.item1") || "Industry Expertise",
+            icon: (
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#007F8C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+            ),
+        },
+        {
+            title: t("about.item2") || "Personalized Care",
+            icon: (
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#007F8C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+            ),
+        },
+        {
+            title: t("about.item3") || "Instant Response",
+            icon: (
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#007F8C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    <path d="M13 8l-4 6h6l-4 6" />
+                </svg>
+            ),
+        },
+    ];
+
+    const stats = [
+        { value: "18+", label: "Cities served Locally" },
+        { value: "36+", label: "Cities served globally" },
+        { value: "100+", label: "Client Satisfaction Rate" },
+        { value: "500+", label: "Successful Trips Managed" },
+    ];
+
     return (
-        <section id="about" className="py-24 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col lg:flex-row items-center gap-16">
-                    <div className="lg:w-1/2 relative">
-                        <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[500px]">
-                            <Image
-                                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800"
-                                alt="TreTrip Experience"
-                                fill
-                                className="object-cover"
+        <section id="about-us" className="pt-[100px] pb-[50px] bg-white">
+            <div className="max-w-[90rem] mx-auto px-6 md:px-[50px]">
+                {/* Section Header */}
+                <div className="text-center mb-6 animate-fade-in-up">
+                    <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
+                        About Us
+                    </span>
+                    <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em]">
+                        {t("about.title").split("TreTrip")[0]}
+                        <span className="relative inline-block">
+                            TreTrip
+                            <img
+                                src="https://tretrip.com/wp-content/uploads/2025/08/GOLDAbout-1.svg"
+                                alt=""
+                                className="absolute -bottom-1 left-0 w-full"
+                                aria-hidden="true"
                             />
-                        </div>
-                        <div className="absolute -top-10 -left-10 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl -z-0"></div>
-                        <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl -z-0"></div>
-                    </div>
-                    <div className="lg:w-1/2">
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6">
-                            {t("about.title")}
-                        </h2>
-                        <p className="text-xl text-brand-secondary mb-8 leading-relaxed font-light">
-                            {t("about.desc")}
-                        </p>
-                        <div className="space-y-4 mb-10">
-                            <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                                <div className="bg-brand-primary p-1.5 rounded-full text-white"><Sparkles size={16} /></div>
-                                <span className="font-medium text-brand-secondary">{t("about.item1")}</span>
-                            </div>
-                            <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                                <div className="bg-brand-primary p-1.5 rounded-full text-white"><Users size={16} /></div>
-                                <span className="font-medium text-brand-secondary">{t("about.item2")}</span>
-                            </div>
-                            <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                                <div className="bg-brand-primary p-1.5 rounded-full text-white"><Globe2 size={16} /></div>
-                                <span className="font-medium text-brand-secondary">{t("about.item3")}</span>
-                            </div>
-                        </div>
-                        <Link
-                            href="/about"
-                            className="inline-flex items-center justify-center bg-brand-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-primary/90 transition-colors shadow-lg"
+                        </span>
+                    </h2>
+                </div>
+
+                {/* Description */}
+                <div className="text-center max-w-[55%] mx-auto mb-14">
+                    <p className="font-poppins text-brand-secondary leading-relaxed">
+                        {t("about.desc")}
+                    </p>
+                </div>
+
+                {/* Feature Icon Boxes — 3 columns */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    {features.map((feature, idx) => (
+                        <div
+                            key={idx}
+                            className="flex flex-col items-center text-center p-[50px] rounded-[20px] border border-transparent hover:bg-[#00646F45] hover:scale-[1.1] transition-all duration-300 cursor-default"
                         >
-                            {t("about.cta")}
-                        </Link>
+                            <div className="mb-[15px]">{feature.icon}</div>
+                            <p className="font-poppins text-[18px] md:text-[23px] font-medium italic text-brand-dark leading-[1.6em]">
+                                {feature.title}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Stats Counter Box */}
+                <div className="bg-brand-light rounded-[20px] p-8 md:p-[50px] mb-[100px] animate-zoom-in relative overflow-hidden" style={{ animationDelay: "200ms" }}>
+                    {/* Background decorative logo */}
+                    <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none">
+                        <img
+                            src="/Logo.png"
+                            alt=""
+                            className="w-[200px] h-auto"
+                            aria-hidden="true"
+                        />
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10">
+                        {stats.map((stat, idx) => (
+                            <CounterNumber key={idx} value={stat.value} label={stat.label} />
+                        ))}
                     </div>
                 </div>
             </div>

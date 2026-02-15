@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-space: "Space Grotesk", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
   --font-cairo: "Cairo", sans-serif;
-  --color-brand-primary: #00646f;
+  --color-brand-primary: #00646F;
   --color-brand-secondary: #757575;
-  --color-brand-accent: #00808C;
+  --color-brand-accent: #E1CA72;
+  --color-brand-dark: #192c27;
+  --color-brand-light: #F0FCFF;
+  --color-brand-teal: #007F8C;
 }
 
 :root {
@@ -51,6 +56,18 @@ body {
   .animate-zoom-out {
     animation: zoomOut 5s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease both;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease both;
+  }
 }
 
 @keyframes zoomOut {
@@ -81,6 +98,33 @@ body {
     transform: translateY(100px);
   }
 
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
