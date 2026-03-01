@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import About from "@/components/About";
 import Programs from "@/components/Programs";
 import Testimonials from "@/components/Testimonials";
+import Partners from "@/components/Partners";
 import CTA from "@/components/CTA";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <About />
         <Programs />
         <Testimonials />
+        <Partners />
         <CTA />
       </main>
       <Footer />
