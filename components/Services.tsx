@@ -11,33 +11,45 @@ export default function Services() {
     const services = [
         {
             title: t("services.items.travel.title"),
-            image: "/services/Travel-Tourism.webp",
+            image: "/Services/Travel.png",
+            peopleImage: "/Services/TravelPeople.png",
             link: "/services/travel",
+            peopleStyle: { bottom: "0", right: "-45px", width: "130%", height: "155%" },
         },
         {
             title: t("services.items.medical.title"),
-            image: "/services/Medical-Tourism.webp",
+            image: "/Services/Medical.jpg",
+            peopleImage: "/Services/MedicalPeople.png",
             link: "/services/medical",
+            peopleStyle: { bottom: "0", right: "-20%", width: "85%", height: "150%" },
         },
         {
             title: t("services.items.business.title"),
-            image: "/services/Business-Tourism.webp",
+            image: "/Services/Business.jpg",
+            peopleImage: "/Services/BusinessPeople.png",
             link: "/services/business",
+            peopleStyle: { bottom: "0", right: "0", width: "55%", height: "90%" },
         },
         {
             title: t("services.items.transport.title"),
-            image: "/services/Transportation-Service.webp",
+            image: "/Services/Transportation.png",
+            peopleImage: "/Services/TransportationPeople.png",
             link: "/services/transportation",
+            peopleStyle: { bottom: "0", right: "0", width: "50%", height: "90%" },
         },
         {
             title: t("services.items.shipping.title"),
-            image: "/services/Shipping-Service.webp",
+            image: "/Services/Shipping.png",
+            peopleImage: "/Services/ShippingPeople.png",
             link: "/services/shipping",
+            peopleStyle: { bottom: "0", right: "0", width: "55%", height: "95%" },
         },
         {
             title: t("services.items.events.title"),
-            image: "/services/Event-Management.webp",
+            image: "/Services/Event.png",
+            peopleImage: "/Services/EventPeople.png",
             link: "/services/events",
+            peopleStyle: { bottom: "0", right: "5%", width: "110%", height: "125%" },
         },
     ];
 
@@ -71,21 +83,39 @@ export default function Services() {
                 </div>
 
                 {/* Service Cards Grid — 2 columns × 3 rows */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 overflow-x-hidden">
                     {services.map((service, idx) => (
                         <Link
                             key={idx}
                             href={service.link}
-                            className="group relative block overflow-hidden animate-slide-in-up"
+                            className="group relative block overflow-visible animate-slide-in-up"
                             style={{ animationDelay: `${idx * 100}ms` }}
                         >
                             <div className="relative h-[260px] md:h-[300px] w-full">
+                                {/* Base Image */}
                                 <Image
                                     src={service.image}
                                     alt={service.title}
                                     fill
-                                    className="object-cover brightness-[0.85] group-hover:brightness-[0.75] transition-all duration-500"
+                                    className="object-cover rounded-[10px] brightness-[0.85] group-hover:brightness-[0.75] transition-all duration-500"
                                 />
+                                {/* People Image Overlay */}
+                                <div
+                                    className="absolute pointer-events-none"
+                                    style={{
+                                        bottom: service.peopleStyle.bottom,
+                                        right: service.peopleStyle.right,
+                                        width: service.peopleStyle.width,
+                                        height: service.peopleStyle.height,
+                                    }}
+                                >
+                                    <Image
+                                        src={service.peopleImage}
+                                        alt={`${service.title} People`}
+                                        fill
+                                        className="object-contain object-bottom"
+                                    />
+                                </div>
                                 {/* Overlay Content */}
                                 <div className={`absolute inset-0 flex flex-col justify-end p-6 md:p-8 ${dir === "rtl" ? "text-right" : "text-left"}`}>
                                     <h3 className="text-white text-[20px] md:text-[24px] font-semibold [text-shadow:0px_0px_10px_rgba(0,0,0,0.48)] mb-1">

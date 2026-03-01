@@ -8,27 +8,27 @@ export default function CTA() {
 
     return (
         <section
-            className="relative py-[50px] min-h-[60vh] flex items-center justify-center overflow-hidden animate-slide-in-up"
+            className="relative py-[80px] overflow-hidden"
             style={{
-                background: "#338FA6",
+                background: "radial-gradient(67.33% 315.56% at 53.49% 34.25%, rgba(51, 143, 166, 0.9) 0%, rgba(7, 76, 94, 0.95) 100%)",
             }}
         >
-            {/* Background overlay image */}
+            {/* Background landmarks image */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    backgroundImage: "url('/footer.webp')",
+                    backgroundImage: "url('/ContactBg.png')",
                     backgroundPosition: "bottom center",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-                    opacity: 0.3,
+                    opacity: 0.35,
                 }}
                 aria-hidden="true"
             />
 
             <div className="relative z-10 max-w-[90rem] mx-auto px-6 md:px-[50px] text-center">
                 {/* Label */}
-                <span className="font-space text-[18px] font-medium uppercase text-white tracking-wide block mb-2">
+                <span className="font-space text-[18px] font-medium uppercase text-brand-accent tracking-wide block mb-2">
                     Contact
                 </span>
 
@@ -47,7 +47,7 @@ export default function CTA() {
                 </h2>
 
                 {/* Description */}
-                <div className="max-w-[55%] mx-auto mb-10">
+                <div className="max-w-[550px] mx-auto mb-10">
                     <p className="font-poppins text-white/90 leading-relaxed">
                         {t("cta.subtitle")}
                     </p>
@@ -56,7 +56,7 @@ export default function CTA() {
                 {/* CTA Button */}
                 <Link
                     href="/contact"
-                    className="inline-block bg-white text-brand-primary font-semibold px-[50px] py-3 rounded-[5px] hover:bg-brand-accent hover:text-brand-primary transition-colors duration-300 text-[14px] uppercase mt-[40px]"
+                    className="inline-block bg-white text-brand-primary font-semibold px-[50px] py-3 rounded-[5px] hover:bg-brand-accent hover:text-brand-primary transition-colors duration-300 text-[14px] uppercase"
                 >
                     {t("cta.contact")}
                 </Link>

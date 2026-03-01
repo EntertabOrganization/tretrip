@@ -66,9 +66,9 @@ export default function About() {
                         <span className="relative inline-block">
                             TreTrip
                             <img
-                                src="https://tretrip.com/wp-content/uploads/2025/08/GOLDAbout-1.svg"
+                                src="https://tretrip.com/wp-content/uploads/2025/08/GOLD.svg"
                                 alt=""
-                                className="absolute -bottom-1 left-0 w-full"
+                                className="absolute bottom-1 left-0 w-full"
                                 aria-hidden="true"
                             />
                         </span>
@@ -77,7 +77,7 @@ export default function About() {
 
                 {/* Description */}
                 <div className="text-center max-w-[55%] mx-auto mb-14">
-                    <p className="font-poppins text-brand-secondary leading-relaxed">
+                    <p className="font-poppins font-normal text-[20px] text-brand-secondary leading-[24px] text-center tracking-normal">
                         {t("about.desc")}
                     </p>
                 </div>
@@ -100,11 +100,11 @@ export default function About() {
                 {/* Stats Counter Box */}
                 <div className="bg-brand-light rounded-[20px] p-8 md:p-[50px] mb-[100px] animate-zoom-in relative overflow-hidden" style={{ animationDelay: "200ms" }}>
                     {/* Background decorative logo */}
-                    <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none">
+                    <div className="absolute -bottom-45 -right-50 opacity-30 pointer-events-none">
                         <img
-                            src="/Logo.png"
+                            src="/AboutUsLogo.png"
                             alt=""
-                            className="w-[200px] h-auto"
+                            className="w-[135px] h-auto"
                             aria-hidden="true"
                         />
                     </div>

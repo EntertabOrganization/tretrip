@@ -12,19 +12,19 @@ export default function Programs() {
         {
             title: t("programs.hajj.title"),
             description: t("programs.hajj.desc"),
-            image: "/programs/Hajj-and-Umrah.webp",
+            image: "/Programs/Huj.jpg",
             link: "/programs/hajj-umrah",
         },
         {
             title: t("programs.kingdom.title"),
             description: t("programs.kingdom.desc"),
-            image: "/programs/Explore-The-Kingdom.webp",
+            image: "/Programs/Kingdom.jpg",
             link: "/programs/kingdom",
         },
         {
             title: t("programs.usa.title"),
             description: t("programs.usa.desc"),
-            image: "/programs/Explore-The-USA.webp",
+            image: "/Programs/USA.png",
             link: "/programs/usa",
         },
     ];
@@ -32,19 +32,17 @@ export default function Programs() {
     return (
         <section
             id="programs"
-            className="relative py-[50px] overflow-hidden"
+            className="relative py-[50px] overflow-hidden bg-cover bg-center"
             style={{
-                background: "radial-gradient(at center center, #338FA6 0%, #074C5E 100%)",
+                backgroundImage: "url('/AboutBg.png')",
             }}
         >
             {/* Background overlay */}
             <div
-                className="absolute inset-0 opacity-[0.74] pointer-events-none"
+                className="absolute inset-0 pointer-events-none"
                 style={{
-                    backgroundImage: "url('/footer.webp')",
-                    backgroundPosition: "bottom center",
-                    backgroundSize: "cover",
-                    filter: "blur(2.1px)",
+                    background: "radial-gradient(67.33% 315.56% at 53.49% 34.25%, rgba(51, 143, 166, 0.8) 0%, rgba(7, 76, 94, 0.8) 100%)",
+                    filter: "blur(8px)",
                 }}
                 aria-hidden="true"
             />
