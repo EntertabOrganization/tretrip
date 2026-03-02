@@ -54,14 +54,14 @@ export default function Services() {
     ];
 
     return (
-        <section id="start" className="pt-[100px] pb-[50px] bg-white relative">
-            <div className="max-w-[90rem] mx-auto px-6 md:px-[50px]">
+        <section id="start" className="pt-[60px] md:pt-[100px] pb-[40px] md:pb-[50px] relative">
+            <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-[50px]">
                 {/* Section Header */}
-                <div className="text-center mb-6 animate-zoom-in">
-                    <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
+                <div className="text-center mb-4 md:mb-6 animate-zoom-in">
+                    <span className="font-space text-[14px] sm:text-[16px] md:text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
                         {t("services.sectionTitle")}
                     </span>
-                    <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em]">
+                    <h2 className="font-space text-[24px] sm:text-[32px] md:text-[40px] font-bold text-brand-dark leading-[1.3em] md:leading-[1.4em]">
                         <span className="relative inline-block">
                             Professional
                             <img
@@ -83,7 +83,7 @@ export default function Services() {
                 </div>
 
                 {/* Service Cards Grid — 2 columns × 3 rows */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 overflow-x-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5 overflow-x-hidden">
                     {services.map((service, idx) => (
                         <Link
                             key={idx}
@@ -91,7 +91,7 @@ export default function Services() {
                             className="group relative block overflow-visible animate-slide-in-up"
                             style={{ animationDelay: `${idx * 100}ms` }}
                         >
-                            <div className="relative h-[260px] md:h-[300px] w-full">
+                            <div className="relative h-[200px] sm:h-[240px] md:h-[260px] lg:h-[300px] w-full">
                                 {/* Base Image */}
                                 <Image
                                     src={service.image}

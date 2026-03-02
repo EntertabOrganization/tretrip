@@ -30,14 +30,14 @@ export default function Partners() {
     ];
 
     return (
-        <section className="py-[80px] bg-white">
-            <div className="max-w-[90rem] mx-auto px-6 md:px-[50px]">
+        <section className="py-[40px] md:py-[80px]">
+            <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-[50px]">
                 {/* Section Header */}
-                <div className="text-center mb-14">
-                    <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
+                <div className="text-center mb-10 md:mb-14">
+                    <span className="font-space text-[14px] sm:text-[16px] md:text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
                         {t("partners.sectionTitle")}
                     </span>
-                    <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em]">
+                    <h2 className="font-space text-[24px] sm:text-[32px] md:text-[40px] font-bold text-brand-dark leading-[1.3em] md:leading-[1.4em]">
                         {t("partners.title")}<br />
                         <span className="relative inline-block">
                             {t("partners.titleAccent")}

@@ -64,19 +64,20 @@ export default function Testimonials() {
                     animation: slideInRight 0.5s ease-out;
                 }
             `}</style>
-        <section id="testimonials" className="py-[50px] bg-white min-h-[30vh]">
-            <div className="max-w-[90rem] mx-auto px-6 md:px-[50px]">
-                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <section id="testimonials" className="py-[40px] md:py-[50px] min-h-[30vh]">
+            <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-[50px]">
+                <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20">
 
                     {/* Left Column — Card Stack */}
-                    <div className="w-full lg:w-1/2 relative min-h-[55vh] flex items-center justify-center">
+                    <div className="w-full lg:w-1/2 relative min-h-[55vh] flex items-center justify-center px-4 sm:px-0">
                         {/* Card Stack */}
-                        <div className="relative w-full max-w-[420px] mx-auto" style={{ height: "auto", perspective: "1000px" }}>
+                        <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px] mx-auto" style={{ height: "auto", perspective: "1000px" }}>
                             {/* Back Card 1 */}
                             <div
                                 className="absolute border border-gray-200"
                                 style={{
-                                    width: "420px",
+                                    width: "100%",
+                                    maxWidth: "280px",
                                     height: "100%",
                                     transform: "rotate(10deg)",
                                     opacity: 1,
@@ -93,7 +94,8 @@ export default function Testimonials() {
                             <div
                                 className="absolute border border-gray-200"
                                 style={{
-                                    width: "420px",
+                                    width: "100%",
+                                    maxWidth: "280px",
                                     height: "100%",
                                     transform: "rotate(5deg)",
                                     opacity: 1,
@@ -107,7 +109,7 @@ export default function Testimonials() {
                             />
 
                             {/* Main Card */}
-                            <div key={active} className={`relative z-10 w-full max-w-[420px] mx-auto ${animationStyle}`}>
+                            <div key={active} className={`relative z-10 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px] mx-auto ${animationStyle}`}>
                                 <div
                                     className="bg-white border border-gray-200 rounded-[12px] p-5 md:p-6"
                                     style={{
@@ -152,10 +154,10 @@ export default function Testimonials() {
 
                     {/* Right Column — Text */}
                     <div className={`w-full lg:w-1/2 ${dir === "rtl" ? "text-right" : "text-left"}`}>
-                        <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
+                        <span className="font-space text-[14px] sm:text-[16px] md:text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
                             {t("testimonials.sectionTitle")}
                         </span>
-                        <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em] mb-6">
+                        <h2 className="font-space text-[24px] sm:text-[32px] md:text-[40px] font-bold text-brand-dark leading-[1.3em] md:leading-[1.4em] mb-6">
                             {t("testimonials.title")}
                         </h2>
                         <p className="font-poppins text-brand-secondary leading-relaxed text-[16px]" style={{ gap: "35px" }}>

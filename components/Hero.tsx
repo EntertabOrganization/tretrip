@@ -8,7 +8,7 @@ export default function Hero() {
     const { t } = useLanguage();
 
     return (
-        <section className="relative h-[105vh] w-full overflow-hidden">
+        <section className="relative h-screen sm:h-[100vh] md:h-[105vh] w-full overflow-hidden">
             <video
                 autoPlay
                 loop
@@ -23,13 +23,13 @@ export default function Hero() {
                     src="/HeroPic.png"
                     alt="Hero background texture"
                     fill
-                    className="object-cover opacity-100 animate-zoom-out translate-y-45 translate-x-[-30px]"
+                    className="object-cover opacity-100 animate-zoom-out md:translate-y-45 md:translate-x-[-30px] translate-y-20 translate-x-[-15px]"
                     priority
                 />
             </div>
-            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white translate-y-[-80px]">
+            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white md:translate-y-[-80px] translate-y-[-40px] px-4">
                 <h2
-                    className="mb-5 max-w-5xl text-[60px] font-bold capitalize leading-[1.3em] animate-zoom-in [font-family:'Poppins',Sans-serif] [text-shadow:0px_0px_10px_rgba(0,0,0,0.3)] [color:var(--e-global-color-blocksy_palette_8,#ffffff)]"
+                    className="mb-4 md:mb-5 max-w-5xl text-[32px] sm:text-[44px] md:text-[60px] font-bold capitalize leading-[1.2em] sm:leading-[1.3em] animate-zoom-in [font-family:'Poppins',Sans-serif] [text-shadow:0px_0px_10px_rgba(0,0,0,0.3)] [color:var(--e-global-color-blocksy_palette_8,#ffffff)]"
                     style={{ animationDelay: '400ms' }}
                 >
                     {t("hero.title")} <br />
@@ -37,7 +37,7 @@ export default function Hero() {
                 </h2>
                 <Link
                     href="#services"
-                    className="bg-brand-primary hover:bg-[#E1CA72] text-white hover:text-brand-primary px-11 py-3 rounded-[5px] transition-all shadow-2xl hover:scale-105 active:scale-95 animate-bounce-up [font-family:'Poppins',Sans-serif] text-[14px] font-semibold uppercase leading-[1.5em]"
+                    className="bg-brand-primary hover:bg-[#E1CA72] text-white hover:text-brand-primary px-6 sm:px-8 md:px-11 py-2 sm:py-2.5 md:py-3 rounded-[5px] transition-all shadow-2xl hover:scale-105 active:scale-95 animate-bounce-up [font-family:'Poppins',Sans-serif] text-[12px] sm:text-[13px] md:text-[14px] font-semibold uppercase leading-[1.5em]"
                     style={{ animationDelay: '700ms' }}
                 >
                     {t("hero.cta")}

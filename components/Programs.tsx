@@ -47,15 +47,15 @@ export default function Programs() {
                 aria-hidden="true"
             />
 
-            <div className="max-w-[90rem] mx-auto px-6 md:px-[50px] relative z-10">
+            <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-[50px] relative z-10">
                 {/* 4-column layout: text + 3 cards */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8 items-start">
                     {/* Text Column */}
                     <div className={`flex flex-col justify-center ${dir === "rtl" ? "text-right" : "text-left"}`}>
-                        <span className="font-space text-[18px] font-medium uppercase text-white tracking-wide block mb-2">
+                        <span className="font-space text-[14px] sm:text-[16px] md:text-[18px] font-medium uppercase text-white tracking-wide block mb-2">
                             {t("programs.sectionTitle")}
                         </span>
-                        <h2 className="font-space text-[28px] md:text-[40px] font-bold text-white leading-[1.4em] mb-4">
+                        <h2 className="font-space text-[24px] sm:text-[32px] md:text-[40px] font-bold text-white leading-[1.3em] md:leading-[1.4em] mb-4">
                             {t("programs.title").split(t("programs.title").split(" ").pop()!)[0]}
                             <span className="relative inline-block">
                                 {t("programs.title").split(" ").pop()}
@@ -80,7 +80,7 @@ export default function Programs() {
                             className="group relative block overflow-hidden rounded-lg animate-slide-in-up"
                             style={{ animationDelay: `${idx * 150}ms` }}
                         >
-                            <div className="relative h-[400px] md:h-[468px] w-full">
+                            <div className="relative h-[280px] sm:h-[350px] md:h-[400px] lg:h-[468px] w-full">
                                 <Image
                                     src={program.image}
                                     alt={program.title}

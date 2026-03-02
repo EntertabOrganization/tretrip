@@ -26,14 +26,14 @@ export default function CTA() {
                 aria-hidden="true"
             />
 
-            <div className="relative z-10 max-w-[90rem] mx-auto px-6 md:px-[50px] text-center">
+            <div className="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 md:px-[50px] text-center">
                 {/* Label */}
-                <span className="font-space text-[18px] font-medium uppercase text-brand-accent tracking-wide block mb-2">
+                <span className="font-space text-[14px] sm:text-[16px] md:text-[18px] font-medium uppercase text-brand-accent tracking-wide block mb-2">
                     {t("cta.sectionLabel")}
                 </span>
 
                 {/* Heading */}
-                <h2 className="font-space text-[28px] md:text-[40px] font-bold text-white leading-[1.4em] mb-4">
+                <h2 className="font-space text-[24px] sm:text-[32px] md:text-[40px] font-bold text-white leading-[1.3em] md:leading-[1.4em] mb-4">
                     {t("cta.title").replace("Trip", "").trim()}{" "}
                     <span className="relative inline-block">
                         Trip
@@ -47,8 +47,8 @@ export default function CTA() {
                 </h2>
 
                 {/* Description */}
-                <div className="max-w-[550px] mx-auto mb-10">
-                    <p className="font-poppins text-white/90 leading-relaxed">
+                <div className="max-w-[550px] mx-auto mb-8 md:mb-10">
+                    <p className="font-poppins text-[14px] sm:text-[15px] md:text-[16px] text-white/90 leading-relaxed">
                         {t("cta.subtitle")}
                     </p>
                 </div>

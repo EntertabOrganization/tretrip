@@ -14,7 +14,7 @@ export default function ContactPage() {
             <Header />
             <main className="pt-20">
                 {/* Hero Section */}
-                <section className="relative py-24 text-white overflow-hidden" style={{
+                <section className="relative py-12 sm:py-16 md:py-24 text-white overflow-hidden" style={{
                     background: "linear-gradient(0deg, rgba(0, 100, 111, 0) 0%, #00646F 100%), #00646F1A",
                 }}>
                     <div
@@ -28,18 +28,18 @@ export default function ContactPage() {
                         aria-hidden="true"
                     />
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                        <h1 className="font-space text-4xl md:text-6xl font-bold mb-4">{t("contact.title")}</h1>
-                        <p className="font-poppins text-xl text-white/90">{t("contact.subtitle")}</p>
+                        <h1 className="font-space text-[28px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-bold mb-3 md:mb-4">{t("contact.title")}</h1>
+                        <p className="font-poppins text-[16px] sm:text-[18px] md:text-[20px] text-white/90">{t("contact.subtitle")}</p>
                     </div>
                 </section>
 
                 {/* Contact Content */}
-                <section className="py-24 bg-white">
+                <section className="py-12 sm:py-16 md:py-24">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className={`grid grid-cols-1 lg:grid-cols-3 gap-16 items-start ${dir === "rtl" ? "text-right" : "text-left"}`}>
+                        <div className={`grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 items-start ${dir === "rtl" ? "text-right" : "text-left"}`}>
                             {/* Contact Info */}
                             <div>
-                                <h2 className="font-space text-3xl font-bold text-brand-primary mb-8">{t("contact.getInTouch")}</h2>
+                                <h2 className="font-space text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-bold text-brand-primary mb-6 md:mb-8">{t("contact.getInTouch")}</h2>
                                 <div className="space-y-5">
                                     <a href="tel:+12029912999" className={`flex items-center gap-4`}>
                                         <div className="bg-brand-primary/10 p-3 rounded-xl text-brand-primary">
@@ -91,8 +91,8 @@ export default function ContactPage() {
                             </div>
 
                             {/* Contact Form */}
-                            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl">
-                                <form className="space-y-6">
+                            <div className="bg-white p-6 sm:p-7 md:p-8 rounded-2xl border border-gray-100 shadow-xl">
+                                <form className="space-y-4 md:space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label className="block text-sm font-medium text-brand-secondary mb-2 font-poppins">{t("contact.form.name")}</label>

@@ -54,14 +54,14 @@ export default function About() {
     ];
 
     return (
-        <section id="about-us" className="pt-[100px] pb-[50px] bg-white">
-            <div className="max-w-[90rem] mx-auto px-6 md:px-[50px]">
+        <section id="about-us" className="pt-[60px] md:pt-[100px] pb-[40px] md:pb-[50px]">
+            <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-[50px]">
                 {/* Section Header */}
-                <div className="text-center mb-6 animate-fade-in-up">
-                    <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
+                <div className="text-center mb-4 md:mb-6 animate-fade-in-up">
+                    <span className="font-space text-[14px] sm:text-[16px] md:text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
                         {t("about.sectionTitle")}
                     </span>
-                    <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em]">
+                    <h2 className="font-space text-[24px] sm:text-[32px] md:text-[40px] font-bold text-brand-dark leading-[1.3em] md:leading-[1.4em]">
                         {t("about.title").split("TreTrip")[0]}
                         <span className="relative inline-block">
                             TreTrip
@@ -76,21 +76,21 @@ export default function About() {
                 </div>
 
                 {/* Description */}
-                <div className="text-center max-w-[55%] mx-auto mb-14">
-                    <p className="font-poppins font-normal text-[20px] text-brand-secondary leading-[24px] text-center tracking-normal">
+                <div className="text-center max-w-[55%] mx-auto mb-10 md:mb-14">
+                    <p className="font-poppins font-normal text-[16px] sm:text-[18px] md:text-[20px] text-brand-secondary leading-[1.5em] md:leading-[24px] text-center tracking-normal">
                         {t("about.desc")}
                     </p>
                 </div>
 
                 {/* Feature Icon Boxes — 3 columns */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12">
                     {features.map((feature, idx) => (
                         <div
                             key={idx}
-                            className="flex flex-col items-center text-center p-[50px] rounded-[20px] border border-transparent hover:bg-[#00646F45] hover:scale-[1.1] transition-all duration-300 cursor-default"
+                            className="flex flex-col items-center text-center p-8 md:p-[50px] rounded-[20px] border border-transparent hover:bg-[#00646F45] hover:scale-[1.05] md:hover:scale-[1.1] transition-all duration-300 cursor-default"
                         >
-                            <div className="mb-[15px]">{feature.icon}</div>
-                            <p className="font-poppins text-[18px] md:text-[23px] font-medium italic text-brand-dark leading-[1.6em]">
+                            <div className="mb-3 md:mb-[15px]">{feature.icon}</div>
+                            <p className="font-poppins text-[16px] sm:text-[20px] md:text-[23px] font-medium italic text-brand-dark leading-[1.5em] md:leading-[1.6em]">
                                 {feature.title}
                             </p>
                         </div>
@@ -98,17 +98,17 @@ export default function About() {
                 </div>
 
                 {/* Stats Counter Box */}
-                <div className="bg-brand-light rounded-[20px] p-8 md:p-[50px] mb-[100px] animate-zoom-in relative overflow-hidden" style={{ animationDelay: "200ms" }}>
+                <div className="bg-brand-light rounded-[20px] p-6 sm:p-8 md:p-[50px] mb-20 md:mb-[100px] animate-zoom-in relative overflow-hidden" style={{ animationDelay: "200ms" }}>
                     {/* Background decorative logo */}
                     <div className="absolute -bottom-12 -right-12 opacity-30 pointer-events-none">
                         <img
                             src="/AboutUsLogo.png"
                             alt=""
-                            className="w-[135px] h-auto"
+                            className="w-[80px] sm:w-[100px] md:w-[135px] h-auto"
                             aria-hidden="true"
                         />
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 relative z-10">
                         {stats.map((stat, idx) => (
                             <CounterNumber key={idx} value={stat.value} label={stat.label} />
                         ))}
