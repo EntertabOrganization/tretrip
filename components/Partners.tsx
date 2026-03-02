@@ -35,19 +35,19 @@ export default function Partners() {
                 {/* Section Header */}
                 <div className="text-center mb-14">
                     <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
-                        Partners
+                        {t("partners.sectionTitle")}
                     </span>
                     <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em]">
-                        Institutions We Have<br />
+                        {t("partners.title")}<br />
                         <span className="relative inline-block">
-                            Worked
+                            {t("partners.titleAccent")}
                             <img
                                 src="https://tretrip.com/wp-content/uploads/2025/08/GOLD.svg"
                                 alt=""
                                 className="absolute -bottom-1 left-0 w-full"
                                 aria-hidden="true"
                             />
-                        </span> With
+                        </span>
                     </h2>
                 </div>
 

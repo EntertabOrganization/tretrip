@@ -17,6 +17,7 @@ export const translations = {
         },
         services: {
             title: "Professional Travel Services For You",
+            sectionTitle: "Our Services",
             explore: "Explore",
             items: {
                 travel: {
@@ -46,15 +47,21 @@ export const translations = {
             },
         },
         about: {
+            sectionTitle: "About Us",
             title: "Learn About TreTrip",
-            desc: "TreTrip is your trusted travel partner, delivering personalized, seamless journeys across the globe. Whether you’re planning a vacation, a medical trip, or a corporate retreat — we ensure every detail is taken care of.",
+            desc: "TreTrip is your trusted travel partner, delivering personalized, seamless journeys across the globe. Whether you're planning a vacation, a medical trip, or a corporate retreat — we ensure every detail is taken care of.",
             item1: "Tailored itineraries for every mood",
             item2: "Professional and reliable service",
             item3: "Global reach with local expertise",
+            stats: {
+                citiesLocal: "Cities served Locally",
+                citiesGlobal: "Cities served globally",
+                satisfaction: "Client Satisfaction Rate",
+                trips: "Successful Trips Managed",
+            },
             cta: "Discover More",
         },
-        programs: {
-            title: "Explore Our Programs",
+        programs: {            sectionTitle: "Our Programs",            title: "Explore Our Programs",
             explore: "Explore",
             hajj: {
                 title: "Hajj and Umrah",
@@ -70,7 +77,9 @@ export const translations = {
             },
         },
         testimonials: {
+            sectionTitle: "Testimonials",
             title: "What Clients say about TreTrip",
+            tagline: "Get away from your crazy work schedule and breathe pure oxygen. Enjoy bird whistles, serene views & capture these moments.",
             items: [
                 { name: "David Chen", role: "Business Tourism Client", text: "Professional, reliable, and exceptional service. TreTrip handled our corporate trip flawlessly." },
                 { name: "Sarah Johnson", role: "Travel Tourism Client", text: "Thanks to TreTrip, our family vacation was stress-free and unforgettable. Highly recommend!" },
@@ -78,6 +87,7 @@ export const translations = {
             ],
         },
         cta: {
+            sectionLabel: "Contact",
             title: "Let's Plan Your Next Trip",
             subtitle: "Whether you're traveling for health, work, or exploration — we're here to make it effortless",
             contact: "Contact Us",
@@ -85,10 +95,18 @@ export const translations = {
         },
         footer: {
             desc: "Your trusted travel partner, delivering personalized, seamless journeys across the globe.",
+            tagline: "Get away from your crazy work schedule and breathe again. Enjoy vivid destinations, serene views & moments you'll always remember.",
             quickLinks: "Services",
             company: "Company",
+            aboutUs: "About Us",
+            testimonials: "Testimonials",
             contactUs: "Contact Us",
+            phone: "Phone",
+            whatsapp: "Whatsapp",
+            email: "Email",
             address: "Washington DC, USA & Riyadh, KSA",
+            copyright: "All rights reserved",
+            designedBy: "Designed and developed by",
             rights: "All rights reserved. Designed by",
         },
         contact: {
@@ -102,6 +120,11 @@ export const translations = {
                 message: "Message",
                 submit: "Send Message",
             },
+        },
+        partners: {
+            sectionTitle: "Partners",
+            title: "Institutions We Have",
+            titleAccent: "Worked With",
         }
     },
     ar: {
@@ -149,14 +172,22 @@ export const translations = {
             },
         },
         about: {
+            sectionTitle: "من نحن",
             title: "تعرف على تري تريب",
             desc: "تري تريب هي شريكك الموثوق في السفر، حيث نقدم رحلات مخصصة وسلسة في جميع أنحاء العالم. سواء كنت تخطط لقضاء عطلة، أو رحلة طبية، أو خلوة مؤسسية - نحن نضمن الاهتمام بكل التفاصيل.",
             item1: "مسارات مصممة خصيصاً لكل مزاج",
             item2: "خدمة احترافية وموثوقة",
             item3: "انتشار عالمي مع خبرة محلية",
+            stats: {
+                citiesLocal: "مدن تخدمها محلياً",
+                citiesGlobal: "مدن تخدمها عالمياً",
+                satisfaction: "معدل رضا العملاء",
+                trips: "رحلات ناجحة تم إدارتها",
+            },
             cta: "اكتشف المزيد",
         },
         programs: {
+            sectionTitle: "برامجنا",
             title: "استكشف برامجنا",
             explore: "استكشف",
             hajj: {
@@ -173,7 +204,9 @@ export const translations = {
             },
         },
         testimonials: {
+            sectionTitle: "الشهادات",
             title: "ماذا يقول عملاؤنا عن تري تريب",
+            tagline: "اهرب من جدولك الزمني المجنون وتنفس الأكسجين النقي. استمتع بتغريد الطيور والمناظر الهادئة والتقط هذه اللحظات.",
             items: [
                 { name: "ديفيد تشن", role: "عميل سياحة أعمال", text: "احترافية، موثوقية، وخدمة استثنائية. تعاملت تري تريب مع رحلتنا المؤسسية ببراعة." },
                 { name: "سارة جونسون", role: "عميلة سياحة ترفيهية", text: "بفضل تري تريب، كانت عطلتنا العائلية خالية من التوتر ولا تُنسى. نوصي بها بشدة!" },
@@ -181,6 +214,7 @@ export const translations = {
             ],
         },
         cta: {
+            sectionLabel: "اتصل بنا",
             title: "لنخطط لرحلتك القادمة",
             subtitle: "سواء كنت تسافر من أجل الصحة أو العمل أو الاستكشاف - نحن هنا لنجعل الأمر سهلاً",
             contact: "اتصل بنا",
@@ -188,10 +222,18 @@ export const translations = {
         },
         footer: {
             desc: "شريكك الموثوق في السفر، نقدم رحلات مخصصة وسلسة في جميع أنحاء العالم.",
+            tagline: "اهرب من جدولك الزمني المجنون وتنفس الهواء النقي مجدداً. استمتع بالوجهات النابضة بالحياة والمناظر الهادئة واللحظات التي ستتذكرها للأبد.",
             quickLinks: "الخدمات",
             company: "الشركة",
+            aboutUs: "من نحن",
+            testimonials: "الشهادات",
             contactUs: "اتصل بنا",
+            phone: "الهاتف",
+            whatsapp: "واتساب",
+            email: "البريد الإلكتروني",
             address: "واشنطن دي سي، الولايات المتحدة والرياض، السعودية",
+            copyright: "جميع الحقوق محفوظة",
+            designedBy: "صمم وطور بواسطة",
             rights: "جميع الحقوق محفوظة. صمم بواسطة",
         },
         contact: {
@@ -205,6 +247,11 @@ export const translations = {
                 message: "الرسالة",
                 submit: "إرسال الرسالة",
             },
+        },
+        partners: {
+            sectionTitle: "الشركاء",
+            title: "المؤسسات التي",
+            titleAccent: "عملنا معها",
         }
     },
 };

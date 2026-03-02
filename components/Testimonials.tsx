@@ -153,23 +153,13 @@ export default function Testimonials() {
                     {/* Right Column — Text */}
                     <div className={`w-full lg:w-1/2 ${dir === "rtl" ? "text-right" : "text-left"}`}>
                         <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
-                            Testimonials
+                            {t("testimonials.sectionTitle")}
                         </span>
                         <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em] mb-6">
-                            What{" "}
-                            <span className="relative inline-block">
-                                Clients
-                                <img
-                                    src="https://tretrip.com/wp-content/uploads/2025/08/GOLDAbout.svg"
-                                    alt=""
-                                    className="absolute -bottom-1 left-0 w-full"
-                                    aria-hidden="true"
-                                />
-                            </span>{" "}
-                            say about TreTrip
+                            {t("testimonials.title")}
                         </h2>
                         <p className="font-poppins text-brand-secondary leading-relaxed text-[16px]" style={{ gap: "35px" }}>
-                            Get away from your crazy work schedule and breathe pure oxygen. Enjoy bird whistles, serene views &amp; capture these moments.
+                            {t("testimonials.tagline")}
                         </p>
 
                         {/* Navigation Controls */}

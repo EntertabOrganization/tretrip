@@ -29,7 +29,7 @@ export default function CTA() {
             <div className="relative z-10 max-w-[90rem] mx-auto px-6 md:px-[50px] text-center">
                 {/* Label */}
                 <span className="font-space text-[18px] font-medium uppercase text-brand-accent tracking-wide block mb-2">
-                    Contact
+                    {t("cta.sectionLabel")}
                 </span>
 
                 {/* Heading */}

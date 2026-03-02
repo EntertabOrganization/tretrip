@@ -47,10 +47,10 @@ export default function About() {
     ];
 
     const stats = [
-        { value: "18+", label: "Cities served Locally" },
-        { value: "36+", label: "Cities served globally" },
-        { value: "100+", label: "Client Satisfaction Rate" },
-        { value: "500+", label: "Successful Trips Managed" },
+        { value: "18+", label: t("about.stats.citiesLocal") },
+        { value: "36+", label: t("about.stats.citiesGlobal") },
+        { value: "100+", label: t("about.stats.satisfaction") },
+        { value: "500+", label: t("about.stats.trips") },
     ];
 
     return (
@@ -59,7 +59,7 @@ export default function About() {
                 {/* Section Header */}
                 <div className="text-center mb-6 animate-fade-in-up">
                     <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
-                        About Us
+                        {t("about.sectionTitle")}
                     </span>
                     <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em]">
                         {t("about.title").split("TreTrip")[0]}

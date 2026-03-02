@@ -53,7 +53,7 @@ export default function Programs() {
                     {/* Text Column */}
                     <div className={`flex flex-col justify-center ${dir === "rtl" ? "text-right" : "text-left"}`}>
                         <span className="font-space text-[18px] font-medium uppercase text-white tracking-wide block mb-2">
-                            Our Programs
+                            {t("programs.sectionTitle")}
                         </span>
                         <h2 className="font-space text-[28px] md:text-[40px] font-bold text-white leading-[1.4em] mb-4">
                             {t("programs.title").split(t("programs.title").split(" ").pop()!)[0]}

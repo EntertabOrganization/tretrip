@@ -59,7 +59,7 @@ export default function Services() {
                 {/* Section Header */}
                 <div className="text-center mb-6 animate-zoom-in">
                     <span className="font-space text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
-                        Our Services
+                        {t("services.sectionTitle")}
                     </span>
                     <h2 className="font-space text-[28px] md:text-[40px] font-bold text-brand-dark leading-[1.4em]">
                         <span className="relative inline-block">
