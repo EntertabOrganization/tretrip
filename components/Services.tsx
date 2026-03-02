@@ -12,44 +12,32 @@ export default function Services() {
         {
             title: t("services.items.travel.title"),
             image: "/Services/Travel.png",
-            peopleImage: "/Services/TravelPeople.png",
             link: "/services/travel",
-            peopleStyle: { bottom: "0", right: "-45px", width: "130%", height: "155%" },
         },
         {
             title: t("services.items.medical.title"),
-            image: "/Services/Medical.jpg",
-            peopleImage: "/Services/MedicalPeople.png",
+            image: "/Services/Medical.png",
             link: "/services/medical",
-            peopleStyle: { bottom: "0", right: "-20%", width: "85%", height: "150%" },
         },
         {
             title: t("services.items.business.title"),
-            image: "/Services/Business.jpg",
-            peopleImage: "/Services/BusinessPeople.png",
+            image: "/Services/Business.png",
             link: "/services/business",
-            peopleStyle: { bottom: "0", right: "0", width: "55%", height: "90%" },
         },
         {
             title: t("services.items.transport.title"),
             image: "/Services/Transportation.png",
-            peopleImage: "/Services/TransportationPeople.png",
             link: "/services/transportation",
-            peopleStyle: { bottom: "0", right: "0", width: "50%", height: "90%" },
         },
         {
             title: t("services.items.shipping.title"),
             image: "/Services/Shipping.png",
-            peopleImage: "/Services/ShippingPeople.png",
             link: "/services/shipping",
-            peopleStyle: { bottom: "0", right: "0", width: "55%", height: "95%" },
         },
         {
             title: t("services.items.events.title"),
             image: "/Services/Event.png",
-            peopleImage: "/Services/EventPeople.png",
             link: "/services/events",
-            peopleStyle: { bottom: "0", right: "5%", width: "110%", height: "125%" },
         },
     ];
 
@@ -99,23 +87,6 @@ export default function Services() {
                                     fill
                                     className="object-cover rounded-[10px] brightness-[0.85] group-hover:brightness-[0.75] transition-all duration-500"
                                 />
-                                {/* People Image Overlay */}
-                                <div
-                                    className="absolute pointer-events-none"
-                                    style={{
-                                        bottom: service.peopleStyle.bottom,
-                                        right: service.peopleStyle.right,
-                                        width: service.peopleStyle.width,
-                                        height: service.peopleStyle.height,
-                                    }}
-                                >
-                                    <Image
-                                        src={service.peopleImage}
-                                        alt={`${service.title} People`}
-                                        fill
-                                        className="object-contain object-bottom"
-                                    />
-                                </div>
                                 {/* Overlay Content */}
                                 <div className={`absolute inset-0 flex flex-col justify-end p-6 md:p-8 ${dir === "rtl" ? "text-right" : "text-left"}`}>
                                     <h3 className="text-white text-[20px] md:text-[24px] font-semibold [text-shadow:0px_0px_10px_rgba(0,0,0,0.48)] mb-1">
