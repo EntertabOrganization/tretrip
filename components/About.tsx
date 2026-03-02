@@ -100,7 +100,7 @@ export default function About() {
                 {/* Stats Counter Box */}
                 <div className="bg-brand-light rounded-[20px] p-8 md:p-[50px] mb-[100px] animate-zoom-in relative overflow-hidden" style={{ animationDelay: "200ms" }}>
                     {/* Background decorative logo */}
-                    <div className="absolute -bottom-45 -right-50 opacity-30 pointer-events-none">
+                    <div className="absolute -bottom-12 -right-12 opacity-30 pointer-events-none">
                         <img
                             src="/AboutUsLogo.png"
                             alt=""
