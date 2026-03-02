@@ -9,43 +9,111 @@ export default function Testimonials() {
     const { t, dir } = useLanguage();
     const testimonials = t("testimonials.items") as any[];
     const [active, setActive] = React.useState(0);
+    const [direction, setDirection] = React.useState<"left" | "right">("right");
 
     const avatars = [
-        "/testimonials/avatar-1.png",
-        "/testimonials/avatar-2.png",
-        "/testimonials/avatar-3.png",
+        "/Avatar-1.png",
+        "/Avatar-2.png",
+        "/Avatar-3.png",
     ];
 
-    const next = () => setActive((prev) => (prev + 1) % testimonials.length);
-    const prev = () => setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    const next = () => {
+        setDirection("right");
+        setActive((prev) => (prev + 1) % testimonials.length);
+    };
+
+    const prev = () => {
+        setDirection("left");
+        setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    };
+
+    const animationStyle = direction === "right" 
+        ? "animate-slideInDown" 
+        : "animate-slideInRight";
 
     return (
+        <>
+            <style>{`
+                @keyframes slideInDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-90px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes slideInRight {
+                    from {
+                        opacity: 0;
+                        transform: translateY(90px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .animate-slideInDown {
+                    animation: slideInDown 0.5s ease-out;
+                }
+
+                .animate-slideInRight {
+                    animation: slideInRight 0.5s ease-out;
+                }
+            `}</style>
         <section id="testimonials" className="py-[50px] bg-white min-h-[30vh]">
             <div className="max-w-[90rem] mx-auto px-6 md:px-[50px]">
                 <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
                     {/* Left Column — Card Stack */}
                     <div className="w-full lg:w-1/2 relative min-h-[55vh] flex items-center justify-center">
-                        {/* Decorative background */}
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <Image
-                                src="/testimonials/decorative-bg.webp"
-                                alt=""
-                                width={500}
-                                height={500}
-                                className="object-contain opacity-40"
-                                aria-hidden="true"
-                            />
-                        </div>
-
-                        {/* Card */}
-                        <div className="relative z-10 w-full max-w-[420px] mx-auto">
+                        {/* Card Stack */}
+                        <div className="relative w-full max-w-[420px] mx-auto" style={{ height: "auto", perspective: "1000px" }}>
+                            {/* Back Card 1 */}
                             <div
-                                className="bg-white border border-gray-200 rounded-[12px] p-5 md:p-6"
+                                className="absolute border border-gray-200"
                                 style={{
-                                    boxShadow: "0 18px 40px rgba(10,20,40,0.12), 0 6px 18px rgba(10,20,40,0.06)",
+                                    width: "420px",
+                                    height: "100%",
+                                    transform: "rotate(10deg)",
+                                    opacity: 1,
+                                    left: "-0.13px",
+                                    top: "0",
+                                    zIndex: 8,
+                                    borderRadius: "12px",
+                                    boxShadow: "0px 4px 12px 0px #0000000A",
+                                    backgroundColor: "#EEEEEE",
                                 }}
-                            >
+                            />
+
+                            {/* Back Card 2 */}
+                            <div
+                                className="absolute border border-gray-200"
+                                style={{
+                                    width: "420px",
+                                    height: "100%",
+                                    transform: "rotate(5deg)",
+                                    opacity: 1,
+                                    left: "-0.13px",
+                                    top: "0",
+                                    zIndex: 9,
+                                    borderRadius: "12px",
+                                    boxShadow: "0px 4px 12px 0px #0000000A",
+                                    backgroundColor: "#FDFDFD",
+                                }}
+                            />
+
+                            {/* Main Card */}
+                            <div key={active} className={`relative z-10 w-full max-w-[420px] mx-auto ${animationStyle}`}>
+                                <div
+                                    className="bg-white border border-gray-200 rounded-[12px] p-5 md:p-6"
+                                    style={{
+                                        boxShadow: "0px 4px 12px 0px #0000000A",
+                                    }}
+                                >
                                 {/* Stars */}
                                 <div className="flex gap-1 mb-4">
                                     {[...Array(5)].map((_, i) => (
@@ -78,23 +146,6 @@ export default function Testimonials() {
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Navigation Controls */}
-                            <div className="flex gap-3 mt-6 justify-end">
-                                <button
-                                    onClick={prev}
-                                    className="bg-brand-teal text-white px-5 py-4 rounded-[150px] hover:bg-[#e8cb75] transition-colors duration-500 shadow-md"
-                                    aria-label="Previous testimonial"
-                                >
-                                    <ChevronLeft size={20} />
-                                </button>
-                                <button
-                                    onClick={next}
-                                    className="bg-brand-teal text-white px-5 py-4 rounded-[150px] hover:bg-[#e8cb75] transition-colors duration-500 shadow-md"
-                                    aria-label="Next testimonial"
-                                >
-                                    <ChevronRight size={20} />
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -120,9 +171,28 @@ export default function Testimonials() {
                         <p className="font-poppins text-brand-secondary leading-relaxed text-[16px]" style={{ gap: "35px" }}>
                             Get away from your crazy work schedule and breathe pure oxygen. Enjoy bird whistles, serene views &amp; capture these moments.
                         </p>
+
+                        {/* Navigation Controls */}
+                            <div className="flex gap-3 mt-6 justify-start">
+                                <button
+                                    onClick={prev}
+                                    className="bg-brand-teal text-white px-5 py-4 rounded-[150px] hover:bg-[#e8cb75] transition-colors duration-500 shadow-md"
+                                    aria-label="Previous testimonial"
+                                >
+                                    <ChevronLeft size={20} />
+                                </button>
+                                <button
+                                    onClick={next}
+                                    className="bg-brand-teal text-white px-5 py-4 rounded-[150px] hover:bg-[#e8cb75] transition-colors duration-500 shadow-md"
+                                    aria-label="Next testimonial"
+                                >
+                                    <ChevronRight size={20} />
+                                </button>
+                            </div>
                     </div>
                 </div>
             </div>
         </section>
+        </>
     );
 }
