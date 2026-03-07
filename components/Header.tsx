@@ -34,7 +34,7 @@ export default function Header() {
             hasChildren: true,
             items: [
                 { href: "/programs#hajj", label: t("programs.hajj.title") },
-                { href: "/programs#kingdom", label: t("programs.kingdom.title") },
+                { href: "/programs/kingdom", label: t("programs.kingdom.title") },
                 { href: "/programs#usa", label: t("programs.usa.title") },
             ]
         },
