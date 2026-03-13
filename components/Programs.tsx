@@ -13,7 +13,7 @@ export default function Programs() {
             title: t("programs.hajj.title"),
             description: t("programs.hajj.desc"),
             image: "/Programs/Huj.jpg",
-            link: "/programs/hajj-umrah",
+            link: "/programs/hajj",
         },
         {
             title: t("programs.kingdom.title"),

@@ -48,6 +48,9 @@ export default function Footer() {
                         <ul className="space-y-2 md:space-y-3 text-white/80 font-poppins text-[13px] md:text-[14px] lg:text-[15px]">
                             <li><Link href="/about" className="hover:text-white transition-colors">{t("footer.aboutUs")}</Link></li>
                             <li><Link href="/#programs" className="hover:text-white transition-colors">{t("nav.programs")}</Link></li>
+                            <li><Link href="/programs/hajj" className="hover:text-white transition-colors">{t("programs.hajj.title")}</Link></li>
+                            <li><Link href="/programs/kingdom" className="hover:text-white transition-colors">{t("programs.kingdom.title")}</Link></li>
+                            <li><Link href="/programs/usa" className="hover:text-white transition-colors">{t("programs.usa.title")}</Link></li>
                             <li><Link href="/#testimonials" className="hover:text-white transition-colors">{t("footer.testimonials")}</Link></li>
                             <li><Link href="/contact" className="hover:text-white transition-colors">{t("nav.contact")}</Link></li>
                             <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>

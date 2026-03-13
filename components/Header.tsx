@@ -33,9 +33,9 @@ export default function Header() {
             label: t("nav.programs"),
             hasChildren: true,
             items: [
-                { href: "/programs#hajj", label: t("programs.hajj.title") },
+                { href: "/programs/hajj", label: t("programs.hajj.title") },
                 { href: "/programs/kingdom", label: t("programs.kingdom.title") },
-                { href: "/programs#usa", label: t("programs.usa.title") },
+                { href: "/programs/usa", label: t("programs.usa.title") },
             ]
         },
         { href: "/contact", label: t("nav.contact") },
