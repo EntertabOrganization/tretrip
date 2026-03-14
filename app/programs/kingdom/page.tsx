@@ -77,7 +77,7 @@ export default function KingdomProgram() {
                 {/* Hero Section */}
                 <section
                     className="relative w-full h-full flex items-center justify-center bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url('/programs/kingdom.jpg')", height: "70vh" }}
+                    style={{ backgroundImage: "url('/Programs/Kingdom.jpg')", height: "70vh" }}
                 >
                     {/* Content */}
                     <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
