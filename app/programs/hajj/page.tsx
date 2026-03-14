@@ -20,20 +20,31 @@ export default function KingdomProgram() {
 
     return (
         <div className="flex flex-col min-h-screen">
+            <style>{`
+                @media (max-width: 639px) {
+                    .hajj-image-column {
+                        display: none;
+                    }
+                }
+                @media (min-width: 640px) {
+                    .hajj-image-column {
+                        display: block;
+                    }
+                }
+            `}</style>
             <Header />
 
             <main>
                 {/* Hero Section */}
                 <section
                     className="relative w-full h-full flex items-center justify-center bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url('/programs/USABg.png')", height: "70vh" }}
+                    style={{ backgroundImage: "url('/programs/Huj.jpg')", height: "70vh" }}
                 >
                     {/* Content */}
                     <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
                         <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                            Explore the{" "}
                             <span className="relative inline-block">
-                                USA
+                                Hajj & Umrah
                                 <img
                                     src="https://tretrip.com/wp-content/uploads/2025/08/GOLD.svg"
                                     alt=""
@@ -299,7 +310,7 @@ export default function KingdomProgram() {
                         </div>
 
                         {/* Image Column */}
-                        <div className="hidden md:block relative w-full md:w-1/2" style={{ overflow: "hidden" }}>
+                        <div className="hajj-image-column" style={{ overflow: "hidden" }}>
                             {/* Right Image - positioned on left */}
                             <div 
                                 style={{ 
