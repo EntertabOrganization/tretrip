@@ -102,11 +102,11 @@ export default function KingdomProgram() {
                 </section>
 
                 {/* Form & Image Section */}
-                <section className="py-16 px-4">
-                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-22">
+                <section className="py-12 md:py-16 px-4 md:px-8">
+                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 md:gap-22">
                         {/* Form Column */}
                         <div
-                            className="w-full md:w-1/2 bg-white rounded-2xl p-8"
+                            className="w-full md:w-1/2 bg-white rounded-2xl p-4 md:p-8"
                             style={{
                                 borderRadius: "16px",
                                 boxShadow: "0px 4px 8px 0px #0000001F",
@@ -114,20 +114,20 @@ export default function KingdomProgram() {
                             }}
                         >
                             {/* Title */}
-                            <h3 className="font-poppins text-xl font-bold text-gray-800 mb-2 text-center">
+                            <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
                                 Explore The Kingdom - Booking Request Form
                             </h3>
 
                             {/* Step indicator */}
-                            <div className="flex items-center justify-center gap-3 mb-6">
+                            <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 mb-6">
                                 <div className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-semibold font-poppins transition-colors ${step === 1 ? "bg-brand-primary text-white" : step > 1 ? "bg-brand-primary/20 text-brand-primary" : "bg-gray-200 text-gray-400"}`}>
                                     1
                                 </div>
-                                <div className={`h-0.5 w-10 transition-colors ${step >= 2 ? "bg-brand-primary" : "bg-gray-200"}`} />
+                                <div className={`h-0.5 w-6 sm:w-8 md:w-10 transition-colors ${step >= 2 ? "bg-brand-primary" : "bg-gray-200"}`} />
                                 <div className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-semibold font-poppins transition-colors ${step === 2 ? "bg-brand-primary text-white" : step > 2 ? "bg-brand-primary/20 text-brand-primary" : "bg-gray-200 text-gray-400"}`}>
                                     2
                                 </div>
-                                <div className={`h-0.5 w-10 transition-colors ${step >= 3 ? "bg-brand-primary" : "bg-gray-200"}`} />
+                                <div className={`h-0.5 w-6 sm:w-8 md:w-10 transition-colors ${step >= 3 ? "bg-brand-primary" : "bg-gray-200"}`} />
                                 <div className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-semibold font-poppins transition-colors ${step === 3 ? "bg-brand-primary text-white" : "bg-gray-200 text-gray-400"}`}>
                                     3
                                 </div>
@@ -145,7 +145,7 @@ export default function KingdomProgram() {
                                             name="fullName"
                                             required
                                             placeholder="Enter your full name"
-                                            className="font-poppins w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                            className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
 
@@ -158,7 +158,7 @@ export default function KingdomProgram() {
                                             name="email"
                                             required
                                             placeholder="Enter your email"
-                                            className="font-poppins w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                            className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
 
@@ -171,7 +171,7 @@ export default function KingdomProgram() {
                                             name="phone"
                                             required
                                             placeholder="Enter your phone number"
-                                            className="font-poppins w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                            className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
 
@@ -179,7 +179,7 @@ export default function KingdomProgram() {
                                         <p className="font-poppins text-sm font-medium text-gray-700 mb-3">
                                             Preferred Contact Method
                                         </p>
-                                        <div className="flex flex-wrap gap-8">
+                                        <div className="flex flex-wrap gap-4 md:gap-8">
                                             {["Email", "Phone Number", "Whatsapp"].map((method) => (
                                                 <label
                                                     key={method}
