@@ -155,7 +155,7 @@ section {
   left: -4px;
   width: 1440px;
   height: 758px;
-  background-image: url("/ServicesBg.png");
+  /* background-image: url("/ServicesBg.png"); */
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
