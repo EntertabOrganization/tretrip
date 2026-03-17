@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import InternationalPhoneInput from "@/components/InternationalPhoneInput";
 
 const mapLocations = [
     {
@@ -204,13 +205,7 @@ export default function KingdomProgram() {
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             Phone Number
                                         </label>
-                                        <input
-                                            type="tel"
-                                            name="phone"
-                                            required
-                                            placeholder="Enter your phone number"
-                                            className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
-                                        />
+                                        <InternationalPhoneInput placeholder="Enter your phone number" />
                                     </div>
 
                                     <div>
