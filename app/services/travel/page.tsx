@@ -549,10 +549,9 @@ export default function TravelPage() {
                         </>
                     }
                     images={[
-                        "/Services/Travel.png",
-                        "/Services/Travel.png",
-                        "/Services/Travel.png",
-                        "/Services/Travel.png",
+                        "/Services/Travel/1.png",
+                        "/Services/Travel/2.jpg",
+                        "/Services/Travel/3.jpg"
                     ]}
                     layout="image-left"
                 />
