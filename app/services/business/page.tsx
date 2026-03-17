@@ -90,19 +90,16 @@ export default function BusinessPage() {
                         {
                             text: "TreTrip has been instrumental in managing our corporate travel program. The team handles everything seamlessly, allowing our employees to focus on business objectives. Cost-effective and reliable.",
                             name: "James Wilson",
-                            role: "Corporate Travel Manager",
                             image: "/Avatar-1.png",
                         },
                         {
                             text: "Our annual conferences run smoothly thanks to TreTrip's meticulous planning. From flights to meeting facilities, they anticipate every need. They've become a valued extension of our team.",
                             name: "Patricia Chen",
-                            role: "Event Coordinator",
                             image: "/Avatar-2.png",
                         },
                         {
                             text: "We tried different corporate travel providers, but TreTrip stands out. Their 24/7 support is exceptional, and our employees consistently praise the service quality. Highly recommended for any company.",
                             name: "David Thompson",
-                            role: "HR Director",
                             image: "/Avatar-3.png",
                         },
                     ]}

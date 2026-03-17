@@ -7,7 +7,6 @@ import { Star } from "lucide-react";
 interface TestimonialCard {
   text: string;
   name: string;
-  role: string;
   image: string;
 }
 
@@ -83,9 +82,6 @@ export default function WhatOurClientsSay({
                   <h4 className="font-poppins text-[24px] font-bold text-brand-teal">
                     {testimonial.name}
                   </h4>
-                  <span className="text-[13px] text-gray-500">
-                    {testimonial.role}
-                  </span>
                 </div>
               </div>
             </div>

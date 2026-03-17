@@ -90,19 +90,16 @@ export default function ShippingPage() {
                         {
                             text: "TreTrip's shipping service is outstanding. Fast, reliable, and transparent tracking. My cargo arrived on time in perfect condition. They've become my go-to logistics partner.",
                             name: "Hassan Al-Dosari",
-                            role: "Import/Export Business Owner",
                             image: "/Avatar-1.png",
                         },
                         {
                             text: "Competitive rates and excellent customer service. TreTrip handled all customs documentation smoothly. Highly professional team that I trust with valuable shipments.",
                             name: "Elena Volkov",
-                            role: "E-commerce Business Manager",
                             image: "/Avatar-2.png",
                         },
                         {
                             text: "We ship multiple times per month with TreTrip. They consistently deliver on time, handle documentation perfectly, and their rates are competitive. Excellent partner!",
                             name: "Marcus Johnson",
-                            role: "Logistics Director",
                             image: "/Avatar-3.png",
                         },
                     ]}

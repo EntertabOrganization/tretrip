@@ -90,19 +90,16 @@ export default function EventsPage() {
                         {
                             text: "Our wedding was absolutely perfect thanks to TreTrip's meticulous planning and execution. Every detail exceeded our expectations. Our guests are still talking about how beautifully everything was organized!",
                             name: "Leila Patel",
-                            role: "Bride",
                             image: "/Avatar-1.png",
                         },
                         {
                             text: "TreTrip managed our corporate conference flawlessly. The venue selection was perfect, logistics were seamless, and attendees had an amazing experience. Exceeded all our expectations!",
                             name: "Dr. Fatima Al-Shehhi",
-                            role: "Conference Organizer",
                             image: "/Avatar-2.png",
                         },
                         {
                             text: "From concept to execution, TreTrip's creative team brought our event vision to life. The attention to detail, professional execution, and problem-solving made it a huge success. Highly recommended!",
                             name: "Oliver Bennett",
-                            role: "Corporate Events Manager",
                             image: "/Avatar-3.png",
                         },
                     ]}

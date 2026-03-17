@@ -90,19 +90,16 @@ export default function TransportationPage() {
                         {
                             text: "Used TreTrip's transportation service for my airport transfer. The driver was punctual, professional, and the car was immaculate. Excellent experience from start to finish!",
                             name: "Sophia Rodriguez",
-                            role: "International Traveler",
                             image: "/Avatar-1.png",
                         },
                         {
                             text: "Booked group transportation for our corporate retreat. The entire team was impressed with the modern fleet, professional drivers, and smooth logistics. Will definitely book again!",
                             name: "Thomas Anderson",
-                            role: "Group Travel Coordinator",
                             image: "/Avatar-2.png",
                         },
                         {
                             text: "TreTrip's drivers know the city routes perfectly and were so helpful with recommendations. Comfortable ride, on-time service, and great prices. Highly recommend!",
                             name: "Fatima Al-Khalil",
-                            role: "Business Executive",
                             image: "/Avatar-3.png",
                         },
                     ]}

@@ -90,19 +90,16 @@ export default function MedicalPage() {
                         {
                             text: "The coordination was impeccable. From finding the right hospital to managing my accommodation and appointments, TreTrip handled everything professionally. I received world-class treatment at a fraction of the cost.",
                             name: "Rajesh Kumar",
-                            role: "Medical Tourism Patient",
                             image: "/Avatar-1.png",
                         },
                         {
                             text: "I was nervous about getting surgery abroad, but TreTrip's team was incredibly supportive throughout the entire process. The doctors were excellent, and I'm thrilled with the results!",
                             name: "Linda Martinez",
-                            role: "Surgical Patient",
                             image: "/Avatar-2.png",
                         },
                         {
                             text: "Best decision I made. The hospital was accredited, the doctors were experienced, and TreTrip provided excellent follow-up care. Highly recommended for anyone considering medical tourism.",
                             name: "Ahmad Al-Rashid",
-                            role: "Wellness Traveler",
                             image: "/Avatar-3.png",
                         },
                     ]}
