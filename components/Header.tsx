@@ -25,7 +25,7 @@ export default function Header() {
                 { href: "/services/events", label: t("services.items.events.title") },
                 { href: "/services/medical", label: t("services.items.medical.title") },
                 { href: "/services/shipping", label: t("services.items.shipping.title") },
-                { href: "/services/transport", label: t("services.items.transport.title") },
+                { href: "/services/transportation", label: t("services.items.transport.title") },
             ]
         },
         {
