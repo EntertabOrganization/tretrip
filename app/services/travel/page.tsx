@@ -35,17 +35,16 @@ export default function TravelPage() {
                 <ServiceHero
                     image="/Services/Travel.png"
                     title={t("services.items.travel.title")}
-                    description={t("services.items.travel.desc")}
+                    description={t("servicePages.travel.description")}
                     backgroundPosition="center"
                 />
 
                 {/* Form Section */}
                 <section className="px-4 md:px-8 py-12 md:py-20 bg-gray-50 relative" style={{ minHeight: "500px" }}>
-                    <div className="relative" style={{ position: "absolute", left: "50%", top: "-20%", transform: "translateX(-50%)" }}>
+                    <div className="flex justify-center">
                         <div
-                            className="w-full bg-white rounded-2xl p-4 md:p-8"
+                            className="w-full max-w-4xl bg-white rounded-2xl p-4 md:p-8"
                             style={{
-                                width: "1000px",
                                 height: "auto",
                                 borderRadius: "16px",
                                 boxShadow: "0px 4px 8px 0px #0000001F",

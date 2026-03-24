@@ -51,17 +51,16 @@ export default function ShippingPage() {
                 <ServiceHero
                     image="/Services/Shipping.png"
                     title={t("services.items.shipping.title")}
-                    description="Our reliable transportation network ensures you arrive safely and punctually. From airport pickups to daily commutes and special-event shuttles, every ride is managed with care and precision."
+                    description={t("servicePages.shipping.description")}
                     backgroundPosition="center"
                 />
 
                 {/* Form Section */}
                 <section className="px-4 md:px-8 py-12 md:py-20 bg-gray-50 relative" style={{ minHeight: "480px" }}>
-                    <div className="relative" style={{ position: "absolute", left: "50%", top: "-20%", transform: "translateX(-50%)" }}>
+                    <div className="flex justify-center">
                         <div
-                            className="w-full bg-white rounded-2xl p-4 md:p-8"
+                            className="w-full max-w-4xl bg-white rounded-2xl p-4 md:p-8"
                             style={{
-                                width: "1000px",
                                 height: "auto",
                                 borderRadius: "16px",
                                 boxShadow: "0px 4px 8px 0px #0000001F",
@@ -634,8 +633,8 @@ export default function ShippingPage() {
                                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="32" cy="32" r="32" fill="#4A90A4" />
                                     <g transform="translate(17, 22)">
-                                        <path d="M8.27286 21.3649C9.0444 21.3649 9.78434 21.0585 10.3299 20.5129C10.8755 19.9674 11.182 19.2274 11.182 18.4559C11.182 17.6844 10.8755 16.9445 10.3299 16.3989C9.78434 15.8534 9.0444 15.5469 8.27286 15.5469C7.50132 15.5469 6.76138 15.8534 6.21582 16.3989C5.67026 16.9445 5.36377 17.6844 5.36377 18.4559C5.36377 19.2274 5.67026 19.9674 6.21582 20.5129C6.76138 21.0585 7.50132 21.3649 8.27286 21.3649ZM25.0001 21.3649C25.7717 21.3649 26.5116 21.0585 27.0572 20.5129C27.6027 19.9674 27.9092 19.2274 27.9092 18.4559C27.9092 17.6844 27.6027 16.9445 27.0572 16.3989C26.5116 15.8534 25.7717 15.5469 25.0001 15.5469C24.2286 15.5469 23.4887 15.8534 22.9431 16.3989C22.3975 16.9445 22.091 17.6844 22.091 18.4559C22.091 19.2274 22.3975 19.9674 22.9431 20.5129C23.4887 21.0585 24.2286 21.3649 25.0001 21.3649Z" stroke="white" stroke-width="2" stroke-linejoin="round" />
-                                        <path d="M5.36364 18.4542H1V1H22.0909V18.4542M22.0909 18.4542H11.1818M22.0909 18.4542V6.09081H28.3244L33 12.2725V18.4542H28.4989" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M8.27286 21.3649C9.0444 21.3649 9.78434 21.0585 10.3299 20.5129C10.8755 19.9674 11.182 19.2274 11.182 18.4559C11.182 17.6844 10.8755 16.9445 10.3299 16.3989C9.78434 15.8534 9.0444 15.5469 8.27286 15.5469C7.50132 15.5469 6.76138 15.8534 6.21582 16.3989C5.67026 16.9445 5.36377 17.6844 5.36377 18.4559C5.36377 19.2274 5.67026 19.9674 6.21582 20.5129C6.76138 21.0585 7.50132 21.3649 8.27286 21.3649ZM25.0001 21.3649C25.7717 21.3649 26.5116 21.0585 27.0572 20.5129C27.6027 19.9674 27.9092 19.2274 27.9092 18.4559C27.9092 17.6844 27.6027 16.9445 27.0572 16.3989C26.5116 15.8534 25.7717 15.5469 25.0001 15.5469C24.2286 15.5469 23.4887 15.8534 22.9431 16.3989C22.3975 16.9445 22.091 17.6844 22.091 18.4559C22.091 19.2274 22.3975 19.9674 22.9431 20.5129C23.4887 21.0585 24.2286 21.3649 25.0001 21.3649Z" stroke="white" strokeWidth="2" strokeLinejoin="round" />
+                                        <path d="M5.36364 18.4542H1V1H22.0909V18.4542M22.0909 18.4542H11.1818M22.0909 18.4542V6.09081H28.3244L33 12.2725V18.4542H28.4989" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </g>
                                 </svg>
                             ),
@@ -646,7 +645,7 @@ export default function ShippingPage() {
                                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="32" cy="32" r="32" fill="#4A90A4" />
                                     <g transform="translate(16, 16)">
-                                        <path d="M15.75 33.75C14.3867 33.75 13.0833 33.2055 10.4783 32.1165C3.99333 29.4039 0.75 28.0459 0.75 25.764V9M15.75 33.75C17.1133 33.75 18.4167 33.2055 21.0217 32.1165C27.5067 29.4039 30.75 28.0459 30.75 25.764V9M15.75 33.75V16.1857M5.75 17.25L9.08333 18.9M24.0833 4.05L7.41667 12.3M9.62667 13.4401L4.75833 11.1087C2.08667 9.8283 0.75 9.1881 0.75 8.175C0.75 7.1619 2.08667 6.5217 4.75833 5.2413L9.625 2.90985C12.6333 1.4694 14.1333 0.75 15.75 0.75C17.3667 0.75 18.8683 1.4694 21.8733 2.90985L26.7417 5.2413C29.4133 6.5217 30.75 7.1619 30.75 8.175C30.75 9.1881 29.4133 9.8283 26.7417 11.1087L21.875 13.4401C18.8667 14.8806 17.3667 15.6 15.75 15.6C14.1333 15.6 12.6317 14.8806 9.62667 13.4401Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M15.75 33.75C14.3867 33.75 13.0833 33.2055 10.4783 32.1165C3.99333 29.4039 0.75 28.0459 0.75 25.764V9M15.75 33.75C17.1133 33.75 18.4167 33.2055 21.0217 32.1165C27.5067 29.4039 30.75 28.0459 30.75 25.764V9M15.75 33.75V16.1857M5.75 17.25L9.08333 18.9M24.0833 4.05L7.41667 12.3M9.62667 13.4401L4.75833 11.1087C2.08667 9.8283 0.75 9.1881 0.75 8.175C0.75 7.1619 2.08667 6.5217 4.75833 5.2413L9.625 2.90985C12.6333 1.4694 14.1333 0.75 15.75 0.75C17.3667 0.75 18.8683 1.4694 21.8733 2.90985L26.7417 5.2413C29.4133 6.5217 30.75 7.1619 30.75 8.175C30.75 9.1881 29.4133 9.8283 26.7417 11.1087L21.875 13.4401C18.8667 14.8806 17.3667 15.6 15.75 15.6C14.1333 15.6 12.6317 14.8806 9.62667 13.4401Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     </g>
                                 </svg>
                             ),
@@ -657,8 +656,8 @@ export default function ShippingPage() {
                                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="32" cy="32" r="32" fill="#4A90A4" />
                                     <g transform="translate(16, 14)">
-                                        <path d="M27.25 1H4.75C2.67893 1 1 2.67893 1 4.75V34.75C1 36.8211 2.67893 38.5 4.75 38.5H27.25C29.3211 38.5 31 36.8211 31 34.75V4.75C31 2.67893 29.3211 1 27.25 1Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M8.5 8.5H23.5M23.5 23.5V31M23.5 16H23.5188M16 16H16.0188M8.5 16H8.51875M16 23.5H16.0188M8.5 23.5H8.51875M16 31H16.0188M8.5 31H8.51875" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M27.25 1H4.75C2.67893 1 1 2.67893 1 4.75V34.75C1 36.8211 2.67893 38.5 4.75 38.5H27.25C29.3211 38.5 31 36.8211 31 34.75V4.75C31 2.67893 29.3211 1 27.25 1Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path d="M8.5 8.5H23.5M23.5 23.5V31M23.5 16H23.5188M16 16H16.0188M8.5 16H8.51875M16 23.5H16.0188M8.5 23.5H8.51875M16 31H16.0188M8.5 31H8.51875" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </g>
                                 </svg>
                             ),

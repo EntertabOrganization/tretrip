@@ -17,9 +17,9 @@ export default function ServiceContent({
   layout = "image-left",
 }: ServiceContentProps) {
   const imageGrid = (
-    <div className="flex gap-3 sm:gap-4">
+    <div className="flex gap-2 sm:gap-3 md:gap-4">
       {/* Large horizontal image on the left */}
-      <div className="relative rounded-lg overflow-hidden flex-1" style={{ height: "442px", borderRadius: "8px" }}>
+      <div className="relative rounded-lg overflow-hidden flex-1 h-72 sm:h-96 md:h-[442px]" style={{ borderRadius: "8px" }}>
         <Image
           src={images[0]}
           alt="Service image 1"
@@ -28,8 +28,8 @@ export default function ServiceContent({
         />
       </div>
       {/* Two images stacked on the right */}
-      <div className="flex flex-col gap-3 sm:gap-4" style={{ width: "269.34375px", height: "442px" }}>
-        <div className="relative rounded-lg overflow-hidden" style={{ width: "290.0625px", height: "214.09375px", borderRadius: "8px" }}>
+      <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 w-44 sm:w-80 md:w-72 h-72 sm:h-96 md:h-[442px]">
+        <div className="relative rounded-lg overflow-hidden flex-1" style={{ borderRadius: "8px" }}>
           <Image
             src={images[1]}
             alt="Service image 2"
@@ -37,7 +37,7 @@ export default function ServiceContent({
             className="object-cover"
           />
         </div>
-        <div className="relative rounded-lg overflow-hidden" style={{ width: "290.0625px", height: "214.09375px", borderRadius: "8px" }}>
+        <div className="relative rounded-lg overflow-hidden flex-1" style={{ borderRadius: "8px" }}>
           <Image
             src={images[2]}
             alt="Service image 3"
