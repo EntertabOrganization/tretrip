@@ -93,22 +93,22 @@ export default function EventPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Full Name
+                                                {t("servicePages.events.fullName")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter your full name"
+                                                placeholder={t("servicePages.events.enterFullName")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Organization
+                                                {t("servicePages.events.organization")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter organization name"
+                                                placeholder={t("servicePages.events.enterOrganization")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -116,11 +116,11 @@ export default function EventPage() {
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Position
+                                            {t("servicePages.events.position")}
                                         </label>
                                         <input
                                             type="text"
-                                            placeholder="Enter your position"
+                                            placeholder={t("servicePages.events.enterPosition")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
@@ -128,18 +128,18 @@ export default function EventPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Phone Number
+                                                {t("servicePages.events.phoneNumber")}
                                             </label>
-                                            <InternationalPhoneInput placeholder="Enter your phone number" />
+                                            <InternationalPhoneInput placeholder={t("forms.phone")} />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Email
+                                                {t("servicePages.events.emailAddress")}
                                             </label>
                                             <input
                                                 type="email"
-                                                placeholder="Enter your email"
+                                                placeholder={t("servicePages.events.enterEmail")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -152,13 +152,13 @@ export default function EventPage() {
                                             disabled={step === 1}
                                             className="font-poppins flex-1 border border-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Next
+                                            {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>

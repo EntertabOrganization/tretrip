@@ -54,10 +54,10 @@ export default function TravelPage() {
                         >
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
-                                {step === 1 && "Personal Information"}
-                                {step === 2 && "Flight Details"}
-                                {step === 3 && "Hotel Details"}
-                                {step === 4 && "Additional Services"}
+                                {step === 1 && t("servicePages.travel.stepPersonal")}
+                                {step === 2 && t("servicePages.travel.stepFlightDetails")}
+                                {step === 3 && t("servicePages.travel.stepHotelDetails")}
+                                {step === 4 && t("servicePages.travel.stepAdditionalServices")}
                             </h3>
 
                             {/* Step indicator */}
@@ -77,29 +77,29 @@ export default function TravelPage() {
                                 <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Full Name
+                                            {t("servicePages.travel.fullName")}
                                         </label>
                                         <input
                                             type="text"
-                                            placeholder="Enter your full name"
+                                            placeholder={t("servicePages.travel.enterFullName")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Phone Number
+                                            {t("servicePages.travel.phoneNumber")}
                                         </label>
-                                        <InternationalPhoneInput placeholder="Enter your phone number" />
+                                        <InternationalPhoneInput placeholder={t("servicePages.travel.phoneNumber")} />
                                     </div>
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Email Address
+                                            {t("servicePages.travel.emailAddress")}
                                         </label>
                                         <input
                                             type="email"
-                                            placeholder="Enter your email"
+                                            placeholder={t("servicePages.travel.enterEmail")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
@@ -108,7 +108,7 @@ export default function TravelPage() {
                                         type="submit"
                                         className="font-poppins w-full bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                     >
-                                        Next
+                                        {t("forms.next")}
                                     </button>
                                 </form>
                             )}
@@ -118,20 +118,20 @@ export default function TravelPage() {
                                 <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     {/* Traveler's Info Row */}
                                     <div>
-                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Traveler's Information *</label>
+                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.travel.travelersInfo")}</label>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                             <input
                                                 type="text"
-                                                placeholder="Traveler's Name"
+                                                placeholder={t("servicePages.travel.enterTravelerName")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                             <input
                                                 type="email"
-                                                placeholder="Email Address"
+                                                placeholder={t("servicePages.travel.enterEmail")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                             <div>
-                                                <InternationalPhoneInput placeholder="Contact Number" />
+                                                <InternationalPhoneInput placeholder={t("servicePages.travel.phoneNumber")} />
                                             </div>
                                         </div>
                                     </div>
@@ -139,9 +139,9 @@ export default function TravelPage() {
                                     {/* Trip Type and Class Row */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Select Trip *</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.travel.selectTrip")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["Multiple Destinations", "Round Trip", "One Way"].map((tripType) => (
+                                                {[t("servicePages.travel.multipleDestinations"), t("servicePages.travel.roundTrip"), t("servicePages.travel.oneWay")].map((tripType) => (
                                                     <label key={tripType} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -156,9 +156,9 @@ export default function TravelPage() {
                                         </div>
 
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Class *</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.travel.flightClass")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["First", "Business", "Premium", "Economy"].map((classType) => (
+                                                {[t("servicePages.travel.first"), t("servicePages.travel.business"), t("servicePages.travel.premium"), t("servicePages.travel.economy")].map((classType) => (
                                                     <label key={classType} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -177,21 +177,21 @@ export default function TravelPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Leaving From
+                                                {t("servicePages.travel.leavingFrom")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Departure city"
+                                                placeholder={t("servicePages.travel.departureCity")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Going To
+                                                {t("servicePages.travel.goingTo")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Destination city"
+                                                placeholder={t("servicePages.travel.destinationCity")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -201,17 +201,17 @@ export default function TravelPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Airline
+                                                {t("servicePages.travel.airline")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Select airline"
+                                                placeholder={t("servicePages.travel.selectAirline")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Departing
+                                                {t("servicePages.travel.departing")}
                                             </label>
                                             <input
                                                 type="date"
@@ -220,12 +220,12 @@ export default function TravelPage() {
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Stops
+                                                {t("servicePages.travel.stops")}
                                             </label>
                                             <input
                                                 type="number"
                                                 min="0"
-                                                placeholder="Number of stops"
+                                                placeholder={t("servicePages.travel.numberOfStops")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -235,8 +235,8 @@ export default function TravelPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                         <div>
                                             <div>
-                                                <label className="font-poppins text-sm font-semibold text-gray-800">Adult</label>
-                                                <p className="font-poppins text-xs text-gray-500 mb-2">13 yrs old and above</p>
+                                                <label className="font-poppins text-sm font-semibold text-gray-800">{t("servicePages.travel.adult")}</label>
+                                                <p className="font-poppins text-xs text-gray-500 mb-2">{t("servicePages.travel.adultAge")}</p>
                                             </div>
                                             <input
                                                 type="number"
@@ -247,8 +247,8 @@ export default function TravelPage() {
                                         </div>
                                         <div>
                                             <div>
-                                                <label className="font-poppins text-sm font-semibold text-gray-800">Children</label>
-                                                <p className="font-poppins text-xs text-gray-500 mb-2">2 to 12 yrs old</p>
+                                                <label className="font-poppins text-sm font-semibold text-gray-800">{t("servicePages.travel.children")}</label>
+                                                <p className="font-poppins text-xs text-gray-500 mb-2">{t("servicePages.travel.childrenAge")}</p>
                                             </div>
                                             <input
                                                 type="number"
@@ -259,8 +259,8 @@ export default function TravelPage() {
                                         </div>
                                         <div>
                                             <div>
-                                                <label className="font-poppins text-sm font-semibold text-gray-800">Infants</label>
-                                                <p className="font-poppins text-xs text-gray-500 mb-2">1 yr old and below</p>
+                                                <label className="font-poppins text-sm font-semibold text-gray-800">{t("servicePages.travel.infants")}</label>
+                                                <p className="font-poppins text-xs text-gray-500 mb-2">{t("servicePages.travel.infantsAge")}</p>
                                             </div>
                                             <input
                                                 type="number"
@@ -278,13 +278,13 @@ export default function TravelPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Next
+                                            {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>
@@ -297,17 +297,17 @@ export default function TravelPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Destination
+                                                {t("servicePages.travel.destination")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="City and Hotel Name"
+                                                placeholder={t("servicePages.travel.enterDestination")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Check-in
+                                                {t("servicePages.travel.checkIn")}
                                             </label>
                                             <input
                                                 type="date"
@@ -316,7 +316,7 @@ export default function TravelPage() {
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Check-out
+                                                {t("servicePages.travel.checkOut")}
                                             </label>
                                             <input
                                                 type="date"
@@ -327,10 +327,10 @@ export default function TravelPage() {
 
                                     {/* Rooms and Guests */}
                                     <div>
-                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Room Details</label>
+                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.travel.roomDetails")}</label>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                             <div>
-                                                <label className="font-poppins block text-xs text-gray-600 mb-1">Adult</label>
+                                                <label className="font-poppins block text-xs text-gray-600 mb-1">{t("servicePages.travel.adult")}</label>
                                                 <input
                                                     type="number"
                                                     min="0"
@@ -339,7 +339,7 @@ export default function TravelPage() {
                                                 />
                                             </div>
                                             <div>
-                                                <label className="font-poppins block text-xs text-gray-600 mb-1">Children</label>
+                                                <label className="font-poppins block text-xs text-gray-600 mb-1">{t("servicePages.travel.children")}</label>
                                                 <input
                                                     type="number"
                                                     min="0"
@@ -348,7 +348,7 @@ export default function TravelPage() {
                                                 />
                                             </div>
                                             <div>
-                                                <label className="font-poppins block text-xs text-gray-600 mb-1">Rooms</label>
+                                                <label className="font-poppins block text-xs text-gray-600 mb-1">{t("servicePages.travel.rooms")}</label>
                                                 <input
                                                     type="number"
                                                     min="1"
@@ -362,23 +362,23 @@ export default function TravelPage() {
                                     {/* Star Rating */}
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-2">
-                                            Hotel Rating
+                                            {t("servicePages.travel.hotelRating")}
                                         </label>
                                         <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
-                                            <option>Select Rating</option>
-                                            <option>1 Star</option>
-                                            <option>2 Stars</option>
-                                            <option>3 Stars</option>
-                                            <option>4 Stars</option>
-                                            <option>5 Stars</option>
+                                            <option>{t("servicePages.travel.selectRating")}</option>
+                                            <option>{t("servicePages.travel.oneStar")}</option>
+                                            <option>{t("servicePages.travel.twoStars")}</option>
+                                            <option>{t("servicePages.travel.threeStars")}</option>
+                                            <option>{t("servicePages.travel.fourStars")}</option>
+                                            <option>{t("servicePages.travel.fiveStars")}</option>
                                         </select>
                                     </div>
 
                                     {/* Meal Plan */}
                                     <div>
-                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Meal Plan</label>
+                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.travel.mealPlan")}</label>
                                         <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                            {["Room only", "Breakfast included", "Half Board", "Full Board"].map((meal) => (
+                                            {[t("servicePages.travel.roomOnly"), t("servicePages.travel.breakfastIncluded"), t("servicePages.travel.halfBoard"), t("servicePages.travel.fullBoard")].map((meal) => (
                                                 <label key={meal} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                     <input
                                                         type="radio"
@@ -399,13 +399,13 @@ export default function TravelPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Next
+                                            {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>
@@ -416,25 +416,25 @@ export default function TravelPage() {
                                 <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
                                     {/* Transfers Section */}
                                     <div className="border-b pb-5">
-                                        <h4 className="font-poppins text-sm font-semibold text-gray-800 mb-3">Transfers</h4>
+                                        <h4 className="font-poppins text-sm font-semibold text-gray-800 mb-3">{t("servicePages.travel.transfers")}</h4>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             <div>
                                                 <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                    Pick-up Location
+                                                    {t("servicePages.travel.pickupLocation")}
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    placeholder="Airport, hotel or address"
+                                                    placeholder={t("servicePages.travel.airportOrAddress")}
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 />
                                             </div>
                                             <div>
                                                 <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                    Drop-off Location
+                                                    {t("servicePages.travel.dropoffLocation")}
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    placeholder="Airport, hotel or address"
+                                                    placeholder={t("servicePages.travel.airportOrAddress")}
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 />
                                             </div>
@@ -451,7 +451,7 @@ export default function TravelPage() {
                                             </div>
                                             <div>
                                                 <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                    Pick-up Time
+                                                    {t("servicePages.travel.pickupTime")}
                                                 </label>
                                                 <input
                                                     type="time"
@@ -463,11 +463,11 @@ export default function TravelPage() {
 
                                     {/* Car Rental Section */}
                                     <div>
-                                        <h4 className="font-poppins text-sm font-semibold text-gray-800 mb-3">Car Rental</h4>
+                                        <h4 className="font-poppins text-sm font-semibold text-gray-800 mb-3">{t("servicePages.travel.carRental")}</h4>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             <div>
                                                 <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                    Pick-up Date
+                                                    {t("servicePages.travel.pickupDate")}
                                                 </label>
                                                 <input
                                                     type="date"
@@ -476,7 +476,7 @@ export default function TravelPage() {
                                             </div>
                                             <div>
                                                 <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                    Drop-off Date
+                                                    {t("servicePages.travel.dropoffDate")}
                                                 </label>
                                                 <input
                                                     type="date"
@@ -487,22 +487,22 @@ export default function TravelPage() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
                                             <div>
                                                 <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                    Car Type
+                                                    {t("servicePages.travel.carType")}
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    placeholder="Economy, Sedan, SUV, etc."
+                                                    placeholder={t("servicePages.travel.enterCarType")}
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 />
                                             </div>
                                             <div>
                                                 <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                    Driver Age
+                                                    {t("servicePages.travel.driverAge")}
                                                 </label>
                                                 <input
                                                     type="number"
                                                     min="18"
-                                                    placeholder="Enter age"
+                                                    placeholder={t("servicePages.travel.enterAge")}
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 />
                                             </div>
@@ -516,13 +516,13 @@ export default function TravelPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Submit Request
+                                            {t("servicePages.travel.submitRequest")}
                                         </button>
                                     </div>
                                 </form>
@@ -533,18 +533,11 @@ export default function TravelPage() {
 
                 {/* Content Section */}
                 <ServiceContent
-                    heading="Comfort Wherever You Go"
+                    heading={t("servicePages.travel.contentHeading")}
                     description={
                         <>
-                            <p>
-                                Whether you're seeking cultural adventures, historical landmarks, or breathtaking nature escapes, TreTrip takes
-                                the hassle out of planning with carefully tailored experiences across the globe. We focus on creating
-                                journeys that match your pace, interests, and comfort — with zero stress.
-                            </p>
-                            <p>
-                                From guided city tours to fully managed travel itineraries, our team ensures every trip is smooth, safe, and
-                                unforgettable. Just tell us where you want to go, and we'll handle the rest — flights, stays, activities, and more.
-                            </p>
+                            <p>{t("servicePages.travel.contentDesc1")}</p>
+                            <p>{t("servicePages.travel.contentDesc2")}</p>
                         </>
                     }
                     images={[
@@ -557,7 +550,7 @@ export default function TravelPage() {
 
                 {/* Why Choose Us Section */}
                 <WhyChooseServices
-                    heading="Why Choose TreTrip"
+                    heading={t("servicePages.travel.whyChoose")}
                     items={[
                         {
                             icon: (
@@ -568,7 +561,7 @@ export default function TravelPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Tailored Itineraries",
+                            title: t("servicePages.travel.serviceTailored"),
                         },
                         {
                             icon: (
@@ -579,7 +572,7 @@ export default function TravelPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "End-to-End Service",
+                            title: t("servicePages.travel.serviceEndToEnd"),
                         },
                         {
                             icon: (
@@ -589,15 +582,15 @@ export default function TravelPage() {
                                         <path d="M17.685 1.8894L17.6688 1.8786L16.2414 0.919205C15.2616 0.260206 14.0928 -0.0594727 12.914 0.00912305C11.7352 0.0777188 10.6114 0.530808 9.7146 1.299L6.21 4.30321C5.96522 4.51253 5.65367 4.62744 5.3316 4.6272H1.35C0.991958 4.6272 0.64858 4.76944 0.395406 5.02261C0.142232 5.27579 0 5.61916 0 5.9772V16.8312C0 17.5764 0.6048 18.1812 1.35 18.1812H5.1084C5.30009 18.1811 5.48961 18.2218 5.66435 18.3006C5.83908 18.3795 5.99503 18.4946 6.1218 18.6384L10.332 23.4264C10.9874 24.1713 11.8935 24.6497 12.8783 24.7708C13.863 24.8919 14.858 24.6473 15.6744 24.0834L16.9056 23.232L18.2268 23.682C19.0432 23.9589 19.9267 23.968 20.7487 23.708C21.5707 23.4481 22.2882 22.9326 22.797 22.2366L23.643 21.081L24.2298 21.1602C25.0425 21.2697 25.8693 21.1299 26.6008 20.7593C27.3323 20.3887 27.9341 19.8048 28.3266 19.0848L28.4148 18.9228H34.65C35.008 18.9228 35.3514 18.7806 35.6046 18.5274C35.8578 18.2742 36 17.9308 36 17.5728V5.97901C36 5.62096 35.8578 5.27758 35.6046 5.02441C35.3514 4.77124 35.008 4.62901 34.65 4.62901H30.6702C30.3464 4.6291 30.0334 4.51284 29.7882 4.3014L26.748 1.6752C25.4799 0.57942 23.8494 -0.0054051 22.1739 0.0345195C20.4984 0.0744441 18.8977 0.736263 17.6832 1.8912M14.7312 3.1602L15.7428 3.84061L12.2148 7.38841C11.8346 7.77079 11.5345 8.22525 11.3323 8.72514C11.1301 9.22503 11.0297 9.76026 11.0371 10.2995C11.0444 10.8387 11.1594 11.3709 11.3753 11.8651C11.5911 12.3593 11.9035 12.8054 12.294 13.1772L12.4164 13.2924C13.8744 14.6802 16.128 14.7882 17.7102 13.5444L21.4524 10.6068L26.235 15.2058C26.4487 15.411 26.5889 15.6807 26.6341 15.9735C26.6793 16.2662 26.627 16.5657 26.4852 16.8258L26.4402 16.905L26.415 16.9518L25.956 17.7924C25.8252 18.0321 25.6247 18.2265 25.3811 18.3499C25.1375 18.4733 24.8622 18.5199 24.5916 18.4836L23.2074 18.2982C22.9669 18.2658 22.7221 18.2989 22.4987 18.3939C22.2754 18.489 22.0819 18.6424 21.9384 18.8382L20.6172 20.6418C20.4477 20.8738 20.2087 21.0456 19.9348 21.1324C19.6609 21.2192 19.3665 21.2163 19.0944 21.1242L17.1324 20.4582C16.9328 20.3903 16.7201 20.3701 16.5113 20.3991C16.3025 20.4282 16.1034 20.5058 15.93 20.6256L14.1408 21.8622C13.8685 22.0504 13.5365 22.1321 13.208 22.0916C12.8795 22.0511 12.5772 21.8913 12.3588 21.6426L8.1486 16.8546C7.76824 16.4227 7.3002 16.0768 6.77566 15.84C6.25111 15.6031 5.68212 15.4808 5.1066 15.4812H2.7V7.3272H5.3298C6.29625 7.32742 7.23093 6.98203 7.965 6.35341L11.4714 3.3492C11.9197 2.96497 12.4815 2.73826 13.0709 2.7038C13.6603 2.66934 14.2448 2.82903 14.7348 3.1584M29.3508 16.2246C29.3573 15.6716 29.2505 15.123 29.0369 14.6128C28.8232 14.1027 28.5074 13.6416 28.1088 13.2582L23.571 8.89501C23.7747 8.63535 23.8762 8.3101 23.8563 7.9807C23.8365 7.6513 23.6967 7.34057 23.4634 7.10723C23.23 6.87389 22.9193 6.73409 22.5899 6.71426C22.2605 6.69443 21.9352 6.79594 21.6756 6.9996L20.7648 7.71421L20.6568 7.7988L16.0452 11.4222C15.7899 11.6228 15.4708 11.7247 15.1465 11.7091C14.8222 11.6936 14.5144 11.5617 14.2794 11.3376L14.157 11.2206C14.0268 11.0967 13.9226 10.948 13.8506 10.7833C13.7786 10.6186 13.7402 10.4412 13.7377 10.2615C13.7352 10.0818 13.7686 9.90333 13.836 9.73668C13.9033 9.57003 14.0033 9.41851 14.13 9.29101L19.467 3.927C20.1898 3.20037 21.1611 2.77478 22.1853 2.73604C23.2094 2.69729 24.2102 3.04826 24.9858 3.71821L28.0224 6.34261C28.7587 6.97836 29.6992 7.32786 30.672 7.3272H33.3V16.2246H29.3508Z" fill="white" />                                    </g>
                                 </svg>
                             ),
-                            title: "Trusted Local Experts",
+                            title: t("servicePages.travel.serviceTrusted"),
                         },
                     ]}
                 />
 
                 {/* What Our Clients Say */}
                 <WhatOurClientsSay
-                    heading="What Our Clients Say"
-                    description="Real stories from real journeys — see why travelers around the world choose TreTrip for seamless, memorable adventures."
+                    heading={t("servicePages.travel.clientSay")}
+                    description={t("servicePages.travel.clientSayDesc")}
                     backgroundImage="/Services/TravelClientBg.png"
                     testimonials={[
                         {

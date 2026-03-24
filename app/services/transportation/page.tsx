@@ -54,8 +54,8 @@ export default function TransportationPage() {
                         >
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
-                                {step === 1 && "Personal Information"}
-                                {step === 2 && "Passenger Details"}
+                                {step === 1 && t("servicePages.transportation.stepPersonal")}
+                                {step === 2 && t("servicePages.transportation.stepPassengers")}
                             </h3>
 
                             {/* Step indicator */}
@@ -76,31 +76,31 @@ export default function TransportationPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Pickup Location
+                                                {t("servicePages.transportation.pickupLocation")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter pickup location"
+                                                placeholder={t("servicePages.transportation.enterPickupLocation")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Drop-off Location
+                                                {t("servicePages.transportation.dropoffLocation")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter drop-off location"
+                                                placeholder={t("servicePages.transportation.enterDropoffLocation")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Trip Type</label>
+                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.transportation.tripType")}</label>
                                         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                                            {["Daily", "Hourly", "Round Trip", "One Way"].map((tripType) => (
+                                            {[t("servicePages.transportation.daily"), t("servicePages.transportation.hourly"), t("servicePages.transportation.roundTrip"), t("servicePages.transportation.oneWay")].map((tripType) => (
                                                 <label key={tripType} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                     <input
                                                         type="radio"
@@ -117,7 +117,7 @@ export default function TransportationPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Pickup Date
+                                                {t("servicePages.transportation.pickupDate")}
                                             </label>
                                             <input
                                                 type="date"
@@ -127,7 +127,7 @@ export default function TransportationPage() {
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Pickup Time
+                                                {t("servicePages.transportation.pickupTime")}
                                             </label>
                                             <input
                                                 type="time"
@@ -139,30 +139,30 @@ export default function TransportationPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Full Name
+                                                {t("servicePages.transportation.fullName")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter your full name"
+                                                placeholder={t("servicePages.transportation.enterFullName")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Phone Number
+                                                {t("servicePages.transportation.phoneNumber")}
                                             </label>
-                                            <InternationalPhoneInput placeholder="Enter your phone number" />
+                                            <InternationalPhoneInput placeholder={t("servicePages.transportation.enterPhoneNumber") || "Enter your phone number"} />
                                         </div>
                                     </div>
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Email Address
+                                            {t("servicePages.transportation.emailAddress")}
                                         </label>
                                         <input
                                             type="email"
-                                            placeholder="Enter your email"
+                                            placeholder={t("servicePages.transportation.enterEmail")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
@@ -171,7 +171,7 @@ export default function TransportationPage() {
                                         type="submit"
                                         className="font-poppins w-full bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                     >
-                                        Next
+                                        {t("forms.next")}
                                     </button>
                                 </form>
                             )}
@@ -180,7 +180,7 @@ export default function TransportationPage() {
                             {step === 2 && (
                                 <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
                                     <div>
-                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Number of Passengers</label>
+                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.transportation.numberOfPassengers")}</label>
                                         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                                             {["1", "2", "3-4", "5+"].map((passengers) => (
                                                 <label key={passengers} className="font-poppins flex items-center gap-2 cursor-pointer">
@@ -197,9 +197,9 @@ export default function TransportationPage() {
                                     </div>
 
                                     <div>
-                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Child Seat Required</label>
+                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.transportation.childSeat")}</label>
                                         <div style={{ display: "flex", gap: "1rem" }}>
-                                            {["Yes", "No"].map((option) => (
+                                            {[t("servicePages.transportation.yes"), t("servicePages.transportation.no")].map((option) => (
                                                 <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                     <input
                                                         type="radio"
@@ -216,23 +216,23 @@ export default function TransportationPage() {
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Luggage
+                                            {t("servicePages.transportation.luggage")}
                                         </label>
                                         <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
-                                            <option>Select luggage amount</option>
-                                            <option>No Luggage</option>
-                                            <option>1 Small Bag</option>
-                                            <option>1 Medium Bag</option>
-                                            <option>1 Large Bag</option>
-                                            <option>2 Bags</option>
-                                            <option>3+ Bags</option>
+                                            <option>{t("servicePages.transportation.selectLuggage")}</option>
+                                            <option>{t("servicePages.transportation.noLuggage")}</option>
+                                            <option>{t("servicePages.transportation.oneSmallBag")}</option>
+                                            <option>{t("servicePages.transportation.oneMediumBag")}</option>
+                                            <option>{t("servicePages.transportation.oneLargeBag")}</option>
+                                            <option>{t("servicePages.transportation.twoBags")}</option>
+                                            <option>{t("servicePages.transportation.threePlusBags")}</option>
                                         </select>
                                     </div>
 
                                     <div>
-                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Vehicle Type</label>
+                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.transportation.vehicleType")}</label>
                                         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                                            {["Economy", "SUV", "Luxury", "Van", "Other"].map((vehicleType) => (
+                                            {[t("servicePages.transportation.economy"), t("servicePages.transportation.suv"), t("servicePages.transportation.luxury"), t("servicePages.transportation.van"), t("servicePages.transportation.other")].map((vehicleType) => (
                                                 <label key={vehicleType} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                     <input
                                                         type="radio"
@@ -248,10 +248,10 @@ export default function TransportationPage() {
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Special Requests
+                                            {t("servicePages.transportation.specialRequests")}
                                         </label>
                                         <textarea
-                                            placeholder="Please provide any special requests or requirements"
+                                            placeholder={t("servicePages.transportation.enterSpecialRequests")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={4}
                                         />
@@ -264,13 +264,13 @@ export default function TransportationPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Submit Request
+                                            {t("servicePages.transportation.submitBtn")}
                                         </button>
                                     </div>
                                 </form>
@@ -283,11 +283,11 @@ export default function TransportationPage() {
 
                 {/* Content Section */}
                 <ServiceContent
-                    heading="Where You Need to Be, When You Need to Be There"
+                    heading={t("servicePages.transportation.contentHeading")}
                     description={
                         <>
-                            <p>From conferences to client meetings, TreTrip optimizes your business trips with precise coordination and curated packages.</p>
-                            <p>We offer exclusive corporate rates, personalized scheduling, and professional-grade logistics to help you focus on your business — not the hassle of travel.</p>
+                            <p>{t("servicePages.transportation.contentDesc1")}</p>
+                            <p>{t("servicePages.transportation.contentDesc2")}</p>
                         </>
                     }
                     images={[
@@ -300,7 +300,7 @@ export default function TransportationPage() {
 
                 {/* Why Choose Us Section */}
                 <WhyChooseServices
-                    heading="Why Choose TreTrip"
+                    heading={t("servicePages.transportation.whyChoose")}
                     items={[
                         {
                             icon: (
@@ -314,7 +314,7 @@ export default function TransportationPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Modern Fleet",
+                            title: t("servicePages.transportation.servicePremium"),
                         },
                         {
                             icon: (
@@ -325,7 +325,7 @@ export default function TransportationPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Always On Time",
+                            title: t("servicePages.transportation.service24Hours"),
                         },
                         {
                             icon: (
@@ -337,15 +337,15 @@ export default function TransportationPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Professional Drivers",
+                            title: t("servicePages.transportation.serviceProDrivers"),
                         },
                     ]}
                 />
 
                 {/* What Our Clients Say */}
                 <WhatOurClientsSay
-                    heading="What Our Clients Say"
-                    description="Here’s what our passengers say after riding with TreTrip."
+                    heading={t("servicePages.transportation.clientSay")}
+                    description={t("servicePages.transportation.clientSayDesc")}
                     backgroundImage="/Services/TravelClientBg.png"
                     testimonials={[
                         {

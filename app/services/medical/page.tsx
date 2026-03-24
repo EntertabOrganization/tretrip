@@ -56,9 +56,9 @@ export default function MedicalPage() {
                         >
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
-                                {step === 1 && "Personal Information"}
-                                {step === 2 && "Travel Information"}
-                                {step === 3 && "Services & Medical Coordination"}
+                                {step === 1 && t("servicePages.medical.stepPersonal")}
+                                {step === 2 && t("servicePages.medical.stepTravel")}
+                                {step === 3 && t("servicePages.medical.stepServices")}
                             </h3>
 
                             {/* Step indicator */}
@@ -79,18 +79,18 @@ export default function MedicalPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Full Name
+                                                {t("servicePages.medical.fullName")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter your full name"
+                                                placeholder={t("servicePages.medical.enterFullName")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Date of Birth
+                                                {t("servicePages.medical.dateOfBirth")}
                                             </label>
                                             <input
                                                 type="date"
@@ -101,9 +101,9 @@ export default function MedicalPage() {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Gender</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.gender")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["Male", "Female"].map((gender) => (
+                                                {[t("servicePages.medical.male"), t("servicePages.medical.female")].map((gender) => (
                                                     <label key={gender} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -119,11 +119,11 @@ export default function MedicalPage() {
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Passport Number
+                                                {t("servicePages.medical.passportNumber")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter your passport number"
+                                                placeholder={t("servicePages.medical.enterPassport")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -132,18 +132,18 @@ export default function MedicalPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Phone Number
+                                                {t("servicePages.medical.phoneNumber")}
                                             </label>
-                                            <InternationalPhoneInput placeholder="Enter your phone number" />
+                                            <InternationalPhoneInput placeholder={t("forms.phone")} />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Email Address
+                                                {t("servicePages.medical.emailAddress")}
                                             </label>
                                             <input
                                                 type="email"
-                                                placeholder="Enter your email"
+                                                placeholder={t("servicePages.medical.emailAddress")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -153,7 +153,7 @@ export default function MedicalPage() {
                                         type="submit"
                                         className="font-poppins w-full bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                     >
-                                        Next
+                                        {t("forms.next")}
                                     </button>
                                 </form>
                             )}
@@ -164,10 +164,10 @@ export default function MedicalPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Country of Residence
+                                                {t("servicePages.medical.countryOfResidence")}
                                             </label>
                                             <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
-                                                <option>Select Country</option>
+                                                <option>{t("servicePages.medical.selectCountry")}</option>
                                                 <option>United States</option>
                                                 <option>Canada</option>
                                                 <option>United Kingdom</option>
@@ -179,10 +179,10 @@ export default function MedicalPage() {
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Destination Country for Treatment
+                                                {t("servicePages.medical.destinationCountry")}
                                             </label>
                                             <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
-                                                <option>Select Destination</option>
+                                                <option>{t("servicePages.medical.selectDestination")}</option>
                                                 <option>Turkey</option>
                                                 <option>United Arab Emirates</option>
                                                 <option>Thailand</option>
@@ -197,7 +197,7 @@ export default function MedicalPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Preferred Departure Date
+                                                {t("servicePages.medical.preferredDeparture")}
                                             </label>
                                             <input
                                                 type="date"
@@ -206,7 +206,7 @@ export default function MedicalPage() {
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Preferred Return Date
+                                                {t("servicePages.medical.preferredReturn")}
                                             </label>
                                             <input
                                                 type="date"
@@ -216,15 +216,15 @@ export default function MedicalPage() {
                                     </div>
 
                                     <div>
-                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Will you travel alone?</label>
+                                        <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.travelAlone")}</label>
                                         <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                            {["Yes", "No"].map((option) => (
+                                            {[t("servicePages.medical.yes"), t("servicePages.medical.no")].map((option) => (
                                                 <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                     <input
                                                         type="radio"
                                                         name="travelingAlone"
                                                         value={option}
-                                                        onChange={(e) => setTravelingAlone(e.target.value === "Yes")}
+                                                        onChange={(e) => setTravelingAlone(e.target.value === t("servicePages.medical.yes"))}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     <span className="text-sm text-gray-700">{option}</span>
@@ -236,10 +236,10 @@ export default function MedicalPage() {
                                     {travelingAlone === false && (
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                If not, who is accompanying you?
+                                                {t("servicePages.medical.whoAccompanies")}
                                             </label>
                                             <textarea
-                                                placeholder="Please provide details about who will accompany you (name, relationship, etc.)"
+                                                placeholder={t("servicePages.medical.accompaniesDetails")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 rows={4}
                                             />
@@ -253,13 +253,13 @@ export default function MedicalPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Next
+                                            {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>
@@ -271,9 +271,9 @@ export default function MedicalPage() {
                                     {/* Row 1: Flights + Accommodation */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Do you need help booking flights?</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.helpWithFlights")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["Yes", "No"].map((option) => (
+                                                {[t("servicePages.medical.yes"), t("servicePages.medical.no")].map((option) => (
                                                     <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -288,9 +288,9 @@ export default function MedicalPage() {
                                         </div>
 
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Do you need accommodation arrangements?</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.accommodationArrangements")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["Yes", "No"].map((option) => (
+                                                {[t("servicePages.medical.yes"), t("servicePages.medical.no")].map((option) => (
                                                     <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -308,9 +308,9 @@ export default function MedicalPage() {
                                     {/* Row 2: Transportation + Interpreter */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Do you require transportation from/to hospital or airport?</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.transportation")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["Yes", "No"].map((option) => (
+                                                {[t("servicePages.medical.yes"), t("servicePages.medical.no")].map((option) => (
                                                     <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -325,9 +325,9 @@ export default function MedicalPage() {
                                         </div>
 
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Do you require an interpreter or translation service?</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.interpreter")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["Yes", "No"].map((option) => (
+                                                {[t("servicePages.medical.yes"), t("servicePages.medical.no")].map((option) => (
                                                     <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -345,9 +345,9 @@ export default function MedicalPage() {
                                     {/* Row 3: Medical Arrangements + Hospital Assistance */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Do you require any medical arrangements?</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.medicalArrangements")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["Yes", "No"].map((option) => (
+                                                {[t("servicePages.medical.yes"), t("servicePages.medical.no")].map((option) => (
                                                     <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -363,9 +363,9 @@ export default function MedicalPage() {
                                         </div>
 
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Do you need us to assist in booking a hospital or treatment center?</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.hospitalAssistance")}</label>
                                             <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                                {["Yes", "No"].map((option) => (
+                                                {[t("servicePages.medical.yes"), t("servicePages.medical.no")].map((option) => (
                                                     <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -381,26 +381,26 @@ export default function MedicalPage() {
                                         </div>
                                     </div>
 
-                                    {needsMedicalArrangements === "Yes" && (
+                                    {needsMedicalArrangements === t("servicePages.medical.yes") && (
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Specify Medical Arrangements
+                                                {t("servicePages.medical.specifyMedical")}
                                             </label>
                                             <textarea
-                                                placeholder="Please specify what medical arrangements you need"
+                                                placeholder={t("servicePages.medical.specifyMedical")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 rows={4}
                                             />
                                         </div>
                                     )}
 
-                                    {needsHospitalAssistance === "Yes" && (
+                                    {needsHospitalAssistance === t("servicePages.medical.yes") && (
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Preferred Clinic / Specialty
+                                                {t("servicePages.medical.preferredClinic")}
                                             </label>
                                             <textarea
-                                                placeholder="Please specify your preferred clinic, specialty, or treatment center"
+                                                placeholder={t("servicePages.medical.specifyClinic")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 rows={4}
                                             />
@@ -409,10 +409,10 @@ export default function MedicalPage() {
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Additional Notes
+                                            {t("servicePages.medical.additionalNotes")}
                                         </label>
                                         <textarea
-                                            placeholder="Please provide any additional information or special requirements"
+                                            placeholder={t("servicePages.medical.additionalInfo")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={4}
                                         />
@@ -425,13 +425,13 @@ export default function MedicalPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Submit Request
+                                            {t("servicePages.medical.submitBtn")}
                                         </button>
                                     </div>
                                 </form>
@@ -442,15 +442,11 @@ export default function MedicalPage() {
 
                 {/* Content Section */}
                 <ServiceContent
-                    heading="Where Care Meets Coordination"
+                    heading={t("servicePages.medical.contentHeading")}
                     description={
                         <>
-                            <p>
-                                TreTrip bridges the gap between healthcare and hospitality. We work with internationally accredited hospitals and wellness centers, ensuring your medical trip is handled with care, discretion, and professionalism.
-                            </p>
-                            <p>
-                                From arranging consultations to post-op accommodations and travel, our team ensures every detail is taken care of — so you can focus on recovery and peace of mind.
-                            </p>
+                            <p>{t("servicePages.medical.contentDesc1")}</p>
+                            <p>{t("servicePages.medical.contentDesc2")}</p>
                         </>
                     }
                     images={[
@@ -463,7 +459,7 @@ export default function MedicalPage() {
 
                 {/* Why Choose Us Section */}
                 <WhyChooseServices
-                    heading="Why Choose TreTrip"
+                    heading={t("servicePages.medical.whyChoose")}
                     items={[
                         {
                             icon: (
@@ -488,7 +484,7 @@ export default function MedicalPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Accredited Facilities",
+                            title: t("servicePages.medical.serviceAccredited"),
                         },
                         {
                             icon: (
@@ -499,7 +495,7 @@ export default function MedicalPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Full Coordination",
+                            title: t("servicePages.medical.serviceCoordination"),
                         },
                         {
                             icon: (
@@ -510,15 +506,15 @@ export default function MedicalPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Multilingual Support",
+                            title: t("servicePages.medical.serviceDiscrete"),
                         },
                     ]}
                 />
 
                 {/* What Our Clients Say */}
                 <WhatOurClientsSay
-                    heading="What Our Clients Say"
-                    description="Real stories from real journeys — see why travelers around the world choose TreTrip for seamless, memorable adventures."
+                    heading={t("servicePages.medical.clientSay")}
+                    description={t("servicePages.medical.clientSayDesc")}
                     backgroundImage="/Services/TravelClientBg.png"
                     testimonials={[
                         {

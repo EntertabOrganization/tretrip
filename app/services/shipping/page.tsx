@@ -70,11 +70,11 @@ export default function ShippingPage() {
                         >
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
-                                {step === 1 && "Personal Information"}
-                                {step === 2 && "Shipper Address"}
-                                {step === 3 && "Receiver Information"}
-                                {step === 4 && "Shipment Details"}
-                                {step === 5 && "Additional Information"}
+                                {step === 1 && t("servicePages.shipping.stepPersonal")}
+                                {step === 2 && t("servicePages.shipping.stepShipperAddress")}
+                                {step === 3 && t("servicePages.shipping.stepReceiverInfo")}
+                                {step === 4 && t("servicePages.shipping.stepShipmentDetails")}
+                                {step === 5 && t("servicePages.shipping.stepAdditionalInfo")}
                             </h3>
 
                             {/* Step indicator */}
@@ -95,30 +95,30 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Full Name
+                                                {t("servicePages.shipping.fullName")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter your full name"
+                                                placeholder={t("servicePages.shipping.enterFullName")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Phone Number
+                                                {t("servicePages.shipping.phoneNumber")}
                                             </label>
-                                            <InternationalPhoneInput placeholder="Enter your phone number" />
+                                            <InternationalPhoneInput placeholder={t("servicePages.shipping.phoneNumber")} />
                                         </div>
                                     </div>
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Email Address
+                                            {t("servicePages.shipping.emailAddress")}
                                         </label>
                                         <input
                                             type="email"
-                                            placeholder="Enter your email"
+                                            placeholder={t("servicePages.shipping.enterEmail")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
@@ -126,22 +126,22 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Shipper Name
+                                                {t("servicePages.shipping.shipperName")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter shipper name"
+                                                placeholder={t("servicePages.shipping.enterShipperName")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Contact Person
+                                                {t("servicePages.shipping.contactPerson")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter contact person"
+                                                placeholder={t("servicePages.shipping.enterContactPerson")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -154,13 +154,13 @@ export default function ShippingPage() {
                                             disabled={step === 1}
                                             className="font-poppins flex-1 border border-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Next
+                                            {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>
@@ -171,11 +171,11 @@ export default function ShippingPage() {
                                 <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Address
+                                            {t("servicePages.shipping.shipperAddress")}
                                         </label>
                                         <input
                                             type="text"
-                                            placeholder="Enter street address"
+                                            placeholder={t("servicePages.shipping.enterShipperAddress")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
@@ -183,11 +183,11 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                City
+                                                {t("servicePages.shipping.originCity")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter city"
+                                                placeholder={t("servicePages.shipping.enteroriginCity")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -207,18 +207,18 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Postal Code
+                                                {t("forms.postalCode")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter postal code"
+                                                placeholder={t("servicePages.shipping.enterShipperAddress")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Country
+                                                {t("servicePages.shipping.destinationCountry")}
                                             </label>
                                             <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
                                                 {countries.map((country) => (
@@ -234,13 +234,13 @@ export default function ShippingPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Next
+                                            {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>
@@ -252,11 +252,11 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Receiver Name
+                                                {t("servicePages.shipping.recipientName")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter receiver name"
+                                                placeholder={t("servicePages.shipping.enterRecipientName")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -276,18 +276,18 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Phone
+                                                {t("servicePages.shipping.recipientPhone")}
                                             </label>
-                                            <InternationalPhoneInput placeholder="Enter phone number" />
+                                            <InternationalPhoneInput placeholder={t("servicePages.shipping.enterRecipientPhone")} />
                                         </div>
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Email
+                                                {t("servicePages.shipping.recipientEmail")}
                                             </label>
                                             <input
                                                 type="email"
-                                                placeholder="Enter email"
+                                                placeholder={t("servicePages.shipping.enterRecipientEmail")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -296,11 +296,11 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Delivery Address
+                                                {t("servicePages.shipping.recipientAddress")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter delivery address"
+                                                placeholder={t("servicePages.shipping.enterRecipientAddress")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -320,11 +320,11 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                City
+                                                {t("servicePages.shipping.destinationCity")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter city"
+                                                placeholder={t("servicePages.shipping.enterDestinationCity")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -342,7 +342,7 @@ export default function ShippingPage() {
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Country
+                                                {t("servicePages.shipping.selectDestinationCountry")}
                                             </label>
                                             <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
                                                 {countries.map((country) => (
@@ -353,11 +353,11 @@ export default function ShippingPage() {
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Postal Code
+                                                {t("forms.postalCode")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter postal code"
+                                                placeholder={t("servicePages.shipping.enterrecipientAddress")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -369,13 +369,13 @@ export default function ShippingPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Next
+                                            {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>
@@ -387,7 +387,7 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Type of Goods
+                                                {t("servicePages.shipping.itemDescription")}
                                             </label>
                                             <input
                                                 type="text"
@@ -411,11 +411,11 @@ export default function ShippingPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Weight (kg)
+                                                {t("servicePages.shipping.weight")}
                                             </label>
                                             <input
                                                 type="number"
-                                                placeholder="Enter weight"
+                                                placeholder={t("servicePages.shipping.enterWeight")}
                                                 step="0.01"
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -423,11 +423,11 @@ export default function ShippingPage() {
 
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Dimensions (LxWxH cm)
+                                                {t("servicePages.shipping.dimensions")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="e.g., 50x40x30"
+                                                placeholder={t("servicePages.shipping.enterDimensions")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -496,9 +496,9 @@ export default function ShippingPage() {
                                         </div>
 
                                         <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Insurance</label>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.shipping.insurance")}</label>
                                             <div style={{ display: "flex", gap: "1rem" }}>
-                                                {["Yes", "No"].map((option) => (
+                                                {[t("servicePages.shipping.yes"), t("servicePages.shipping.no")].map((option) => (
                                                     <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                         <input
                                                             type="radio"
@@ -541,13 +541,13 @@ export default function ShippingPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Next
+                                            {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>
@@ -570,10 +570,10 @@ export default function ShippingPage() {
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                            Special Instructions
+                                            {t("servicePages.shipping.additionalNotes")}
                                         </label>
                                         <textarea
-                                            placeholder="Please provide any special instructions or requirements"
+                                            placeholder={t("servicePages.shipping.enterAdditionalNotes")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={5}
                                         />
@@ -586,13 +586,13 @@ export default function ShippingPage() {
                                             onClick={handlePrevious}
                                             className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
                                         >
-                                            Back
+                                            {t("forms.back")}
                                         </button>
                                         <button
                                             type="submit"
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Submit Shipment
+                                            {t("servicePages.shipping.submitBtn")}
                                         </button>
                                     </div>
                                 </form>
@@ -626,7 +626,7 @@ export default function ShippingPage() {
 
                 {/* Why Choose Us Section */}
                 <WhyChooseServices
-                    heading="Why Choose TreTrip"
+                    heading={t("servicePages.shipping.whyChoose")}
                     items={[
                         {
                             icon: (
@@ -638,7 +638,7 @@ export default function ShippingPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Global Reach",
+                            title: t("servicePages.shipping.serviceTracking"),
                         },
                         {
                             icon: (
@@ -649,7 +649,7 @@ export default function ShippingPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Secure Packaging",
+                            title: t("servicePages.shipping.serviceCustoms"),
                         },
                         {
                             icon: (
@@ -661,15 +661,15 @@ export default function ShippingPage() {
                                     </g>
                                 </svg>
                             ),
-                            title: "Hassle-Free Customs",
+                            title: t("servicePages.shipping.serviceInsurance"),
                         },
                     ]}
                 />
 
                 {/* What Our Clients Say */}
                 <WhatOurClientsSay
-                    heading="What Our Clients Say"
-                    description="Here’s what our clients say about their delivery experience."
+                    heading={t("servicePages.shipping.clientSay")}
+                    description={t("servicePages.shipping.clientSayDesc")}
                     backgroundImage="/Services/TravelClientBg.png"
                     testimonials={[
                         {
