@@ -22,7 +22,7 @@ export default function ContactPage() {
             <Header />
             <main className="relative pt-32 pb-20 overflow-hidden flex-1">
                 {/* Right Decorative Sidebar */}
-                <div className="absolute inset-y-0 right-0 w-[35%] bg-[#2D7A84] hidden lg:block -z-10">
+                <div className="absolute inset-y-0 right-0 w-[35%] bg-[#2D7A84] hidden lg:block z-0">
                     <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:24px_24px]"></div>
                 </div>
 
@@ -151,7 +151,7 @@ export default function ContactPage() {
 
                         {/* Right Side: Map Container */}
                         <div className="lg:col-span-5 relative lg:pt-16 lg:pl-10">
-                            <div className="bg-white p-6 rounded-[48px] shadow-2xl w-full aspect-[4/5] overflow-hidden relative">
+                            <div className="shadow-2xl w-full aspect-[4/5] overflow-hidden relative">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50450.40939527289!2d-77.2662057783203!3d38.9171732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b64af08c84738d%3A0xc3626786f4a7c067!2sTysons%2C%20VA!5e0!3m2!1sen!2sus!4v1714041600000!5m2!1sen!2sus"
                                     width="100%"
@@ -160,7 +160,6 @@ export default function ContactPage() {
                                     allowFullScreen
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    className="rounded-[32px]"
                                 ></iframe>
                             </div>
                         </div>
