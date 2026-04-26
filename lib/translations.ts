@@ -111,14 +111,17 @@ export const translations = {
         },
         contact: {
             title: "Contact Us",
-            subtitle: "We're here to help you plan your next adventure.",
+            subtitle: "Have questions or ready to start your journey? Reach out to our team. We're here to help with personalized support every step of the way.",
             getInTouch: "Get In Touch",
             form: {
                 name: "Full Name",
                 email: "Email Address",
+                phone: "Phone Number",
+                serviceType: "Service Type",
                 subject: "Subject",
                 message: "Message",
-                submit: "Send Message",
+                submit: "SEND",
+                selectService: "Select a service",
             },
         },
         partners: {
@@ -673,14 +676,17 @@ export const translations = {
         },
         contact: {
             title: "اتصل بنا",
-            subtitle: "نحن هنا لمساعدتك في التخطيط لمغامرتك القادمة.",
+            subtitle: "هل لديك أسئلة أو مستعد لبدء رحلتك؟ تواصل مع فريقنا. نحن هنا للمساعدة بدعم مخصص في كل خطوة على الطريق.",
             getInTouch: "تواصل معنا",
             form: {
                 name: "الاسم الكامل",
                 email: "البريد الإلكتروني",
+                phone: "رقم الهاتف",
+                serviceType: "نوع الخدمة",
                 subject: "الموضوع",
                 message: "الرسالة",
-                submit: "إرسال الرسالة",
+                submit: "إرسال",
+                selectService: "اختر الخدمة",
             },
         },
         partners: {
