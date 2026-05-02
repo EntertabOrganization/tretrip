@@ -563,6 +563,85 @@ export const translations = {
                 enterAge: "Enter age",
                 submitRequest: "Submit Request",
             }
+        },
+        housing: {
+            hero: {
+                title: "Homes that move with you.",
+                subtitle: "Whether you're relocating, traveling for work, or seeking a flexible lifestyle, we offer premium, fully furnished homes tailored to your journey.",
+                browse: "Browse Available Homes",
+                quote: "REQUEST A QUOTE",
+            },
+            offer: {
+                title: "What we Offer",
+                subtitle: "Living made easy, from day one",
+                items: {
+                    furnished: {
+                        title: "Fully Furnished Homes",
+                        desc: "Move in ready homes with modern furniture, fully equipped kitchens, and thoughtfully designed spaces, so settling in feels natural, not rushed.",
+                    },
+                    utilities: {
+                        title: "Utilities & Wi-Fi Included",
+                        desc: "One simple rate that includes utilities, internet, and essential services. Everything is ready when you arrive.",
+                    },
+                    flexible: {
+                        title: "Flexible Short & Extended Stays",
+                        desc: "Stay for weeks or months. Adjust as your plans evolve. No rigid terms, no long-term pressure.",
+                    }
+                }
+            },
+            howItWorks: {
+                title: "How it works",
+                subtitle: "A straightforward process, from finding a home to feeling settled",
+                steps: {
+                    step1: {
+                        label: "Step 01",
+                        title: "Browse homes",
+                        desc: "Discover a curated selection of furnished homes available for short and extended stays."
+                    },
+                    step2: {
+                        label: "Step 02",
+                        title: "Request a quote",
+                        desc: "Share your dates and preferences, and we'll prepare a personalized offer that fits your needs. Receive a detailed proposal"
+                    },
+                    step3: {
+                        label: "Step 03",
+                        title: "We confirm availability",
+                        desc: "Our team reviews availability, aligns the details with you, and confirms everything clearly."
+                    },
+                    step4: {
+                        label: "Step 04",
+                        title: "Move in with ease",
+                        desc: "Arrive to a fully prepared home and enjoy a smooth, stress-free check-in."
+                    }
+                }
+            },
+            whyTreTrip: {
+                title: "Why TreTrip",
+                subtitle: "Because where you stay should move with your life",
+                features: {
+                    feature1: {
+                        title: "Carefully Selected Homes",
+                        desc: "Every home earns its place through comfort, reliability, and quality."
+                    },
+                    feature2: {
+                        title: "Stays That Adapt",
+                        desc: "Your stay adjusts to your timeline, whether short-term or extended."
+                    },
+                    feature3: {
+                        title: "Dedicated Human Support",
+                        desc: "Our team is available to support you before arrival and throughout your stay."
+                    },
+                    feature4: {
+                        title: "Transparent pricing",
+                        desc: "What you see is what you pay. No hidden fees, no unexpected costs."
+                    }
+                }
+            },
+            cta: {
+                title: "Find a home that moves with you",
+                subtitle: "Trusted by individuals, families, and teams looking for flexible, fully furnished living.",
+                button: "EXPLORE AVAILABLE Homes"
+            }
         }
     },
     ar: {
@@ -1029,6 +1108,85 @@ export const translations = {
                 enterAge: "أدخل العمر",
                 submitRequest: "تقديم الطلب",                yes: "نعم",
                 no: "لا",
+            }
+        },
+        housing: {
+            hero: {
+                title: "منازل تنتقل معك.",
+                subtitle: "سواء كنت تنتقل أو تسافر للعمل أو تبحث عن نمط حياة مرن، نحن نقدم منازل مفروشة بالكامل وعالية الجودة مصممة خصيصًا لرحلتك.",
+                browse: "تصفح المنازل المتاحة",
+                quote: "طلب عرض أسعار",
+            },
+            offer: {
+                title: "ماذا نقدم",
+                subtitle: "حياة سهلة، من اليوم الأول",
+                items: {
+                    furnished: {
+                        title: "منازل مفروشة بالكامل",
+                        desc: "منازل جاهزة للانتقال مع أثاث حديث ومطابخ مجهزة بالكامل ومساحات مصممة بعناية، لتشعر بالاستقرار بشكل طبيعي، دون استعجال.",
+                    },
+                    utilities: {
+                        title: "تشمل المرافق والواي فاي",
+                        desc: "سعر واحد بسيط يشمل المرافق والإنترنت والخدمات الأساسية. كل شيء جاهز عند وصولك.",
+                    },
+                    flexible: {
+                        title: "إقامات مرنة قصيرة وممتدة",
+                        desc: "ابق لأسابيع أو أشهر. قم بالتعديل حسب تطور خططك. لا شروط صارمة، ولا ضغوط طويلة الأجل.",
+                    }
+                }
+            },
+            howItWorks: {
+                title: "كيف يعمل",
+                subtitle: "عملية مباشرة، من العثور على منزل إلى الشعور بالاستقرار",
+                steps: {
+                    step1: {
+                        label: "الخطوة 01",
+                        title: "تصفح المنازل",
+                        desc: "اكتشف مجموعة مختارة بعناية من المنازل المفروشة المتاحة للإقامات القصيرة والممتدة."
+                    },
+                    step2: {
+                        label: "الخطوة 02",
+                        title: "طلب عرض أسعار",
+                        desc: "شارك تواريخك وتفضيلاتك، وسنقوم بإعداد عرض مخصص يناسب احتياجاتك. احصل على عرض مفصل."
+                    },
+                    step3: {
+                        label: "الخطوة 03",
+                        title: "نؤكد التوفر",
+                        desc: "يراجع فريقنا التوفر، وينسق التفاصيل معك، ويؤكد كل شيء بوضوح."
+                    },
+                    step4: {
+                        label: "الخطوة 04",
+                        title: "انتقل بسهولة",
+                        desc: "الوصول إلى منزل مُجهز بالكامل والاستمتاع بتسجيل دخول سلس وخالٍ من التوتر."
+                    }
+                }
+            },
+            whyTreTrip: {
+                title: "لماذا تري تريب",
+                subtitle: "لأن مكان إقامتك يجب أن يتحرك مع حياتك",
+                features: {
+                    feature1: {
+                        title: "منازل مختارة بعناية",
+                        desc: "كل منزل يكتسب مكانه من خلال الراحة والموثوقية والجودة."
+                    },
+                    feature2: {
+                        title: "إقامات تتكيف معك",
+                        desc: "إقامتك تتكيف مع جدولك الزمني، سواء كانت قصيرة الأجل أو ممتدة."
+                    },
+                    feature3: {
+                        title: "دعم بشري مخصص",
+                        desc: "فريقنا متاح لدعمك قبل الوصول وطوال فترة إقامتك."
+                    },
+                    feature4: {
+                        title: "تسعير شفاف",
+                        desc: "ما تراه هو ما تدفعه. لا توجد رسوم خفية، ولا تكاليف غير متوقعة."
+                    }
+                }
+            },
+            cta: {
+                title: "ابحث عن منزل يتحرك معك",
+                subtitle: "موثوق به من قبل الأفراد والعائلات والفرق التي تبحث عن معيشة مرنة ومفروشة بالكامل.",
+                button: "استكشف المنازل المتاحة"
             }
         }
     },
