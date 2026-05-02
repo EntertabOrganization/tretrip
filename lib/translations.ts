@@ -641,6 +641,34 @@ export const translations = {
                 title: "Find a home that moves with you",
                 subtitle: "Trusted by individuals, families, and teams looking for flexible, fully furnished living.",
                 button: "EXPLORE AVAILABLE Homes"
+            },
+            search: {
+                filters: {
+                    title: "Search Filters",
+                    cityArea: "City / Area",
+                    allCities: "All Cities",
+                    bedrooms: "Number of Bedrooms",
+                    any: "Any",
+                    studio: "Studio",
+                    oneBed: "1 Bedroom",
+                    twoBeds: "2 Bedrooms",
+                    threePlusBeds: "3+ Bedrooms",
+                    monthlyBudget: "Monthly Budget",
+                    amenities: "Amenities",
+                    parking: "Parking Available",
+                    petFriendly: "Pet-Friendly",
+                    utilities: "Utilities Included",
+                    searchBtn: "SEARCH",
+                    resetBtn: "Reset Filter"
+                },
+                results: {
+                    title: "Furnished Homes",
+                    subtitle: "Available furnished homes, ready when you are.",
+                    propertiesAvailable: "properties available",
+                    perMonth: "/month",
+                    viewDetails: "View Details",
+                    furnished: "Furnished"
+                }
             }
         }
     },
@@ -1187,6 +1215,34 @@ export const translations = {
                 title: "ابحث عن منزل يتحرك معك",
                 subtitle: "موثوق به من قبل الأفراد والعائلات والفرق التي تبحث عن معيشة مرنة ومفروشة بالكامل.",
                 button: "استكشف المنازل المتاحة"
+            },
+            search: {
+                filters: {
+                    title: "عوامل تصفية البحث",
+                    cityArea: "المدينة / المنطقة",
+                    allCities: "جميع المدن",
+                    bedrooms: "عدد غرف النوم",
+                    any: "أي عدد",
+                    studio: "استوديو",
+                    oneBed: "غرفة نوم واحدة",
+                    twoBeds: "غرفتي نوم",
+                    threePlusBeds: "3+ غرف نوم",
+                    monthlyBudget: "الميزانية الشهرية",
+                    amenities: "وسائل الراحة",
+                    parking: "موقف سيارات متاح",
+                    petFriendly: "يسمح بالحيوانات الأليفة",
+                    utilities: "شامل المرافق",
+                    searchBtn: "بحث",
+                    resetBtn: "إعادة ضبط التصفية"
+                },
+                results: {
+                    title: "منازل مفروشة",
+                    subtitle: "منازل مفروشة متاحة وجاهزة عندما تكون مستعدًا.",
+                    propertiesAvailable: "عقارات متاحة",
+                    perMonth: "/شهر",
+                    viewDetails: "عرض التفاصيل",
+                    furnished: "مفروش"
+                }
             }
         }
     },
