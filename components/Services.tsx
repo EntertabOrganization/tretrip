@@ -85,6 +85,8 @@ export default function Services() {
                                     src={service.image}
                                     alt={service.title}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    priority={idx < 2}
                                     className="object-cover rounded-[10px] brightness-[0.85] group-hover:brightness-[0.75] transition-all duration-500"
                                 />
                                 {/* Overlay Content */}

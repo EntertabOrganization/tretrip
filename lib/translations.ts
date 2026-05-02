@@ -669,6 +669,26 @@ export const translations = {
                     viewDetails: "View Details",
                     furnished: "Furnished"
                 }
+            },
+            booking: {
+                title: "Request a Booking",
+                subtitle: "Submit your request, and our team will reach out shortly to guide you through the next steps.",
+                fullName: "Full Name",
+                email: "Email",
+                phone: "Phone",
+                moveInDate: "Move-in Date",
+                moveOutDate: "Move-out Date",
+                occupants: "Number of Occupants",
+                addons: "Add-ons",
+                parking: "Parking",
+                pets: "Pets",
+                specialRequests: "Special Requests",
+                notes: "Notes",
+                notesPlaceholder: "Any additional information or special requirements...",
+                submit: "SUBMIT REQUEST",
+                successTitle: "Thank you for your request.",
+                successSubtitle: "We'll reach out shortly to help you settle into the right home.",
+                backToSearch: "BACK TO SEARCH"
             }
         }
     },
@@ -1243,6 +1263,26 @@ export const translations = {
                     viewDetails: "عرض التفاصيل",
                     furnished: "مفروش"
                 }
+            },
+            booking: {
+                title: "طلب حجز",
+                subtitle: "أرسل طلبك، وسيتواصل فريقنا معك قريبًا لإرشادك خلال الخطوات التالية.",
+                fullName: "الاسم الكامل",
+                email: "البريد الإلكتروني",
+                phone: "رقم الهاتف",
+                moveInDate: "تاريخ الانتقال",
+                moveOutDate: "تاريخ المغادرة",
+                occupants: "عدد الشاغلين",
+                addons: "إضافات",
+                parking: "موقف سيارات",
+                pets: "حيوانات أليفة",
+                specialRequests: "طلبات خاصة",
+                notes: "ملاحظات",
+                notesPlaceholder: "أي معلومات إضافية أو متطلبات خاصة...",
+                submit: "إرسال الطلب",
+                successTitle: "شكراً لطلبك.",
+                successSubtitle: "سنتواصل معك قريباً لمساعدتك في الاستقرار في المنزل المناسب.",
+                backToSearch: "العودة للبحث"
             }
         }
     },

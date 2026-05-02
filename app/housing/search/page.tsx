@@ -201,6 +201,8 @@ export default function SearchPage() {
                                             src={prop.image}
                                             alt={prop.location}
                                             fill
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                            priority={prop.id <= 6}
                                             className="object-cover"
                                         />
                                     </div>
