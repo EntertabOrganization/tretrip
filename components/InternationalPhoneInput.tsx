@@ -17,10 +17,10 @@ export default function InternationalPhoneInput({
   onChange,
   placeholder = "Enter your phone number",
   defaultCountry = "us",
-  compact = false,
+  compact = true,
 }: InternationalPhoneInputProps) {
   return (
-    <div className="international-phone-input-wrapper">
+    <div className={`international-phone-input-wrapper ${compact ? "is-compact" : "is-regular"}`}>
       <PhoneInput
         defaultCountry={defaultCountry}
         value={value}
