@@ -40,7 +40,7 @@ export default function EventPage() {
     });
     const [isSubmittingClient, setIsSubmittingClient] = useState(false);
     const [alertState, setAlertState] = useState<AlertState>(null);
-    const totalSteps = 4;
+    const totalSteps = 5;
 
     const formCardStyle: React.CSSProperties = {
         width: "100%",
@@ -54,7 +54,7 @@ export default function EventPage() {
     const modalCardStyle: React.CSSProperties = {
         width: "100%",
         maxWidth: "980px",
-        maxHeight: "88vh",
+        maxHeight: "76vh",
         borderRadius: "20px",
         boxShadow: "0px 30px 80px 0px rgba(15, 23, 42, 0.24)",
         backgroundColor: "#FFFFFF",
@@ -124,10 +124,10 @@ export default function EventPage() {
                     image="/Services/Event.png"
                     title={t("services.items.events.title")}
                     description={t("servicePages.events.description")}
-                    backgroundPosition="center"
+                    backgroundPosition="center 10%"
                 />
 
-                <section
+                <div
                     className={
                         step === 1
                             ? "relative z-20 bg-transparent px-4 pb-10 md:px-8"
@@ -135,7 +135,7 @@ export default function EventPage() {
                     }
                 >
                     {step > 1 && <div className="absolute inset-0" onClick={handlePrevious} />}
-                    <div className={step === 1 ? "mx-auto -mt-[260px] flex justify-center md:-mt-[320px]" : "relative mx-auto flex w-full justify-center"}>
+                    <div className={step === 1 ? "mx-auto -mt-[260px] flex justify-center md:-mt-[240px]" : "relative mx-auto flex w-full justify-center"}>
                         <div
                             className={step === 1 ? "w-full overflow-y-auto p-8 md:p-10" : "relative w-full overflow-y-auto p-6 md:p-10"}
                             style={step === 1 ? formCardStyle : modalCardStyle}
@@ -143,9 +143,10 @@ export default function EventPage() {
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
                                 {step === 1 && "Book This Service Now"}
-                                {step === 2 && t("servicePages.events.stepEvent")}
-                                {step === 3 && t("servicePages.events.stepVenue")}
-                                {step === 4 && t("servicePages.events.stepServices")}
+                                {step === 2 && "Event Overview"}
+                                {step === 3 && "Schedule & Audience"}
+                                {step === 4 && t("servicePages.events.stepVenue")}
+                                {step === 5 && t("servicePages.events.stepServices")}
                             </h3>
 
                             {/* Step indicator */}
@@ -281,6 +282,26 @@ export default function EventPage() {
                                         </div>
                                     </div>
 
+                                    <div className="flex gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={handlePrevious}
+                                            className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
+                                        >
+                                            Back
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
+                                        >
+                                            Next
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 3 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             Preferred Dates
@@ -349,7 +370,7 @@ export default function EventPage() {
                             )}
 
                             {/* STEP 3: Venue & Location */}
-                            {step === 3 && (
+                            {step === 4 && (
                                 <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
@@ -456,7 +477,7 @@ export default function EventPage() {
                             )}
 
                             {/* STEP 4: Services Required */}
-                            {step === 4 && (
+                            {step === 5 && (
                                 <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
                                     <div>
                                         <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Core Services</label>
@@ -506,7 +527,7 @@ export default function EventPage() {
                                             Additional Notes
                                         </label>
                                         <textarea
-                                            placeholder="Please provide any additional information or special requests"
+                                            placeholder="Share any event priorities, guest experience goals, VIP requirements, or operational notes we should prepare for."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={5}
                                         />
@@ -533,7 +554,7 @@ export default function EventPage() {
 
                         </div>
                     </div>
-                </section>
+                </div>
 
                 {alertState && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">

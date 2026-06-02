@@ -49,7 +49,7 @@ export default function ShippingPage() {
     });
     const [isSubmittingClient, setIsSubmittingClient] = useState(false);
     const [alertState, setAlertState] = useState<AlertState>(null);
-    const totalSteps = 5;
+    const totalSteps = 7;
 
     const formCardStyle: React.CSSProperties = {
         width: "100%",
@@ -63,7 +63,7 @@ export default function ShippingPage() {
     const modalCardStyle: React.CSSProperties = {
         width: "100%",
         maxWidth: "980px",
-        maxHeight: "88vh",
+        maxHeight: "76vh",
         borderRadius: "20px",
         boxShadow: "0px 30px 80px 0px rgba(15, 23, 42, 0.24)",
         backgroundColor: "#FFFFFF",
@@ -136,7 +136,7 @@ export default function ShippingPage() {
                     backgroundPosition="center"
                 />
 
-                <section
+                <div
                     className={
                         step === 1
                             ? "relative z-20 bg-transparent px-4 pb-10 md:px-8"
@@ -144,7 +144,7 @@ export default function ShippingPage() {
                     }
                 >
                     {step > 1 && <div className="absolute inset-0" onClick={handlePrevious} />}
-                    <div className={step === 1 ? "mx-auto -mt-[260px] flex justify-center md:-mt-[320px]" : "relative mx-auto flex w-full justify-center"}>
+                    <div className={step === 1 ? "mx-auto -mt-[260px] flex justify-center md:-mt-[260px]" : "relative mx-auto flex w-full justify-center"}>
                         <div
                             className={step === 1 ? "w-full overflow-y-auto p-8 md:p-10" : "relative w-full overflow-y-auto p-6 md:p-10"}
                             style={step === 1 ? formCardStyle : modalCardStyle}
@@ -152,10 +152,12 @@ export default function ShippingPage() {
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
                                 {step === 1 && "Book This Service Now"}
-                                {step === 2 && t("servicePages.shipping.stepShipperAddress")}
-                                {step === 3 && t("servicePages.shipping.stepReceiverInfo")}
-                                {step === 4 && t("servicePages.shipping.stepShipmentDetails")}
-                                {step === 5 && t("servicePages.shipping.stepAdditionalInfo")}
+                                {step === 2 && "Shipper Details"}
+                                {step === 3 && "Origin & Dispatch"}
+                                {step === 4 && "Receiver Details"}
+                                {step === 5 && "Delivery Destination"}
+                                {step === 6 && t("servicePages.shipping.stepShipmentDetails")}
+                                {step === 7 && t("servicePages.shipping.stepAdditionalInfo")}
                             </h3>
 
                             {/* Step indicator */}
@@ -263,6 +265,21 @@ export default function ShippingPage() {
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div className="col-span-full flex gap-3">
+                                            <button type="button" onClick={handlePrevious} className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition">
+                                                {t("forms.back")}
+                                            </button>
+                                            <button type="submit" className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">
+                                                {t("forms.next")}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 3 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                                 {t("servicePages.shipping.originCity")}
@@ -293,7 +310,7 @@ export default function ShippingPage() {
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder={t("servicePages.shipping.enterShipperAddress")}
+                                                placeholder="Enter the origin postal or ZIP code for accurate pickup coordination"
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -311,25 +328,14 @@ export default function ShippingPage() {
                                     </div>
 
                                     <div className="flex gap-3">
-                                        <button
-                                            type="button"
-                                            onClick={handlePrevious}
-                                            className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
-                                        >
-                                            {t("forms.back")}
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
-                                        >
-                                            {t("forms.next")}
-                                        </button>
+                                        <button type="button" onClick={handlePrevious} className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition">{t("forms.back")}</button>
+                                        <button type="submit" className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">{t("forms.next")}</button>
                                     </div>
                                 </form>
                             )}
 
                             {/* STEP 3: Receiver Information */}
-                            {step === 3 && (
+                            {step === 4 && (
                                 <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
@@ -399,6 +405,15 @@ export default function ShippingPage() {
                                         </div>
                                     </div>
 
+                                    <div className="flex gap-3">
+                                        <button type="button" onClick={handlePrevious} className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition">{t("forms.back")}</button>
+                                        <button type="submit" className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">{t("forms.next")}</button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 5 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
@@ -439,7 +454,7 @@ export default function ShippingPage() {
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder={t("servicePages.shipping.enterrecipientAddress")}
+                                                placeholder="Enter the destination postal or ZIP code for precise delivery routing"
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -464,7 +479,7 @@ export default function ShippingPage() {
                             )}
 
                             {/* STEP 4: Shipment Details */}
-                            {step === 4 && (
+                            {step === 6 && (
                                 <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
@@ -527,96 +542,6 @@ export default function ShippingPage() {
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <div>
-                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Shipping Method
-                                            </label>
-                                            <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
-                                                <option>Select shipping method</option>
-                                                <option>Standard</option>
-                                                <option>Express</option>
-                                                <option>Overnight</option>
-                                                <option>International</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Urgent Shipping</label>
-                                            <div style={{ display: "flex", gap: "1rem" }}>
-                                                {["Yes", "No"].map((option) => (
-                                                    <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
-                                                        <input
-                                                            type="radio"
-                                                            name="urgentShipping"
-                                                            value={option}
-                                                            className="w-4 h-4 accent-brand-primary"
-                                                        />
-                                                        <span className="text-sm text-gray-700">{option}</span>
-                                                    </label>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Tracking Required</label>
-                                            <div style={{ display: "flex", gap: "1rem" }}>
-                                                {["Yes", "No"].map((option) => (
-                                                    <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
-                                                        <input
-                                                            type="radio"
-                                                            name="trackingRequired"
-                                                            value={option}
-                                                            className="w-4 h-4 accent-brand-primary"
-                                                        />
-                                                        <span className="text-sm text-gray-700">{option}</span>
-                                                    </label>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.shipping.insurance")}</label>
-                                            <div style={{ display: "flex", gap: "1rem" }}>
-                                                {[t("servicePages.shipping.yes"), t("servicePages.shipping.no")].map((option) => (
-                                                    <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
-                                                        <input
-                                                            type="radio"
-                                                            name="insurance"
-                                                            value={option}
-                                                            className="w-4 h-4 accent-brand-primary"
-                                                        />
-                                                        <span className="text-sm text-gray-700">{option}</span>
-                                                    </label>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <div>
-                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Preferred Pickup Date
-                                            </label>
-                                            <input
-                                                type="date"
-                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                Preferred Delivery Date
-                                            </label>
-                                            <input
-                                                type="date"
-                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
-                                            />
-                                        </div>
-                                    </div>
-
                                     <div className="flex gap-3">
                                         <button
                                             type="button"
@@ -636,8 +561,73 @@ export default function ShippingPage() {
                             )}
 
                             {/* STEP 5: Additional Information */}
-                            {step === 5 && (
+                            {step === 7 && (
                                 <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
+                                                Shipping Method
+                                            </label>
+                                            <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
+                                                <option>Select shipping method</option>
+                                                <option>Standard</option>
+                                                <option>Express</option>
+                                                <option>Overnight</option>
+                                                <option>International</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Urgent Shipping</label>
+                                            <div style={{ display: "flex", gap: "1rem" }}>
+                                                {["Yes", "No"].map((option) => (
+                                                    <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
+                                                        <input type="radio" name="urgentShipping" value={option} className="w-4 h-4 accent-brand-primary" />
+                                                        <span className="text-sm text-gray-700">{option}</span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">Tracking Required</label>
+                                            <div style={{ display: "flex", gap: "1rem" }}>
+                                                {["Yes", "No"].map((option) => (
+                                                    <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
+                                                        <input type="radio" name="trackingRequired" value={option} className="w-4 h-4 accent-brand-primary" />
+                                                        <span className="text-sm text-gray-700">{option}</span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.shipping.insurance")}</label>
+                                            <div style={{ display: "flex", gap: "1rem" }}>
+                                                {[t("servicePages.shipping.yes"), t("servicePages.shipping.no")].map((option) => (
+                                                    <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
+                                                        <input type="radio" name="insurance" value={option} className="w-4 h-4 accent-brand-primary" />
+                                                        <span className="text-sm text-gray-700">{option}</span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">Preferred Pickup Date</label>
+                                            <input type="date" className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm" />
+                                        </div>
+
+                                        <div>
+                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">Preferred Delivery Date</label>
+                                            <input type="date" className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm" />
+                                        </div>
+                                    </div>
+
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             Attach Documents
@@ -655,7 +645,7 @@ export default function ShippingPage() {
                                             {t("servicePages.shipping.additionalNotes")}
                                         </label>
                                         <textarea
-                                            placeholder={t("servicePages.shipping.enterAdditionalNotes")}
+                                            placeholder="Add any customs instructions, fragile-item handling notes, preferred delivery windows, or operational details we should consider."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={5}
                                         />
@@ -683,7 +673,7 @@ export default function ShippingPage() {
 
                         </div>
                     </div>
-                </section>
+                </div>
 
                 {alertState && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">

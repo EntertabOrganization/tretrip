@@ -33,7 +33,7 @@ export default function MedicalPage() {
     });
     const [isSubmittingClient, setIsSubmittingClient] = useState(false);
     const [alertState, setAlertState] = useState<AlertState>(null);
-    const totalSteps = 3;
+    const totalSteps = 5;
 
     const formCardStyle: React.CSSProperties = {
         width: "100%",
@@ -47,7 +47,7 @@ export default function MedicalPage() {
     const modalCardStyle: React.CSSProperties = {
         width: "100%",
         maxWidth: "980px",
-        maxHeight: "88vh",
+        maxHeight: "76vh",
         borderRadius: "20px",
         boxShadow: "0px 30px 80px 0px rgba(15, 23, 42, 0.24)",
         backgroundColor: "#FFFFFF",
@@ -117,7 +117,7 @@ export default function MedicalPage() {
                     image="/Services/Business.png"
                     title={t("services.items.business.title")}
                     description={t("servicePages.business.description")}
-                    backgroundPosition="center"
+                    backgroundPosition="center 5%"
                 />
 
                 <div
@@ -136,8 +136,10 @@ export default function MedicalPage() {
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
                                 {step === 1 && "Book This Service Now"}
-                                {step === 2 && t("servicePages.business.stepTravelInfo")}
-                                {step === 3 && t("servicePages.business.stepServices")}
+                                {step === 2 && "Profile & Travel Basics"}
+                                {step === 3 && "Professional Details"}
+                                {step === 4 && "Business Support"}
+                                {step === 5 && "Final Notes"}
                             </h3>
 
                             {/* Step indicator */}
@@ -248,6 +250,26 @@ export default function MedicalPage() {
                                         </div>
                                     </div>
 
+                                    <div className="flex gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={handlePrevious}
+                                            className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
+                                        >
+                                            {t("forms.back")}
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
+                                        >
+                                            {t("forms.next")}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 3 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
@@ -368,7 +390,6 @@ export default function MedicalPage() {
                                         </div>
                                     )}
 
-                                    {/* Buttons */}
                                     <div className="flex gap-3">
                                         <button
                                             type="button"
@@ -387,15 +408,14 @@ export default function MedicalPage() {
                                 </form>
                             )}
 
-                            {/* STEP 3: Business Purpose */}
-                            {step === 3 && (
-                                <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
+                            {step === 4 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             {t("servicePages.business.specialInstructions")}
                                         </label>
                                         <textarea
-                                            placeholder="Please provide any special instructions for your business event"
+                                            placeholder="Outline your meeting objectives, VIP handling preferences, scheduling constraints, or any key arrangements we should coordinate."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={4}
                                         />
@@ -403,7 +423,7 @@ export default function MedicalPage() {
 
                                     <div>
                                         <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.business.supportServices")}</label>
-                                        <div className="grid grid-cols-3 gap-3">
+                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                                             {[t("servicePages.business.venueBooking"), t("servicePages.business.avSetup"), t("servicePages.business.branding"), t("servicePages.business.decoration"), t("servicePages.business.catering"), t("servicePages.business.stageDesign"), t("servicePages.business.transportation"), t("servicePages.business.security")].map((service) => (
                                                 <label key={service} className="font-poppins flex items-center gap-2 cursor-pointer">
                                                     <input
@@ -418,12 +438,25 @@ export default function MedicalPage() {
                                         </div>
                                     </div>
 
+                                    <div className="flex gap-3">
+                                        <button type="button" onClick={handlePrevious} className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition">
+                                            {t("forms.back")}
+                                        </button>
+                                        <button type="submit" className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">
+                                            {t("forms.next")}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 5 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             {t("servicePages.business.additionalNotes")}
                                         </label>
                                         <textarea
-                                            placeholder={t("servicePages.business.enterAdditionalNotes")}
+                                            placeholder="Add any final context such as stakeholder expectations, approval timelines, reporting needs, or preferences we should keep in mind."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={4}
                                         />

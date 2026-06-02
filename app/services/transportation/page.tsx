@@ -25,6 +25,7 @@ type AlertState = {
 export default function TransportationPage() {
     const { t } = useLanguage();
     const [step, setStep] = useState(1);
+    const [, setChildSeat] = useState<string | null>(null);
     const [leadForm, setLeadForm] = useState<LeadFormData>({
         fullName: "",
         phoneNumber: "",
@@ -32,7 +33,7 @@ export default function TransportationPage() {
     });
     const [isSubmittingClient, setIsSubmittingClient] = useState(false);
     const [alertState, setAlertState] = useState<AlertState>(null);
-    const totalSteps = 2;
+    const totalSteps = 4;
 
     const formCardStyle: React.CSSProperties = {
         width: "100%",
@@ -46,7 +47,7 @@ export default function TransportationPage() {
     const modalCardStyle: React.CSSProperties = {
         width: "100%",
         maxWidth: "980px",
-        maxHeight: "88vh",
+        maxHeight: "76vh",
         borderRadius: "20px",
         boxShadow: "0px 30px 80px 0px rgba(15, 23, 42, 0.24)",
         backgroundColor: "#FFFFFF",
@@ -114,7 +115,7 @@ export default function TransportationPage() {
                     backgroundPosition="center"
                 />
 
-                <section
+                <div
                     className={
                         step === 1
                             ? "relative z-20 bg-transparent px-4 pb-10 md:px-8"
@@ -122,7 +123,7 @@ export default function TransportationPage() {
                     }
                 >
                     {step > 1 && <div className="absolute inset-0" onClick={handlePrevious} />}
-                    <div className={step === 1 ? "mx-auto -mt-[260px] flex justify-center md:-mt-[320px]" : "relative mx-auto flex w-full justify-center"}>
+                    <div className={step === 1 ? "mx-auto -mt-[260px] flex justify-center md:-mt-[250px]" : "relative mx-auto flex w-full justify-center"}>
                         <div
                             className={step === 1 ? "w-full overflow-y-auto p-8 md:p-10" : "relative w-full overflow-y-auto p-6 md:p-10"}
                             style={step === 1 ? formCardStyle : modalCardStyle}
@@ -130,7 +131,9 @@ export default function TransportationPage() {
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
                                 {step === 1 && "Book This Service Now"}
-                                {step === 2 && t("servicePages.transportation.stepPassengers")}
+                                {step === 2 && "Transfer Details"}
+                                {step === 3 && "Passenger Preferences"}
+                                {step === 4 && "Vehicle & Requests"}
                             </h3>
 
                             {/* Step indicator */}
@@ -199,9 +202,9 @@ export default function TransportationPage() {
                                 </form>
                             )}
 
-                            {/* STEP 2: Passenger Details */}
+                            {/* STEP 2: Transfer Details */}
                             {step === 2 && (
-                                <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
+                                <form className="font-poppins space-y-5" onSubmit={(e) => { e.preventDefault(); setStep(3); }}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
@@ -265,17 +268,32 @@ export default function TransportationPage() {
                                         </div>
                                     </div>
 
+                                    <div className="flex gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={handlePrevious}
+                                            className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
+                                        >
+                                            {t("forms.back")}
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
+                                        >
+                                            {t("forms.next")}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 3 && (
+                                <form className="font-poppins space-y-5" onSubmit={(e) => { e.preventDefault(); setStep(4); }}>
                                     <div>
                                         <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.transportation.numberOfPassengers")}</label>
                                         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                                             {["1", "2", "3-4", "5+"].map((passengers) => (
                                                 <label key={passengers} className="font-poppins flex items-center gap-2 cursor-pointer">
-                                                    <input
-                                                        type="radio"
-                                                        name="passengers"
-                                                        value={passengers}
-                                                        className="w-4 h-4 accent-brand-primary"
-                                                    />
+                                                    <input type="radio" name="passengers" value={passengers} className="w-4 h-4 accent-brand-primary" />
                                                     <span className="text-sm text-gray-700">{passengers}</span>
                                                 </label>
                                             ))}
@@ -287,13 +305,7 @@ export default function TransportationPage() {
                                         <div style={{ display: "flex", gap: "1rem" }}>
                                             {[t("servicePages.transportation.yes"), t("servicePages.transportation.no")].map((option) => (
                                                 <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
-                                                    <input
-                                                        type="radio"
-                                                        name="childSeat"
-                                                        value={option}
-                                                        onChange={(e) => setChildSeat(e.target.value)}
-                                                        className="w-4 h-4 accent-brand-primary"
-                                                    />
+                                                    <input type="radio" name="childSeat" value={option} onChange={(e) => setChildSeat(e.target.value)} className="w-4 h-4 accent-brand-primary" />
                                                     <span className="text-sm text-gray-700">{option}</span>
                                                 </label>
                                             ))}
@@ -315,17 +327,25 @@ export default function TransportationPage() {
                                         </select>
                                     </div>
 
+                                    <div className="flex gap-3">
+                                        <button type="button" onClick={handlePrevious} className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition">
+                                            {t("forms.back")}
+                                        </button>
+                                        <button type="submit" className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">
+                                            {t("forms.next")}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 4 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
                                     <div>
                                         <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.transportation.vehicleType")}</label>
                                         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                                             {[t("servicePages.transportation.economy"), t("servicePages.transportation.suv"), t("servicePages.transportation.luxury"), t("servicePages.transportation.van"), t("servicePages.transportation.other")].map((vehicleType) => (
                                                 <label key={vehicleType} className="font-poppins flex items-center gap-2 cursor-pointer">
-                                                    <input
-                                                        type="radio"
-                                                        name="vehicleType"
-                                                        value={vehicleType}
-                                                        className="w-4 h-4 accent-brand-primary"
-                                                    />
+                                                    <input type="radio" name="vehicleType" value={vehicleType} className="w-4 h-4 accent-brand-primary" />
                                                     <span className="text-sm text-gray-700">{vehicleType}</span>
                                                 </label>
                                             ))}
@@ -337,25 +357,17 @@ export default function TransportationPage() {
                                             {t("servicePages.transportation.specialRequests")}
                                         </label>
                                         <textarea
-                                            placeholder={t("servicePages.transportation.enterSpecialRequests")}
+                                            placeholder="Share any pickup instructions, accessibility needs, luggage notes, or service preferences we should prepare for."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={4}
                                         />
                                     </div>
 
-                                    {/* Buttons */}
                                     <div className="flex gap-3">
-                                        <button
-                                            type="button"
-                                            onClick={handlePrevious}
-                                            className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
-                                        >
+                                        <button type="button" onClick={handlePrevious} className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition">
                                             {t("forms.back")}
                                         </button>
-                                        <button
-                                            type="submit"
-                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
-                                        >
+                                        <button type="submit" className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">
                                             {t("servicePages.transportation.submitBtn")}
                                         </button>
                                     </div>
@@ -365,7 +377,7 @@ export default function TransportationPage() {
 
                         </div>
                     </div>
-                </section>
+                </div>
 
                 {alertState && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">

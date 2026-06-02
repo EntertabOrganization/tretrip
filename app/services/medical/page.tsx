@@ -35,7 +35,7 @@ export default function MedicalPage() {
     });
     const [isSubmittingClient, setIsSubmittingClient] = useState(false);
     const [alertState, setAlertState] = useState<AlertState>(null);
-    const totalSteps = 3;
+    const totalSteps = 5;
 
     const formCardStyle: React.CSSProperties = {
         width: "100%",
@@ -49,7 +49,7 @@ export default function MedicalPage() {
     const modalCardStyle: React.CSSProperties = {
         width: "100%",
         maxWidth: "980px",
-        maxHeight: "88vh",
+        maxHeight: "76vh",
         borderRadius: "20px",
         boxShadow: "0px 30px 80px 0px rgba(15, 23, 42, 0.24)",
         backgroundColor: "#FFFFFF",
@@ -134,44 +134,40 @@ export default function MedicalPage() {
 
                                 <form className="font-poppins space-y-5" onSubmit={handleFirstStepNext}>
                                     <div>
-                                        <div>
-                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                {t("servicePages.medical.fullName")}
-                                            </label>
-                                            <input
-                                                type="text"
-                                                value={leadForm.fullName}
-                                                onChange={(e) => setLeadForm((current) => ({ ...current, fullName: e.target.value }))}
-                                                placeholder={t("servicePages.medical.enterFullName")}
-                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
-                                            />
-                                        </div>
+                                        <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
+                                            {t("servicePages.medical.fullName")}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={leadForm.fullName}
+                                            onChange={(e) => setLeadForm((current) => ({ ...current, fullName: e.target.value }))}
+                                            placeholder={t("servicePages.medical.enterFullName")}
+                                            className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                        />
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <div>
-                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                {t("servicePages.medical.phoneNumber")}
-                                            </label>
-                                            <InternationalPhoneInput
-                                                value={leadForm.phoneNumber}
-                                                onChange={(value) => setLeadForm((current) => ({ ...current, phoneNumber: value }))}
-                                                placeholder={t("forms.phone")}
-                                            />
-                                        </div>
+                                    <div>
+                                        <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
+                                            {t("servicePages.medical.phoneNumber")}
+                                        </label>
+                                        <InternationalPhoneInput
+                                            value={leadForm.phoneNumber}
+                                            onChange={(value) => setLeadForm((current) => ({ ...current, phoneNumber: value }))}
+                                            placeholder={t("forms.phone")}
+                                        />
+                                    </div>
 
-                                        <div>
-                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                {t("servicePages.medical.emailAddress")}
-                                            </label>
-                                            <input
-                                                type="email"
-                                                value={leadForm.emailAddress}
-                                                onChange={(e) => setLeadForm((current) => ({ ...current, emailAddress: e.target.value }))}
-                                                placeholder={t("servicePages.medical.emailAddress")}
-                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
-                                            />
-                                        </div>
+                                    <div>
+                                        <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
+                                            {t("servicePages.medical.emailAddress")}
+                                        </label>
+                                        <input
+                                            type="email"
+                                            value={leadForm.emailAddress}
+                                            onChange={(e) => setLeadForm((current) => ({ ...current, emailAddress: e.target.value }))}
+                                            placeholder={t("servicePages.medical.emailAddress")}
+                                            className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                        />
                                     </div>
 
                                     <div className="flex justify-end pt-2">
@@ -195,8 +191,10 @@ export default function MedicalPage() {
                         <div className="relative mx-auto w-full overflow-y-auto p-6 md:p-10" style={modalCardStyle}>
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
-                                {step === 2 && t("servicePages.medical.stepTravel")}
-                                {step === 3 && t("servicePages.medical.stepServices")}
+                                {step === 2 && "Medical Travel Profile"}
+                                {step === 3 && "Schedule & Companion Details"}
+                                {step === 4 && "Support Services"}
+                                {step === 5 && "Medical Coordination"}
                             </h3>
 
                             {/* Step indicator */}
@@ -286,24 +284,38 @@ export default function MedicalPage() {
                                         </div>
                                     </div>
 
+                                    <div className="flex gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={handlePrevious}
+                                            className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
+                                        >
+                                            {t("forms.back")}
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
+                                        >
+                                            {t("forms.next")}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 3 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                                 {t("servicePages.medical.preferredDeparture")}
                                             </label>
-                                            <input
-                                                type="date"
-                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
-                                            />
+                                            <input type="date" className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm" />
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                                 {t("servicePages.medical.preferredReturn")}
                                             </label>
-                                            <input
-                                                type="date"
-                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
-                                            />
+                                            <input type="date" className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm" />
                                         </div>
                                     </div>
 
@@ -312,13 +324,7 @@ export default function MedicalPage() {
                                         <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
                                             {[t("servicePages.medical.yes"), t("servicePages.medical.no")].map((option) => (
                                                 <label key={option} className="font-poppins flex items-center gap-2 cursor-pointer">
-                                                    <input
-                                                        type="radio"
-                                                        name="travelingAlone"
-                                                        value={option}
-                                                        onChange={(e) => setTravelingAlone(e.target.value === t("servicePages.medical.yes"))}
-                                                        className="w-4 h-4 accent-brand-primary"
-                                                    />
+                                                    <input type="radio" name="travelingAlone" value={option} onChange={(e) => setTravelingAlone(e.target.value === t("servicePages.medical.yes"))} className="w-4 h-4 accent-brand-primary" />
                                                     <span className="text-sm text-gray-700">{option}</span>
                                                 </label>
                                             ))}
@@ -338,28 +344,19 @@ export default function MedicalPage() {
                                         </div>
                                     )}
 
-                                    {/* Buttons */}
                                     <div className="flex gap-3">
-                                        <button
-                                            type="button"
-                                            onClick={handlePrevious}
-                                            className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition"
-                                        >
+                                        <button type="button" onClick={handlePrevious} className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition">
                                             {t("forms.back")}
                                         </button>
-                                        <button
-                                            type="submit"
-                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
-                                        >
+                                        <button type="submit" className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">
                                             {t("forms.next")}
                                         </button>
                                     </div>
                                 </form>
                             )}
 
-                            {/* STEP 3: Services & Medical Coordination */}
-                            {step === 3 && (
-                                <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
+                            {step === 4 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     {/* Row 1: Flights + Accommodation */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
@@ -434,7 +431,19 @@ export default function MedicalPage() {
                                         </div>
                                     </div>
 
-                                    {/* Row 3: Medical Arrangements + Hospital Assistance */}
+                                    <div className="flex gap-3">
+                                        <button type="button" onClick={handlePrevious} className="font-poppins flex-1 border border-brand-primary text-brand-primary font-semibold py-3 px-6 rounded-lg hover:bg-brand-primary/5 transition">
+                                            {t("forms.back")}
+                                        </button>
+                                        <button type="submit" className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition">
+                                            {t("forms.next")}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {step === 5 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleSubmit}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
                                             <label className="font-poppins text-sm font-medium text-gray-700 mb-3 block">{t("servicePages.medical.medicalArrangements")}</label>
@@ -504,7 +513,7 @@ export default function MedicalPage() {
                                             {t("servicePages.medical.additionalNotes")}
                                         </label>
                                         <textarea
-                                            placeholder={t("servicePages.medical.additionalInfo")}
+                                            placeholder="Share any treatment priorities, medical documentation notes, recovery support expectations, or care coordination details we should prepare for."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={4}
                                         />
