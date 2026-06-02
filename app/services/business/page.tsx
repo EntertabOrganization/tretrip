@@ -22,16 +22,49 @@ type AlertState = {
     tone: "error" | "success";
 } | null;
 
+type BusinessFormData = {
+    dateOfBirth: string;
+    passportNumber: string;
+    gender: string;
+    countryOfDeparture: string;
+    destinationCountryCity: string;
+    jobTitle: string;
+    companyName: string;
+    companyIndustry: string;
+    preferredDepartureDate: string;
+    preferredReturnDate: string;
+    specialInstructions: string;
+    requiredSupportServices: string[];
+    additionalNotes: string;
+};
+
 export default function MedicalPage() {
     const { t } = useLanguage();
     const [step, setStep] = useState(1);
     const [travelingAlone, setTravelingAlone] = useState<boolean | null>(null);
+    const [clientId, setClientId] = useState("");
     const [leadForm, setLeadForm] = useState<LeadFormData>({
         fullName: "",
         phoneNumber: "",
         emailAddress: "",
     });
+    const [businessForm, setBusinessForm] = useState<BusinessFormData>({
+        dateOfBirth: "",
+        passportNumber: "",
+        gender: "",
+        countryOfDeparture: "",
+        destinationCountryCity: "",
+        jobTitle: "",
+        companyName: "",
+        companyIndustry: "",
+        preferredDepartureDate: "",
+        preferredReturnDate: "",
+        specialInstructions: "",
+        requiredSupportServices: [],
+        additionalNotes: "",
+    });
     const [isSubmittingClient, setIsSubmittingClient] = useState(false);
+    const [isSubmittingBusiness, setIsSubmittingBusiness] = useState(false);
     const [alertState, setAlertState] = useState<AlertState>(null);
     const totalSteps = 5;
 
@@ -62,6 +95,19 @@ export default function MedicalPage() {
         setAlertState({ tone, title, message });
     };
 
+    const updateBusinessField = <K extends keyof BusinessFormData>(field: K, value: BusinessFormData[K]) => {
+        setBusinessForm((current) => ({ ...current, [field]: value }));
+    };
+
+    const toggleSupportService = (service: string) => {
+        setBusinessForm((current) => ({
+            ...current,
+            requiredSupportServices: current.requiredSupportServices.includes(service)
+                ? current.requiredSupportServices.filter((item) => item !== service)
+                : [...current.requiredSupportServices, service],
+        }));
+    };
+
     const handleFirstStepNext = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -89,6 +135,7 @@ export default function MedicalPage() {
                 throw new Error(result?.message || "Unable to save the client details right now.");
             }
 
+            setClientId(result.data?._id || "");
             setStep(2);
         } catch (error) {
             showAlert(
@@ -105,8 +152,79 @@ export default function MedicalPage() {
         setStep((s) => Math.max(s - 1, 1));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (
+            !clientId ||
+            !businessForm.dateOfBirth ||
+            !businessForm.passportNumber.trim() ||
+            !businessForm.gender ||
+            !businessForm.countryOfDeparture.trim() ||
+            !businessForm.destinationCountryCity.trim() ||
+            !businessForm.jobTitle.trim() ||
+            !businessForm.companyName.trim() ||
+            !businessForm.companyIndustry.trim() ||
+            !businessForm.preferredDepartureDate ||
+            !businessForm.preferredReturnDate ||
+            travelingAlone === null
+        ) {
+            showAlert("error", "Missing details", "Please complete all required business travel details before submitting your request.");
+            return;
+        }
+
+        setIsSubmittingBusiness(true);
+
+        try {
+            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+            const response = await fetch(`${apiBaseUrl}/business-services`, {
+                method: "POST",
+                headers: {
+                    Accept: "*/*",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    clientId,
+                    ...businessForm,
+                    travelAlone: travelingAlone,
+                }),
+            });
+
+            const result = await response.json().catch(() => null);
+
+            if (!response.ok || !result?.success) {
+                throw new Error(result?.message || "Unable to submit the business service request right now.");
+            }
+
+            showAlert("success", "Request submitted", "Your business service request has been sent successfully.");
+            setStep(1);
+            setClientId("");
+            setTravelingAlone(null);
+            setLeadForm({ fullName: "", phoneNumber: "", emailAddress: "" });
+            setBusinessForm({
+                dateOfBirth: "",
+                passportNumber: "",
+                gender: "",
+                countryOfDeparture: "",
+                destinationCountryCity: "",
+                jobTitle: "",
+                companyName: "",
+                companyIndustry: "",
+                preferredDepartureDate: "",
+                preferredReturnDate: "",
+                specialInstructions: "",
+                requiredSupportServices: [],
+                additionalNotes: "",
+            });
+        } catch (error) {
+            showAlert(
+                "error",
+                "Unable to submit",
+                error instanceof Error ? error.message : "Something went wrong while sending your business request."
+            );
+        } finally {
+            setIsSubmittingBusiness(false);
+        }
     };
 
     return (
@@ -218,6 +336,8 @@ export default function MedicalPage() {
                                             </label>
                                             <input
                                                 type="date"
+                                                value={businessForm.dateOfBirth}
+                                                onChange={(e) => updateBusinessField("dateOfBirth", e.target.value)}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -227,6 +347,8 @@ export default function MedicalPage() {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={businessForm.passportNumber}
+                                                onChange={(e) => updateBusinessField("passportNumber", e.target.value)}
                                                 placeholder={t("servicePages.business.enterPassport")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -242,6 +364,8 @@ export default function MedicalPage() {
                                                         type="radio"
                                                         name="gender"
                                                         value={gender}
+                                                        checked={businessForm.gender === gender}
+                                                        onChange={(e) => updateBusinessField("gender", e.target.value)}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     <span className="text-sm text-gray-700">{gender}</span>
@@ -275,31 +399,25 @@ export default function MedicalPage() {
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                                 {t("servicePages.business.countryOfDeparture")}
                                             </label>
-                                            <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
-                                                <option>{t("servicePages.business.selectCountry")}</option>
-                                                <option>United States</option>
-                                                <option>Canada</option>
-                                                <option>United Kingdom</option>
-                                                <option>Australia</option>
-                                                <option>Germany</option>
-                                                <option>France</option>
-                                                <option>Other</option>
-                                            </select>
+                                            <input
+                                                type="text"
+                                                value={businessForm.countryOfDeparture}
+                                                onChange={(e) => updateBusinessField("countryOfDeparture", e.target.value)}
+                                                placeholder="Enter country of departure"
+                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                            />
                                         </div>
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                                 {t("servicePages.business.destinationCountry")}
                                             </label>
-                                            <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
-                                                <option>{t("servicePages.business.selectDestination")}</option>
-                                                <option>Turkey</option>
-                                                <option>United Arab Emirates</option>
-                                                <option>Thailand</option>
-                                                <option>Mexico</option>
-                                                <option>Costa Rica</option>
-                                                <option>Germany</option>
-                                                <option>Other</option>
-                                            </select>
+                                            <input
+                                                type="text"
+                                                value={businessForm.destinationCountryCity}
+                                                onChange={(e) => updateBusinessField("destinationCountryCity", e.target.value)}
+                                                placeholder="Enter destination city and country"
+                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                            />
                                         </div>
                                     </div>
 
@@ -310,6 +428,8 @@ export default function MedicalPage() {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={businessForm.jobTitle}
+                                                onChange={(e) => updateBusinessField("jobTitle", e.target.value)}
                                                 placeholder={t("servicePages.business.enterJobTitle")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -321,6 +441,8 @@ export default function MedicalPage() {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={businessForm.companyName}
+                                                onChange={(e) => updateBusinessField("companyName", e.target.value)}
                                                 placeholder={t("servicePages.business.enterCompanyName")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -333,6 +455,8 @@ export default function MedicalPage() {
                                         </label>
                                         <input
                                             type="text"
+                                            value={businessForm.companyIndustry}
+                                            onChange={(e) => updateBusinessField("companyIndustry", e.target.value)}
                                             placeholder={t("servicePages.business.enterCompanyIndustry")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -345,6 +469,8 @@ export default function MedicalPage() {
                                             </label>
                                             <input
                                                 type="date"
+                                                value={businessForm.preferredDepartureDate}
+                                                onChange={(e) => updateBusinessField("preferredDepartureDate", e.target.value)}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -354,6 +480,8 @@ export default function MedicalPage() {
                                             </label>
                                             <input
                                                 type="date"
+                                                value={businessForm.preferredReturnDate}
+                                                onChange={(e) => updateBusinessField("preferredReturnDate", e.target.value)}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
                                         </div>
@@ -368,7 +496,8 @@ export default function MedicalPage() {
                                                         type="radio"
                                                         name="travelingAlone"
                                                         value={option}
-                                                        onChange={(e) => setTravelingAlone(e.target.value === "Yes")}
+                                                        checked={travelingAlone === (option === t("servicePages.business.yes"))}
+                                                        onChange={() => setTravelingAlone(option === t("servicePages.business.yes"))}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     <span className="text-sm text-gray-700">{option}</span>
@@ -415,6 +544,8 @@ export default function MedicalPage() {
                                             {t("servicePages.business.specialInstructions")}
                                         </label>
                                         <textarea
+                                            value={businessForm.specialInstructions}
+                                            onChange={(e) => updateBusinessField("specialInstructions", e.target.value)}
                                             placeholder="Outline your meeting objectives, VIP handling preferences, scheduling constraints, or any key arrangements we should coordinate."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={4}
@@ -430,6 +561,8 @@ export default function MedicalPage() {
                                                         type="checkbox"
                                                         name="supportServices"
                                                         value={service}
+                                                        checked={businessForm.requiredSupportServices.includes(service)}
+                                                        onChange={() => toggleSupportService(service)}
                                                         className="w-4 h-4 accent-brand-primary rounded"
                                                     />
                                                     <span className="text-sm text-gray-700">{service}</span>
@@ -456,6 +589,8 @@ export default function MedicalPage() {
                                             {t("servicePages.business.additionalNotes")}
                                         </label>
                                         <textarea
+                                            value={businessForm.additionalNotes}
+                                            onChange={(e) => updateBusinessField("additionalNotes", e.target.value)}
                                             placeholder="Add any final context such as stakeholder expectations, approval timelines, reporting needs, or preferences we should keep in mind."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={4}
@@ -473,9 +608,10 @@ export default function MedicalPage() {
                                         </button>
                                         <button
                                             type="submit"
+                                            disabled={isSubmittingBusiness}
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            {t("servicePages.business.submitBtn")}
+                                            {isSubmittingBusiness ? "Submitting..." : t("servicePages.business.submitBtn")}
                                         </button>
                                     </div>
                                 </form>

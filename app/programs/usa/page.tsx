@@ -100,14 +100,69 @@ export default function KingdomProgram() {
     const [step, setStep] = useState(1);
     const [accommodationOpen, setAccommodationOpen] = useState(false);
     const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [alertState, setAlertState] = useState<{ title: string; message: string; tone: "error" | "success" } | null>(null);
+    const [formData, setFormData] = useState({
+        fullName: "",
+        emailAddress: "",
+        phoneNumber: "",
+        preferredContactMethod: "Email",
+        tripStartDate: "",
+        tripEndDate: "",
+        numberOfTravelers: "",
+        tripType: "One Way",
+        preferredDestinations: [] as string[],
+        otherDestination: "",
+        preferredGuidingLanguage: "",
+        budgetRange: "",
+        domesticFlightsNeeded: true,
+        hotelAccommodationNeeded: true,
+        notesAndSpecialRequests: "",
+        needAccommodation: true,
+    });
 
     const handleNext = (e: React.FormEvent) => {
         e.preventDefault();
         setStep((s) => s + 1);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const updateField = (field: string, value: string | boolean | string[]) => {
+        setFormData((current) => ({ ...current, [field]: value }));
+    };
+
+    const toggleDestination = (value: string) => {
+        setFormData((current) => ({
+            ...current,
+            preferredDestinations: current.preferredDestinations.includes(value)
+                ? current.preferredDestinations.filter((item) => item !== value)
+                : [...current.preferredDestinations, value],
+        }));
+    };
+
+    const showAlert = (tone: "error" | "success", title: string, message: string) => setAlertState({ tone, title, message });
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        setIsSubmitting(true);
+        try {
+            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+            const response = await fetch(`${apiBaseUrl}/programs/explore-usa`, {
+                method: "POST",
+                headers: { Accept: "*/*", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ...formData,
+                    numberOfTravelers: Number(formData.numberOfTravelers || 0),
+                }),
+            });
+            const result = await response.json().catch(() => null);
+            if (!response.ok || !result?.success) throw new Error(result?.message || "Unable to submit the Explore the USA booking right now.");
+            showAlert("success", "Booking submitted", "Your Explore the USA booking request has been submitted successfully.");
+        } catch (error) {
+            showAlert("error", "Unable to submit", error instanceof Error ? error.message : "Something went wrong while sending your booking.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -183,6 +238,8 @@ export default function KingdomProgram() {
                                             type="text"
                                             name="fullName"
                                             required
+                                            value={formData.fullName}
+                                            onChange={(e) => updateField("fullName", e.target.value)}
                                             placeholder="Enter your full name"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -196,6 +253,8 @@ export default function KingdomProgram() {
                                             type="email"
                                             name="email"
                                             required
+                                            value={formData.emailAddress}
+                                            onChange={(e) => updateField("emailAddress", e.target.value)}
                                             placeholder="Enter your email"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -205,7 +264,7 @@ export default function KingdomProgram() {
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             Phone Number
                                         </label>
-                                        <InternationalPhoneInput placeholder="Enter your phone number" />
+                                        <InternationalPhoneInput value={formData.phoneNumber} onChange={(value) => updateField("phoneNumber", value)} placeholder="Enter your phone number" />
                                     </div>
 
                                     <div>
@@ -219,10 +278,12 @@ export default function KingdomProgram() {
                                                     className="font-poppins flex items-center gap-2 cursor-pointer text-sm text-gray-700"
                                                 >
                                                     <input
-                                                        type="checkbox"
+                                                        type="radio"
                                                         name="contactMethod"
-                                                        value={method.toLowerCase()}
-                                                        className="w-4 h-4 accent-brand-primary rounded"
+                                                        value={method}
+                                                        checked={formData.preferredContactMethod === method}
+                                                        onChange={(e) => updateField("preferredContactMethod", e.target.value)}
+                                                        className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     {method}
                                                 </label>
@@ -255,6 +316,8 @@ export default function KingdomProgram() {
                                                 <input
                                                     type="date"
                                                     name="startDate"
+                                                    value={formData.tripStartDate}
+                                                    onChange={(e) => updateField("tripStartDate", e.target.value)}
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 />
                                             </div>
@@ -265,6 +328,8 @@ export default function KingdomProgram() {
                                                 <input
                                                     type="date"
                                                     name="endDate"
+                                                    value={formData.tripEndDate}
+                                                    onChange={(e) => updateField("tripEndDate", e.target.value)}
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 />
                                             </div>
@@ -276,6 +341,8 @@ export default function KingdomProgram() {
                                                     type="number"
                                                     name="travelers"
                                                     min={1}
+                                                    value={formData.numberOfTravelers}
+                                                    onChange={(e) => updateField("numberOfTravelers", e.target.value)}
                                                     placeholder="Type here"
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 />
@@ -288,8 +355,9 @@ export default function KingdomProgram() {
                                                     <input
                                                         type="radio"
                                                         name="tripType"
-                                                        value={option.toLowerCase().replace(" ", "-")}
-                                                        defaultChecked={option === "One Way"}
+                                                        value={option}
+                                                        checked={formData.tripType === option}
+                                                        onChange={(e) => updateField("tripType", e.target.value)}
                                                         className="accent-brand-primary"
                                                     />
                                                     {option}
@@ -310,7 +378,9 @@ export default function KingdomProgram() {
                                                     <input
                                                         type="checkbox"
                                                         name="destination"
-                                                        value={dest.toLowerCase()}
+                                                        value={dest}
+                                                        checked={formData.preferredDestinations.includes(dest)}
+                                                        onChange={() => toggleDestination(dest)}
                                                         className="w-4 h-4 accent-brand-primary rounded"
                                                     />
                                                     {dest}
@@ -322,8 +392,8 @@ export default function KingdomProgram() {
                                             <label className="font-poppins flex items-center gap-2 cursor-pointer text-sm text-gray-700 whitespace-nowrap">
                                                 <input
                                                     type="checkbox"
-                                                    name="destination"
-                                                    value="other"
+                                                    checked={formData.preferredDestinations.includes("Other")}
+                                                    onChange={() => toggleDestination("Other")}
                                                     className="w-4 h-4 accent-brand-primary rounded"
                                                 />
                                                 Other (Please specify)
@@ -331,6 +401,8 @@ export default function KingdomProgram() {
                                             <input
                                                 type="text"
                                                 name="otherDestination"
+                                                value={formData.otherDestination}
+                                                onChange={(e) => updateField("otherDestination", e.target.value)}
                                                 placeholder="Type here"
                                                 className="font-poppins flex-1 border border-gray-300 rounded-lg px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -371,6 +443,8 @@ export default function KingdomProgram() {
                                                 </label>
                                                 <select
                                                     name="language"
+                                                    value={formData.preferredGuidingLanguage}
+                                                    onChange={(e) => updateField("preferredGuidingLanguage", e.target.value)}
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm bg-white"
                                                 >
                                                     <option value="">Select language</option>
@@ -388,6 +462,8 @@ export default function KingdomProgram() {
                                                 <input
                                                     type="text"
                                                     name="budget"
+                                                    value={formData.budgetRange}
+                                                    onChange={(e) => updateField("budgetRange", e.target.value)}
                                                     placeholder="Type here"
                                                     className="font-poppins w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                                 />
@@ -405,8 +481,9 @@ export default function KingdomProgram() {
                                                             <input
                                                                 type="radio"
                                                                 name="domesticFlights"
-                                                                value={opt.toLowerCase()}
-                                                                defaultChecked={opt === "Yes"}
+                                                                value={opt}
+                                                                checked={formData.domesticFlightsNeeded === (opt === "Yes")}
+                                                                onChange={() => updateField("domesticFlightsNeeded", opt === "Yes")}
                                                                 className="accent-brand-primary"
                                                             />
                                                             {opt}
@@ -424,8 +501,9 @@ export default function KingdomProgram() {
                                                             <input
                                                                 type="radio"
                                                                 name="hotelHelp"
-                                                                value={opt.toLowerCase()}
-                                                                defaultChecked={opt === "Yes"}
+                                                                value={opt}
+                                                                checked={formData.hotelAccommodationNeeded === (opt === "Yes")}
+                                                                onChange={() => { updateField("hotelAccommodationNeeded", opt === "Yes"); updateField("needAccommodation", opt === "Yes"); }}
                                                                 className="accent-brand-primary"
                                                             />
                                                             {opt}
@@ -441,6 +519,8 @@ export default function KingdomProgram() {
                                         <legend className="font-poppins font-semibold text-gray-800 px-2">Notes & Special Requests</legend>
                                         <textarea
                                             name="notes"
+                                            value={formData.notesAndSpecialRequests}
+                                            onChange={(e) => updateField("notesAndSpecialRequests", e.target.value)}
                                             rows={4}
                                             placeholder="Please mention any special requirements or notes"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm resize-none"
@@ -502,9 +582,10 @@ export default function KingdomProgram() {
                                         </button>
                                         <button
                                             type="submit"
-                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
+                                            disabled={isSubmitting}
+                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition disabled:opacity-60"
                                         >
-                                            Request Now
+                                            {isSubmitting ? "Submitting..." : "Request Now"}
                                         </button>
                                     </div>
                                 </form>
@@ -651,6 +732,17 @@ export default function KingdomProgram() {
                     </div>
                 </section>
             </main>
+
+            {alertState && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+                    <div className="w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-[0px_24px_60px_rgba(15,23,42,0.2)]">
+                        <div className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full text-xl font-bold ${alertState.tone === "error" ? "bg-red-100 text-red-600" : "bg-emerald-100 text-emerald-600"}`}>{alertState.tone === "error" ? "!" : "OK"}</div>
+                        <h4 className="font-poppins text-xl font-bold text-gray-950">{alertState.title}</h4>
+                        <p className="font-poppins mt-3 text-sm leading-6 text-gray-600">{alertState.message}</p>
+                        <button type="button" onClick={() => setAlertState(null)} className="font-poppins mt-6 h-10 min-w-[140px] rounded-sm bg-brand-primary px-6 text-sm font-semibold text-white transition hover:opacity-90">Continue</button>
+                    </div>
+                </div>
+            )}
 
             <Footer />
         </div>

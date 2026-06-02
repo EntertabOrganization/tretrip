@@ -5,18 +5,79 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import InternationalPhoneInput from "@/components/InternationalPhoneInput";
 
+type AlertState = {
+    title: string;
+    message: string;
+    tone: "error" | "success";
+} | null;
+
+type HajjFormData = {
+    fullName: string;
+    emailAddress: string;
+    phoneNumber: string;
+    preferredContactMethod: string;
+    passportNumber: string;
+    pilgrimageDate: string;
+    accommodationClass: string;
+    groupSize: string;
+    notes: string;
+};
+
 export default function KingdomProgram() {
     const [step, setStep] = useState(1);
     const [accommodationOpen, setAccommodationOpen] = useState(false);
-    const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
+    const [formData, setFormData] = useState<HajjFormData>({
+        fullName: "",
+        emailAddress: "",
+        phoneNumber: "",
+        preferredContactMethod: "Email",
+        passportNumber: "",
+        pilgrimageDate: "",
+        accommodationClass: "",
+        groupSize: "",
+        notes: "",
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [alertState, setAlertState] = useState<AlertState>(null);
 
     const handleNext = (e: React.FormEvent) => {
         e.preventDefault();
         setStep((s) => s + 1);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const updateField = <K extends keyof HajjFormData>(field: K, value: HajjFormData[K]) => {
+        setFormData((current) => ({ ...current, [field]: value }));
+    };
+
+    const showAlert = (tone: "error" | "success", title: string, message: string) => {
+        setAlertState({ tone, title, message });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        setIsSubmitting(true);
+
+        try {
+            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+            const response = await fetch(`${apiBaseUrl}/programs/hajj-umrah`, {
+                method: "POST",
+                headers: {
+                    Accept: "*/*",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+            const result = await response.json().catch(() => null);
+            if (!response.ok || !result?.success) {
+                throw new Error(result?.message || "Unable to submit the Hajj & Umrah booking right now.");
+            }
+            showAlert("success", "Booking submitted", "Your Hajj & Umrah booking request has been submitted successfully.");
+        } catch (error) {
+            showAlert("error", "Unable to submit", error instanceof Error ? error.message : "Something went wrong while sending your booking.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -100,6 +161,8 @@ export default function KingdomProgram() {
                                             type="text"
                                             name="fullName"
                                             required
+                                            value={formData.fullName}
+                                            onChange={(e) => updateField("fullName", e.target.value)}
                                             placeholder="Enter your full name"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -113,6 +176,8 @@ export default function KingdomProgram() {
                                             type="email"
                                             name="email"
                                             required
+                                            value={formData.emailAddress}
+                                            onChange={(e) => updateField("emailAddress", e.target.value)}
                                             placeholder="Enter your email"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -122,7 +187,7 @@ export default function KingdomProgram() {
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             Phone Number
                                         </label>
-                                        <InternationalPhoneInput placeholder="Enter your phone number" />
+                                        <InternationalPhoneInput value={formData.phoneNumber} onChange={(value) => updateField("phoneNumber", value)} placeholder="Enter your phone number" />
                                     </div>
 
                                     <div>
@@ -136,10 +201,12 @@ export default function KingdomProgram() {
                                                     className="font-poppins flex items-center gap-2 cursor-pointer text-sm text-gray-700"
                                                 >
                                                     <input
-                                                        type="checkbox"
+                                                        type="radio"
                                                         name="contactMethod"
-                                                        value={method.toLowerCase()}
-                                                        className="w-4 h-4 accent-brand-primary rounded"
+                                                        value={method}
+                                                        checked={formData.preferredContactMethod === method}
+                                                        onChange={(e) => updateField("preferredContactMethod", e.target.value)}
+                                                        className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     {method}
                                                 </label>
@@ -168,6 +235,8 @@ export default function KingdomProgram() {
                                         <input
                                             type="text"
                                             name="passportNumber"
+                                            value={formData.passportNumber}
+                                            onChange={(e) => updateField("passportNumber", e.target.value)}
                                             placeholder="Enter passport number"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -181,6 +250,8 @@ export default function KingdomProgram() {
                                         <input
                                             type="date"
                                             name="pilgrimageDate"
+                                            value={formData.pilgrimageDate}
+                                            onChange={(e) => updateField("pilgrimageDate", e.target.value)}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
@@ -201,7 +272,9 @@ export default function KingdomProgram() {
                                                     <input
                                                         type="radio"
                                                         name="accommodationClass"
-                                                        value={option.value}
+                                                        value={option.label}
+                                                        checked={formData.accommodationClass === option.label}
+                                                        onChange={(e) => updateField("accommodationClass", e.target.value)}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     {option.label}
@@ -217,6 +290,8 @@ export default function KingdomProgram() {
                                         </label>
                                         <select
                                             name="groupSize"
+                                            value={formData.groupSize}
+                                            onChange={(e) => updateField("groupSize", e.target.value)}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm bg-white"
                                         >
                                             <option value="">Select group size</option>
@@ -233,6 +308,8 @@ export default function KingdomProgram() {
                                         <legend className="font-poppins font-semibold text-gray-800 px-2">Notes</legend>
                                         <textarea
                                             name="notes"
+                                            value={formData.notes}
+                                            onChange={(e) => updateField("notes", e.target.value)}
                                             rows={4}
                                             placeholder="Any special requirements or notes..."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm resize-none"
@@ -294,9 +371,10 @@ export default function KingdomProgram() {
                                         </button>
                                         <button
                                             type="submit"
-                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
+                                            disabled={isSubmitting}
+                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition disabled:opacity-60"
                                         >
-                                            Submit Booking Request
+                                            {isSubmitting ? "Submitting..." : "Submit Booking Request"}
                                         </button>
                                     </div>
                                 </form>
@@ -348,6 +426,17 @@ export default function KingdomProgram() {
                     </div>
                 </section>
             </main>
+
+            {alertState && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+                    <div className="w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-[0px_24px_60px_rgba(15,23,42,0.2)]">
+                        <div className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full text-xl font-bold ${alertState.tone === "error" ? "bg-red-100 text-red-600" : "bg-emerald-100 text-emerald-600"}`}>{alertState.tone === "error" ? "!" : "OK"}</div>
+                        <h4 className="font-poppins text-xl font-bold text-gray-950">{alertState.title}</h4>
+                        <p className="font-poppins mt-3 text-sm leading-6 text-gray-600">{alertState.message}</p>
+                        <button type="button" onClick={() => setAlertState(null)} className="font-poppins mt-6 h-10 min-w-[140px] rounded-sm bg-brand-primary px-6 text-sm font-semibold text-white transition hover:opacity-90">Continue</button>
+                    </div>
+                </div>
+            )}
 
             <Footer />
         </div>

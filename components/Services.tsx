@@ -46,7 +46,7 @@ export default function Services() {
     ];
 
     return (
-        <section id="start" className="relative overflow-hidden pt-[60px] md:pt-[100px] pb-[40px] md:pb-[50px]">
+        <section id="services" className="relative overflow-hidden pt-[60px] md:pt-[100px] pb-[40px] md:pb-[50px]">
             <img
                 src="/ServiceDashlines.png"
                 alt=""

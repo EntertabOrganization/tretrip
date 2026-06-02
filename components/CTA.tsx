@@ -55,7 +55,7 @@ export default function CTA() {
 
                 {/* CTA Button */}
                 <Link
-                    href="/contact"
+                    href="/#services"
                     className="inline-block bg-white text-brand-primary font-semibold px-[50px] py-3 rounded-[5px] hover:bg-brand-accent hover:text-brand-primary transition-colors duration-300 text-[14px] uppercase"
                 >
                     {t("cta.contact")}

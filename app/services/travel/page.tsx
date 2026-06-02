@@ -250,13 +250,60 @@ export default function TravelPage() {
         setIsSubmittingRequest(true);
 
         try {
-            showAlert(
-                "success",
-                "Request ready",
-                clientId
-                    ? "Your travel request has been structured successfully and is ready for the next backend integration step."
-                    : "Your travel request has been prepared successfully."
-            );
+            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+            const response = await fetch(`${apiBaseUrl}/travel-tourism`, {
+                method: "POST",
+                headers: {
+                    Accept: "*/*",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    clientId,
+                    tripType: formData.tripType,
+                    cabinClass: formData.flightClass,
+                    leavingFrom: formData.leavingFrom,
+                    goingTo: formData.goingTo,
+                    multipleDestinations: formData.tripType === t("servicePages.travel.multipleDestinations")
+                        ? formData.destination.split(",").map((item) => item.trim()).filter(Boolean)
+                        : [],
+                    departingDate: formData.departingDate,
+                    returnDate: formData.returnDate,
+                    airline: formData.airline,
+                    stops: Number(formData.stops || 0),
+                    destinationFocus: formData.destination,
+                    adult: Number(formData.adults || 0),
+                    children: Number(formData.children || 0),
+                    infants: Number(formData.infants || 0),
+                    preferredHotel: formData.hotelName,
+                    roomType: formData.roomType,
+                    nights: Number(formData.nightsCount || 0),
+                    checkInDate: formData.checkInDate,
+                    checkOutDate: formData.checkOutDate,
+                    mealPreference: formData.mealPreference,
+                    pickupLocation: formData.pickupLocation,
+                    dropoffLocation: formData.dropoffLocation,
+                    pickupDate: formData.pickupDate,
+                    pickupTime: formData.pickupTime,
+                    carRentalPickupDate: formData.rentalPickupDate,
+                    carRentalDropoffDate: formData.rentalDropoffDate,
+                    carType: formData.carType,
+                    driverAge: Number(formData.driverAge || 0),
+                    specialRequests: formData.specialRequests,
+                }),
+            });
+
+            const result = await response.json().catch(() => null);
+
+            if (!response.ok || !result?.success) {
+                throw new Error(result?.message || "Unable to submit the travel request right now.");
+            }
+
+            showAlert("success", "Request submitted", "Your travel tourism booking request has been submitted successfully.");
+            setStep(1);
+            setClientId(null);
+            setFormData(INITIAL_FORM_DATA);
+        } catch (error) {
+            showAlert("error", "Unable to submit", error instanceof Error ? error.message : "Something went wrong while sending your travel request.");
         } finally {
             setIsSubmittingRequest(false);
         }

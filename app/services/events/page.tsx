@@ -24,6 +24,29 @@ type LeadFormData = {
     emailAddress: string;
 };
 
+type EventFormData = {
+    organization: string;
+    position: string;
+    eventName: string;
+    eventType: string;
+    theme: string;
+    preferredDate: string;
+    duration: string;
+    expectedAttendees: string;
+    targetAudience: string;
+    preferredVenue: string;
+    city: string;
+    country: string;
+    indoorOutdoor: string;
+    venueSuggestionsNeeded: boolean;
+    bookingSupportNeeded: boolean;
+    coreServices: string[];
+    additionalServices: string[];
+    additionalServicesOther: string;
+    estimatedBudget: string;
+    additionalNotes: string;
+};
+
 type AlertState = {
     title: string;
     message: string;
@@ -38,7 +61,31 @@ export default function EventPage() {
         phoneNumber: "",
         emailAddress: "",
     });
+    const [clientId, setClientId] = useState("");
+    const [eventForm, setEventForm] = useState<EventFormData>({
+        organization: "",
+        position: "",
+        eventName: "",
+        eventType: "",
+        theme: "",
+        preferredDate: "",
+        duration: "",
+        expectedAttendees: "",
+        targetAudience: "",
+        preferredVenue: "",
+        city: "",
+        country: "",
+        indoorOutdoor: "",
+        venueSuggestionsNeeded: true,
+        bookingSupportNeeded: true,
+        coreServices: [],
+        additionalServices: [],
+        additionalServicesOther: "",
+        estimatedBudget: "",
+        additionalNotes: "",
+    });
     const [isSubmittingClient, setIsSubmittingClient] = useState(false);
+    const [isSubmittingEvent, setIsSubmittingEvent] = useState(false);
     const [alertState, setAlertState] = useState<AlertState>(null);
     const totalSteps = 5;
 
@@ -69,6 +116,19 @@ export default function EventPage() {
         setAlertState({ tone, title, message });
     };
 
+    const updateEventField = <K extends keyof EventFormData>(field: K, value: EventFormData[K]) => {
+        setEventForm((current) => ({ ...current, [field]: value }));
+    };
+
+    const toggleArrayField = (field: "coreServices" | "additionalServices", value: string) => {
+        setEventForm((current) => ({
+            ...current,
+            [field]: current[field].includes(value)
+                ? current[field].filter((item) => item !== value)
+                : [...current[field], value],
+        }));
+    };
+
     const handleFirstStepNext = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -96,6 +156,7 @@ export default function EventPage() {
                 throw new Error(result?.message || "Unable to save the client details right now.");
             }
 
+            setClientId(result?.data?._id || "");
             setStep(2);
         } catch (error) {
             showAlert(
@@ -112,8 +173,42 @@ export default function EventPage() {
         setStep((s) => Math.max(s - 1, 1));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (!clientId || !eventForm.organization || !eventForm.position || !eventForm.eventName || !eventForm.eventType || !eventForm.preferredDate) {
+            showAlert("error", "Missing details", "Please complete the required event details before submitting your request.");
+            return;
+        }
+
+        setIsSubmittingEvent(true);
+
+        try {
+            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+            const response = await fetch(`${apiBaseUrl}/events`, {
+                method: "POST",
+                headers: {
+                    Accept: "*/*",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    clientId,
+                    ...eventForm,
+                    estimatedBudget: eventForm.estimatedBudget ? Number(eventForm.estimatedBudget) : 0,
+                }),
+            });
+
+            const result = await response.json().catch(() => null);
+            if (!response.ok || !result?.success) {
+                throw new Error(result?.message || "Unable to submit the event request right now.");
+            }
+
+            showAlert("success", "Event request submitted", "Your event booking request has been submitted successfully.");
+        } catch (error) {
+            showAlert("error", "Unable to submit", error instanceof Error ? error.message : "Something went wrong while sending your event request.");
+        } finally {
+            setIsSubmittingEvent(false);
+        }
     };
 
     return (
@@ -225,6 +320,8 @@ export default function EventPage() {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={eventForm.organization}
+                                                onChange={(e) => updateEventField("organization", e.target.value)}
                                                 placeholder={t("servicePages.events.enterOrganization")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -236,6 +333,8 @@ export default function EventPage() {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={eventForm.position}
+                                                onChange={(e) => updateEventField("position", e.target.value)}
                                                 placeholder={t("servicePages.events.enterPosition")}
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -248,6 +347,8 @@ export default function EventPage() {
                                         </label>
                                         <input
                                             type="text"
+                                            value={eventForm.eventName}
+                                            onChange={(e) => updateEventField("eventName", e.target.value)}
                                             placeholder="Enter event name"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -258,7 +359,7 @@ export default function EventPage() {
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                                 Event Type
                                             </label>
-                                            <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
+                                            <select value={eventForm.eventType} onChange={(e) => updateEventField("eventType", e.target.value)} className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
                                                 <option>Select event type</option>
                                                 <option>Corporate</option>
                                                 <option>Wedding</option>
@@ -276,6 +377,8 @@ export default function EventPage() {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={eventForm.theme}
+                                                onChange={(e) => updateEventField("theme", e.target.value)}
                                                 placeholder="Enter event theme"
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -308,6 +411,8 @@ export default function EventPage() {
                                         </label>
                                         <input
                                             type="date"
+                                            value={eventForm.preferredDate}
+                                            onChange={(e) => updateEventField("preferredDate", e.target.value)}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
@@ -319,6 +424,8 @@ export default function EventPage() {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={eventForm.duration}
+                                                onChange={(e) => updateEventField("duration", e.target.value)}
                                                 placeholder="e.g., 4 hours"
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -328,7 +435,7 @@ export default function EventPage() {
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                                 Expected Attendees
                                             </label>
-                                            <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
+                                            <select value={eventForm.expectedAttendees} onChange={(e) => updateEventField("expectedAttendees", e.target.value)} className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
                                                 <option>Select range</option>
                                                 <option>1-50</option>
                                                 <option>51-100</option>
@@ -346,6 +453,8 @@ export default function EventPage() {
                                         </label>
                                         <input
                                             type="text"
+                                            value={eventForm.targetAudience}
+                                            onChange={(e) => updateEventField("targetAudience", e.target.value)}
                                             placeholder="e.g., Business professionals, Students, General public"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -378,6 +487,8 @@ export default function EventPage() {
                                         </label>
                                         <input
                                             type="text"
+                                            value={eventForm.preferredVenue}
+                                            onChange={(e) => updateEventField("preferredVenue", e.target.value)}
                                             placeholder="Enter preferred venue name"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
@@ -390,6 +501,8 @@ export default function EventPage() {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={eventForm.city}
+                                                onChange={(e) => updateEventField("city", e.target.value)}
                                                 placeholder="Enter city"
                                                 className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             />
@@ -399,7 +512,7 @@ export default function EventPage() {
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                                 Country
                                             </label>
-                                            <select className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
+                                            <select value={eventForm.country} onChange={(e) => updateEventField("country", e.target.value)} className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm">
                                                 {countries.map((country) => (
                                                     <option key={country} value={country}>{country}</option>
                                                 ))}
@@ -416,6 +529,8 @@ export default function EventPage() {
                                                         type="radio"
                                                         name="eventType"
                                                         value={option}
+                                                        checked={eventForm.indoorOutdoor === option}
+                                                        onChange={(e) => updateEventField("indoorOutdoor", e.target.value)}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     <span className="text-sm text-gray-700">{option}</span>
@@ -433,6 +548,8 @@ export default function EventPage() {
                                                         type="radio"
                                                         name="venueSuggestions"
                                                         value={option}
+                                                        checked={eventForm.venueSuggestionsNeeded === (option === "Yes")}
+                                                        onChange={() => updateEventField("venueSuggestionsNeeded", option === "Yes")}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     <span className="text-sm text-gray-700">{option}</span>
@@ -450,6 +567,8 @@ export default function EventPage() {
                                                         type="radio"
                                                         name="bookingSupport"
                                                         value={option}
+                                                        checked={eventForm.bookingSupportNeeded === (option === "Yes")}
+                                                        onChange={() => updateEventField("bookingSupportNeeded", option === "Yes")}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     <span className="text-sm text-gray-700">{option}</span>
@@ -487,6 +606,8 @@ export default function EventPage() {
                                                     <input
                                                         type="checkbox"
                                                         value={service}
+                                                        checked={eventForm.coreServices.includes(service)}
+                                                        onChange={() => toggleArrayField("coreServices", service)}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     <span className="text-sm text-gray-700">{service}</span>
@@ -503,6 +624,8 @@ export default function EventPage() {
                                                     <input
                                                         type="checkbox"
                                                         value={service}
+                                                        checked={eventForm.additionalServices.includes(service)}
+                                                        onChange={() => toggleArrayField("additionalServices", service)}
                                                         className="w-4 h-4 accent-brand-primary"
                                                     />
                                                     <span className="text-sm text-gray-700">{service}</span>
@@ -517,16 +640,35 @@ export default function EventPage() {
                                         </label>
                                         <input
                                             type="number"
+                                            value={eventForm.estimatedBudget}
+                                            onChange={(e) => updateEventField("estimatedBudget", e.target.value)}
                                             placeholder="Enter estimated budget ($)"
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
+
+                                    {eventForm.additionalServices.includes("Other (Please Specify)") && (
+                                        <div>
+                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
+                                                Other Additional Service
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={eventForm.additionalServicesOther}
+                                                onChange={(e) => updateEventField("additionalServicesOther", e.target.value)}
+                                                placeholder="Describe the additional service required"
+                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                            />
+                                        </div>
+                                    )}
 
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             Additional Notes
                                         </label>
                                         <textarea
+                                            value={eventForm.additionalNotes}
+                                            onChange={(e) => updateEventField("additionalNotes", e.target.value)}
                                             placeholder="Share any event priorities, guest experience goals, VIP requirements, or operational notes we should prepare for."
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                             rows={5}
@@ -544,9 +686,10 @@ export default function EventPage() {
                                         </button>
                                         <button
                                             type="submit"
+                                            disabled={isSubmittingEvent}
                                             className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
                                         >
-                                            Submit Event Request
+                                            {isSubmittingEvent ? "Submitting..." : "Submit Event Request"}
                                         </button>
                                     </div>
                                 </form>
