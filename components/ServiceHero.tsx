@@ -21,11 +21,11 @@ export default function ServiceHero({
       style={{
         backgroundImage: `url('${image}')`,
         backgroundPosition,
-        height: "70vh",
+        height: "90vh",
       }}
     >
       <div className="absolute inset-0 bg-black/40"></div>
-      <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-3xl -translate-y-8 px-4 text-center text-white md:-translate-y-12">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           {title}
         </h1>

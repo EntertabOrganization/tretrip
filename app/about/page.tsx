@@ -61,7 +61,7 @@ export default function AboutPage() {
                     style={{
                         backgroundImage: "url(/AboutUsPage.jpg)",
                         backgroundSize: "cover",
-                        backgroundPosition: "center",
+                        backgroundPosition: "center 30%"
                     }}
                 >
                     <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.72),rgba(0,0,0,0.4),rgba(0,0,0,0.15))]" />

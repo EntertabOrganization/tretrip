@@ -30,6 +30,25 @@ const countries = [
 export default function ShippingPage() {
     const { t } = useLanguage();
     const [step, setStep] = useState(1);
+    const totalSteps = 5;
+
+    const formCardStyle: React.CSSProperties = {
+        width: "100%",
+        maxWidth: "560px",
+        maxHeight: "500px",
+        borderRadius: "10px",
+        boxShadow: "0px 10px 24px 0px rgba(15, 23, 42, 0.12)",
+        backgroundColor: "#FFFFFF",
+    };
+
+    const modalCardStyle: React.CSSProperties = {
+        width: "100%",
+        maxWidth: "980px",
+        maxHeight: "88vh",
+        borderRadius: "20px",
+        boxShadow: "0px 30px 80px 0px rgba(15, 23, 42, 0.24)",
+        backgroundColor: "#FFFFFF",
+    };
 
     const handleNext = (e: React.FormEvent) => {
         e.preventDefault();
@@ -55,22 +74,22 @@ export default function ShippingPage() {
                     backgroundPosition="center"
                 />
 
-                {/* Form Section */}
-                <section className="px-4 md:px-8 py-12 md:py-20 bg-gray-50 relative" style={{ minHeight: "480px" }}>
-                    <div className="flex justify-center">
+                <section
+                    className={
+                        step === 1
+                            ? "relative z-20 bg-transparent px-4 pb-10 md:px-8"
+                            : "fixed inset-0 z-40 flex items-center justify-center bg-black/45 px-4 py-6"
+                    }
+                >
+                    {step > 1 && <div className="absolute inset-0" onClick={handlePrevious} />}
+                    <div className={step === 1 ? "mx-auto -mt-[260px] flex justify-center md:-mt-[320px]" : "relative mx-auto flex w-full justify-center"}>
                         <div
-                            className="w-full max-w-4xl bg-white rounded-2xl p-4 md:p-8"
-                            style={{
-                                height: "auto",
-                                borderRadius: "16px",
-                                boxShadow: "0px 4px 8px 0px #0000001F",
-                                backgroundColor: "white",
-                                overflowY: "auto",
-                            }}
+                            className={step === 1 ? "w-full overflow-y-auto p-8 md:p-10" : "relative w-full overflow-y-auto p-6 md:p-10"}
+                            style={step === 1 ? formCardStyle : modalCardStyle}
                         >
                             {/* Title */}
                             <h3 className="font-poppins text-lg md:text-xl font-bold text-gray-800 mb-2 text-center">
-                                {step === 1 && t("servicePages.shipping.stepPersonal")}
+                                {step === 1 && "Book This Service Now"}
                                 {step === 2 && t("servicePages.shipping.stepShipperAddress")}
                                 {step === 3 && t("servicePages.shipping.stepReceiverInfo")}
                                 {step === 4 && t("servicePages.shipping.stepShipmentDetails")}
@@ -78,16 +97,18 @@ export default function ShippingPage() {
                             </h3>
 
                             {/* Step indicator */}
-                            <div className="flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 mb-6">
-                                {[1, 2, 3, 4, 5].map((stepNum, idx) => (
+                            {step > 1 && (
+                                <div className="flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 mb-6">
+                                {Array.from({ length: totalSteps }, (_, index) => index + 1).map((stepNum, idx) => (
                                     <React.Fragment key={stepNum}>
                                         <div className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-semibold font-poppins transition-colors ${step === stepNum ? "bg-brand-primary text-white" : step > stepNum ? "bg-brand-primary/20 text-brand-primary" : "bg-gray-200 text-gray-400"}`}>
                                             {stepNum}
                                         </div>
-                                        {idx < 5 && <div className={`h-0.5 w-3 sm:w-4 md:w-5 transition-colors ${step > stepNum ? "bg-brand-primary" : "bg-gray-200"}`} />}
+                                        {idx < totalSteps - 1 && <div className={`h-0.5 w-3 sm:w-4 md:w-5 transition-colors ${step > stepNum ? "bg-brand-primary" : "bg-gray-200"}`} />}
                                     </React.Fragment>
                                 ))}
-                            </div>
+                                </div>
+                            )}
 
                             {/* STEP 1: Personal Information */}
                             {step === 1 && (
