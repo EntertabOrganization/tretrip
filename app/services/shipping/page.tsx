@@ -27,9 +27,28 @@ const countries = [
     "Vietnam", "Philippines", "Indonesia", "Pakistan", "Bangladesh", "Sri Lanka", "Egypt", "South Africa", "Nigeria", "Kenya"
 ];
 
+type LeadFormData = {
+    fullName: string;
+    phoneNumber: string;
+    emailAddress: string;
+};
+
+type AlertState = {
+    title: string;
+    message: string;
+    tone: "error" | "success";
+} | null;
+
 export default function ShippingPage() {
     const { t } = useLanguage();
     const [step, setStep] = useState(1);
+    const [leadForm, setLeadForm] = useState<LeadFormData>({
+        fullName: "",
+        phoneNumber: "",
+        emailAddress: "",
+    });
+    const [isSubmittingClient, setIsSubmittingClient] = useState(false);
+    const [alertState, setAlertState] = useState<AlertState>(null);
     const totalSteps = 5;
 
     const formCardStyle: React.CSSProperties = {
@@ -53,6 +72,49 @@ export default function ShippingPage() {
     const handleNext = (e: React.FormEvent) => {
         e.preventDefault();
         setStep((s) => s + 1);
+    };
+
+    const showAlert = (tone: "error" | "success", title: string, message: string) => {
+        setAlertState({ tone, title, message });
+    };
+
+    const handleFirstStepNext = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!leadForm.fullName.trim() || !leadForm.phoneNumber.trim() || !leadForm.emailAddress.trim()) {
+            showAlert("error", "Missing information", "Please complete your name, phone number, and email before continuing.");
+            return;
+        }
+
+        setIsSubmittingClient(true);
+
+        try {
+            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+            const response = await fetch(`${apiBaseUrl}/clients`, {
+                method: "POST",
+                headers: {
+                    Accept: "*/*",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(leadForm),
+            });
+
+            const result = await response.json().catch(() => null);
+
+            if (!response.ok || !result?.success) {
+                throw new Error(result?.message || "Unable to save the client details right now.");
+            }
+
+            setStep(2);
+        } catch (error) {
+            showAlert(
+                "error",
+                "Unable to continue",
+                error instanceof Error ? error.message : "Something went wrong while saving your details."
+            );
+        } finally {
+            setIsSubmittingClient(false);
+        }
     };
 
     const handlePrevious = () => {
@@ -112,25 +174,29 @@ export default function ShippingPage() {
 
                             {/* STEP 1: Personal Information */}
                             {step === 1 && (
-                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <div>
-                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                {t("servicePages.shipping.fullName")}
-                                            </label>
-                                            <input
-                                                type="text"
-                                                placeholder={t("servicePages.shipping.enterFullName")}
-                                                className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
-                                            />
-                                        </div>
+                                <form className="font-poppins space-y-5" onSubmit={handleFirstStepNext}>
+                                    <div>
+                                        <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
+                                            {t("servicePages.shipping.fullName")}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={leadForm.fullName}
+                                            onChange={(e) => setLeadForm((current) => ({ ...current, fullName: e.target.value }))}
+                                            placeholder={t("servicePages.shipping.enterFullName")}
+                                            className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
+                                        />
+                                    </div>
 
-                                        <div>
-                                            <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
-                                                {t("servicePages.shipping.phoneNumber")}
-                                            </label>
-                                            <InternationalPhoneInput placeholder={t("servicePages.shipping.phoneNumber")} />
-                                        </div>
+                                    <div>
+                                        <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
+                                            {t("servicePages.shipping.phoneNumber")}
+                                        </label>
+                                        <InternationalPhoneInput
+                                            value={leadForm.phoneNumber}
+                                            onChange={(value) => setLeadForm((current) => ({ ...current, phoneNumber: value }))}
+                                            placeholder={t("servicePages.shipping.phoneNumber")}
+                                        />
                                     </div>
 
                                     <div>
@@ -139,11 +205,28 @@ export default function ShippingPage() {
                                         </label>
                                         <input
                                             type="email"
+                                            value={leadForm.emailAddress}
+                                            onChange={(e) => setLeadForm((current) => ({ ...current, emailAddress: e.target.value }))}
                                             placeholder={t("servicePages.shipping.enterEmail")}
                                             className="font-poppins w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition text-sm"
                                         />
                                     </div>
 
+                                    <div className="flex justify-end pt-2">
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmittingClient}
+                                            className="font-poppins h-9 min-w-[180px] rounded-sm bg-brand-primary px-6 text-[11px] font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                                        >
+                                            {isSubmittingClient ? "Saving..." : t("forms.next")}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+
+                            {/* STEP 2: Shipper Address */}
+                            {step === 2 && (
+                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
@@ -168,28 +251,6 @@ export default function ShippingPage() {
                                         </div>
                                     </div>
 
-                                    <div className="flex gap-3">
-                                        <button
-                                            type="button"
-                                            onClick={handlePrevious}
-                                            disabled={step === 1}
-                                            className="font-poppins flex-1 border border-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                                        >
-                                            {t("forms.back")}
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            className="font-poppins flex-1 bg-brand-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition"
-                                        >
-                                            {t("forms.next")}
-                                        </button>
-                                    </div>
-                                </form>
-                            )}
-
-                            {/* STEP 2: Shipper Address */}
-                            {step === 2 && (
-                                <form className="font-poppins space-y-5" onSubmit={handleNext}>
                                     <div>
                                         <label className="font-poppins block text-sm font-medium text-gray-700 mb-1">
                                             {t("servicePages.shipping.shipperAddress")}
@@ -623,6 +684,29 @@ export default function ShippingPage() {
                         </div>
                     </div>
                 </section>
+
+                {alertState && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+                        <div className="w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-[0px_24px_60px_rgba(15,23,42,0.2)]">
+                            <div
+                                className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full text-xl font-bold ${
+                                    alertState.tone === "error" ? "bg-red-100 text-red-600" : "bg-emerald-100 text-emerald-600"
+                                }`}
+                            >
+                                {alertState.tone === "error" ? "!" : "OK"}
+                            </div>
+                            <h4 className="font-poppins text-xl font-bold text-gray-950">{alertState.title}</h4>
+                            <p className="font-poppins mt-3 text-sm leading-6 text-gray-600">{alertState.message}</p>
+                            <button
+                                type="button"
+                                onClick={() => setAlertState(null)}
+                                className="font-poppins mt-6 h-10 min-w-[140px] rounded-sm bg-brand-primary px-6 text-sm font-semibold text-white transition hover:opacity-90"
+                            >
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                )}
 
                 {/* Content Section */}
                 <ServiceContent

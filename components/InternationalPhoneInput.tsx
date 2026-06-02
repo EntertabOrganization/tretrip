@@ -16,7 +16,7 @@ export default function InternationalPhoneInput({
   value = "",
   onChange,
   placeholder = "Enter your phone number",
-  defaultCountry = "eg",
+  defaultCountry = "us",
   compact = false,
 }: InternationalPhoneInputProps) {
   return (
