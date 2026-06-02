@@ -7,6 +7,10 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export default function Services() {
     const { t, dir } = useLanguage();
+    const title = t("services.title");
+    const professionalPrefix = "Professional ";
+    const titleStartsWithProfessional = title.startsWith(professionalPrefix);
+    const titleRest = titleStartsWithProfessional ? title.slice(professionalPrefix.length) : title;
 
     const services = [
         {
@@ -42,32 +46,55 @@ export default function Services() {
     ];
 
     return (
-        <section id="start" className="pt-[60px] md:pt-[100px] pb-[40px] md:pb-[50px] relative">
-            <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-[50px]">
+        <section id="start" className="relative overflow-hidden pt-[60px] md:pt-[100px] pb-[40px] md:pb-[50px]">
+            <img
+                src="/ServiceDashlines.png"
+                alt=""
+                aria-hidden="true"
+                width={360}
+                height={360}
+                className="pointer-events-none absolute hidden md:block"
+                style={{
+                    top: "-44px",
+                    right: "120px",
+                    width: "300px",
+                    height: "360px",
+                    transform: "rotate(-8deg)",
+                    transformOrigin: "top right",
+                    position: "absolute",
+                    opacity: 0.65,
+                }}
+            />
+            <div className="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 md:px-[50px]">
                 {/* Section Header */}
-                <div className="text-center mb-4 md:mb-6 animate-zoom-in">
-                    <span className="font-space text-[14px] sm:text-[16px] md:text-[18px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
-                        {t("services.sectionTitle")}
-                    </span>
-                    <h2 className="font-space text-[24px] sm:text-[32px] md:text-[40px] font-bold text-brand-dark leading-[1.3em] md:leading-[1.4em]">
-                        <span className="relative inline-block">
-                            Professional
-                            <img
-                                src="https://tretrip.com/wp-content/uploads/2025/08/GOLD.svg"
-                                alt=""
-                                className="absolute -bottom-1 left-0 w-full"
-                                aria-hidden="true"
-                            />
-                        </span>{" "}
-                        {t("services.title")}
-                    </h2>
-                </div>
+                <div className="mb-10 md:mb-14 flex flex-col gap-6 md:flex-row md:items-center animate-zoom-in">
+                    <div className={`md:w-1/2 ${dir === "rtl" ? "text-right" : "text-left"}`}>
+                        <span className="font-space text-[12px] sm:text-[14px] font-medium uppercase text-brand-primary tracking-wide block mb-2">
+                            {t("services.sectionTitle")}
+                        </span>
+                        <h2 className="font-space text-[26px] sm:text-[34px] md:text-[42px] font-bold text-brand-dark leading-[1.12]">
+                            {titleStartsWithProfessional ? (
+                                <>
+                                    <span className="relative inline-block">
+                                        Professional
+                                        <span
+                                            className="absolute -bottom-1 left-0 -z-10 h-[8px] w-full rounded-full bg-brand-accent"
+                                            aria-hidden="true"
+                                        />
+                                    </span>{" "}
+                                    {titleRest}
+                                </>
+                            ) : (
+                                title
+                            )}
+                        </h2>
+                    </div>
 
-                {/* Description */}
-                <div className="text-center max-w-3xl mx-auto mb-14 animate-fade-in" style={{ animationDelay: "400ms" }}>
-                    <p className="font-poppins text-brand-secondary leading-relaxed">
-                        {t("hero.subtitle") || "We tailor trips to your mood, relaxing, thrilling, or cultural. All logistics managed with care, so you only focus on the joy of travel."}
-                    </p>
+                    <div className={`md:w-1/2 animate-fade-in ${dir === "rtl" ? "text-right md:pr-10" : "text-left md:pl-10"}`} style={{ animationDelay: "400ms" }}>
+                        <p className="max-w-[470px] font-poppins text-[14px] leading-[1.35] text-brand-dark">
+                            {t("hero.subtitle") || "We tailor trips to your mood, relaxing, thrilling, or cultural. All logistics managed with care, so you only focus on the joy of travel."}
+                        </p>
+                    </div>
                 </div>
 
                 {/* Service Cards Grid — 2 columns × 3 rows */}
