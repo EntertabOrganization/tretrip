@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import InternationalPhoneInput from "@/components/InternationalPhoneInput";
+import { postJson } from "@/lib/api";
 
 type AlertState = {
     title: string;
@@ -59,19 +60,11 @@ export default function KingdomProgram() {
         setIsSubmitting(true);
 
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            const response = await fetch(`${apiBaseUrl}/programs/hajj-umrah`, {
-                method: "POST",
-                headers: {
-                    Accept: "*/*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
-            const result = await response.json().catch(() => null);
-            if (!response.ok || !result?.success) {
-                throw new Error(result?.message || "Unable to submit the Hajj & Umrah booking right now.");
-            }
+            await postJson(
+                "/programs/hajj-umrah",
+                formData,
+                "Unable to submit the Hajj & Umrah booking right now."
+            );
             showAlert("success", "Booking submitted", "Your Hajj & Umrah booking request has been submitted successfully.");
         } catch (error) {
             showAlert("error", "Unable to submit", error instanceof Error ? error.message : "Something went wrong while sending your booking.");

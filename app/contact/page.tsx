@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import InternationalPhoneInput from "@/components/InternationalPhoneInput";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { postJson } from "@/lib/api";
 
 type ContactFormData = {
     fullName: string;
@@ -63,21 +64,7 @@ export default function ContactPage() {
         setIsSubmitting(true);
 
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            const response = await fetch(`${apiBaseUrl}/contact-us`, {
-                method: "POST",
-                headers: {
-                    Accept: "*/*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
-
-            const result = await response.json().catch(() => null);
-
-            if (!response.ok || !result?.success) {
-                throw new Error(result?.message || "Unable to send your contact request right now.");
-            }
+            await postJson("/contact-us", formData, "Unable to send your contact request right now.");
 
             showAlert("success", "Message sent", "Your contact request has been submitted successfully.");
             setFormData(INITIAL_CONTACT_FORM);

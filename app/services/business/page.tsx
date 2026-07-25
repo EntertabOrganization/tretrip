@@ -9,6 +9,7 @@ import WhyChooseServices from "@/components/WhyChooseServices";
 import WhatOurClientsSay from "@/components/WhatOurClientsSay";
 import InternationalPhoneInput from "@/components/InternationalPhoneInput";
 import { useLanguage } from "@/context/LanguageContext";
+import { postJson } from "@/lib/api";
 
 type LeadFormData = {
     fullName: string;
@@ -119,21 +120,11 @@ export default function MedicalPage() {
         setIsSubmittingClient(true);
 
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            const response = await fetch(`${apiBaseUrl}/clients`, {
-                method: "POST",
-                headers: {
-                    Accept: "*/*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(leadForm),
-            });
-
-            const result = await response.json().catch(() => null);
-
-            if (!response.ok || !result?.success) {
-                throw new Error(result?.message || "Unable to save the client details right now.");
-            }
+            const result = await postJson<{ _id: string }>(
+                "/clients",
+                leadForm,
+                "Unable to save the client details right now."
+            );
 
             setClientId(result.data?._id || "");
             setStep(2);
@@ -176,25 +167,15 @@ export default function MedicalPage() {
         setIsSubmittingBusiness(true);
 
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            const response = await fetch(`${apiBaseUrl}/business-services`, {
-                method: "POST",
-                headers: {
-                    Accept: "*/*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
+            await postJson(
+                "/business-services",
+                {
                     clientId,
                     ...businessForm,
                     travelAlone: travelingAlone,
-                }),
-            });
-
-            const result = await response.json().catch(() => null);
-
-            if (!response.ok || !result?.success) {
-                throw new Error(result?.message || "Unable to submit the business service request right now.");
-            }
+                },
+                "Unable to submit the business service request right now."
+            );
 
             showAlert("success", "Request submitted", "Your business service request has been sent successfully.");
             setStep(1);

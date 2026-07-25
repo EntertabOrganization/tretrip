@@ -9,6 +9,7 @@ import WhyChooseServices from "@/components/WhyChooseServices";
 import WhatOurClientsSay from "@/components/WhatOurClientsSay";
 import InternationalPhoneInput from "@/components/InternationalPhoneInput";
 import { useLanguage } from "@/context/LanguageContext";
+import { postJson } from "@/lib/api";
 
 const statesProvinces = [
     "Select State/Province",
@@ -89,21 +90,7 @@ export default function ShippingPage() {
         setIsSubmittingClient(true);
 
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            const response = await fetch(`${apiBaseUrl}/clients`, {
-                method: "POST",
-                headers: {
-                    Accept: "*/*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(leadForm),
-            });
-
-            const result = await response.json().catch(() => null);
-
-            if (!response.ok || !result?.success) {
-                throw new Error(result?.message || "Unable to save the client details right now.");
-            }
+            await postJson("/clients", leadForm, "Unable to save the client details right now.");
 
             setStep(2);
         } catch (error) {

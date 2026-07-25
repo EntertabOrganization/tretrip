@@ -9,6 +9,7 @@ import WhyChooseServices from "@/components/WhyChooseServices";
 import WhatOurClientsSay from "@/components/WhatOurClientsSay";
 import InternationalPhoneInput from "@/components/InternationalPhoneInput";
 import { useLanguage } from "@/context/LanguageContext";
+import { postJson } from "@/lib/api";
 
 const countries = [
     "Select Country",
@@ -140,21 +141,11 @@ export default function EventPage() {
         setIsSubmittingClient(true);
 
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            const response = await fetch(`${apiBaseUrl}/clients`, {
-                method: "POST",
-                headers: {
-                    Accept: "*/*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(leadForm),
-            });
-
-            const result = await response.json().catch(() => null);
-
-            if (!response.ok || !result?.success) {
-                throw new Error(result?.message || "Unable to save the client details right now.");
-            }
+            const result = await postJson<{ _id: string }>(
+                "/clients",
+                leadForm,
+                "Unable to save the client details right now."
+            );
 
             setClientId(result?.data?._id || "");
             setStep(2);
@@ -184,24 +175,15 @@ export default function EventPage() {
         setIsSubmittingEvent(true);
 
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            const response = await fetch(`${apiBaseUrl}/events`, {
-                method: "POST",
-                headers: {
-                    Accept: "*/*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
+            await postJson(
+                "/events",
+                {
                     clientId,
                     ...eventForm,
                     estimatedBudget: eventForm.estimatedBudget ? Number(eventForm.estimatedBudget) : 0,
-                }),
-            });
-
-            const result = await response.json().catch(() => null);
-            if (!response.ok || !result?.success) {
-                throw new Error(result?.message || "Unable to submit the event request right now.");
-            }
+                },
+                "Unable to submit the event request right now."
+            );
 
             showAlert("success", "Event request submitted", "Your event booking request has been submitted successfully.");
         } catch (error) {

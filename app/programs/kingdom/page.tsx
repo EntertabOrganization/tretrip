@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import InternationalPhoneInput from "@/components/InternationalPhoneInput";
+import { postJson } from "@/lib/api";
 
 const mapLocations = [
     {
@@ -104,17 +105,14 @@ export default function KingdomProgram() {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-            const response = await fetch(`${apiBaseUrl}/programs/explore-kingdom`, {
-                method: "POST",
-                headers: { Accept: "*/*", "Content-Type": "application/json" },
-                body: JSON.stringify({
+            await postJson(
+                "/programs/explore-kingdom",
+                {
                     ...formData,
                     numberOfTravelers: Number(formData.numberOfTravelers || 0),
-                }),
-            });
-            const result = await response.json().catch(() => null);
-            if (!response.ok || !result?.success) throw new Error(result?.message || "Unable to submit the Explore the Kingdom booking right now.");
+                },
+                "Unable to submit the Explore the Kingdom booking right now."
+            );
             showAlert("success", "Booking submitted", "Your Explore the Kingdom booking request has been submitted successfully.");
         } catch (error) {
             showAlert("error", "Unable to submit", error instanceof Error ? error.message : "Something went wrong while sending your booking.");
