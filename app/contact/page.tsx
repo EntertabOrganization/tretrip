@@ -31,7 +31,7 @@ const INITIAL_CONTACT_FORM: ContactFormData = {
 };
 
 export default function ContactPage() {
-    const { t } = useLanguage();
+    const { t, dir } = useLanguage();
     const [formData, setFormData] = useState<ContactFormData>(INITIAL_CONTACT_FORM);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [alertState, setAlertState] = useState<AlertState>(null);
@@ -88,8 +88,8 @@ export default function ContactPage() {
                 </div>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                        <div className="lg:col-span-7">
+                    <div dir="ltr" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                        <div dir={dir} className="lg:col-span-7">
                             <h1 className="font-space text-[42px] md:text-[56px] font-bold text-[#2D7A84] mb-4 leading-tight">
                                 {t("contact.getInTouch")}
                             </h1>
