@@ -185,14 +185,14 @@ export default function ContactPage() {
                                     <div className="text-[#2D7A84]"><MessageCircle size={28} strokeWidth={1.5} /></div>
                                     <div>
                                         <h3 className="font-space text-[15px] font-bold text-gray-900 leading-tight">Whatsapp</h3>
-                                        <p className="font-poppins text-[#2D7A84] text-[15px] font-medium" dir="ltr">+1 (202) 770-6480</p>
+                                        <p className="font-poppins text-[#2D7A84] text-[15px] font-medium" dir="ltr">+1 (202) 655-9522</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <div className="text-[#2D7A84]"><Mail size={28} strokeWidth={1.5} /></div>
                                     <div>
                                         <h3 className="font-space text-[15px] font-bold text-gray-900 leading-tight">Email</h3>
-                                        <p className="font-poppins text-[#2D7A84] text-[15px] font-medium">reservations@tretrip.com</p>
+                                        <p className="font-poppins text-[#2D7A84] text-[15px] font-medium">info@tretrip.com</p>
                                     </div>
                                 </div>
                             </div>
