@@ -20,7 +20,7 @@ export default function InternationalPhoneInput({
   compact = true,
 }: InternationalPhoneInputProps) {
   return (
-    <div className={`international-phone-input-wrapper ${compact ? "is-compact" : "is-regular"}`}>
+    <div dir="ltr" className={`international-phone-input-wrapper ${compact ? "is-compact" : "is-regular"}`}>
       <PhoneInput
         defaultCountry={defaultCountry}
         value={value}
