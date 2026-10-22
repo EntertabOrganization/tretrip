@@ -110,7 +110,7 @@ export default function Footer() {
                 {/* Copyright */}
                 <div className="pt-4 md:pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-3 md:gap-0 text-[11px] sm:text-[12px] md:text-[13px] font-poppins text-white/60 italic">
                     <p>Copyright © {new Date().getFullYear()} TreTrip {t("footer.copyright")}</p>
-                    <p>{t("footer.designedBy")} <Link href="https://entertab.net/" target="_blank" className="text-brand-accent hover:text-white transition-colors">Entertab</Link></p>
+                    <p>{t("footer.designedBy")} <Link href="https://entertab.net/" target="_blank" className="text-brand-accent hover:text-white transition-colors">entertab</Link></p>
                 </div>
             </div>
         </footer>
